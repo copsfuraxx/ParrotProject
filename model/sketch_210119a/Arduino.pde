@@ -65,10 +65,11 @@ void draw(){
   while (arduinoPort.available() > 0) {
     String s = arduinoPort.readStringUntil('\n');
     if (s != null){
-      println(s);
-      String[] m = match(s, "[0-9]{1}");
-      val1 = Integer.valueOf(m[0]);
-      val2 = Integer.valueOf(m[1]);
+      String[][] m = matchAll(s, "[0-9]{1}");
+      if (m != null){
+        val1 = Integer.valueOf(m[0][0]);
+        val2 = Integer.valueOf(m[1][0]);
+      }
     }
   }
   
