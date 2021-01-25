@@ -1,21 +1,27 @@
-import processing.serial.*;
+/*
+Classe permettant de faire la connection entre la carte arduino et le logiciel.
+Connection sur le deuxieme port disponible (example: port dispo : CM1 et CM4, L'arduino doit être branché sur CM4)
 
-Serial myPort;
+*/
+
+import processing.serial.*; 
+
+Serial arduinoPort; //port usb de connection entre l'ordinateur et la carte
 float val;
 int bval;
 
-void setup(){
-  //size(450, 100);
-  myPort = new Serial(this, Serial.list()[1], 9600);
+void setup(){  
   printArray(Serial.list());
+  arduinoPort = new Serial(this, Serial.list()[1], 9600); // établie la connection
 }
 
-public void settings() {
+/*public void settings() {
   size(450, 100);
 }
+
 void draw(){
-  while (myPort.available() > 0) {
-    String sb = myPort.readStringUntil('\n');
+  while (arduinoPort.available() > 0) {
+    String sb = arduinoPort.readStringUntil('\n');
     if (sb != null){
       val = float(sb);
       bval = int(val);
@@ -45,6 +51,6 @@ void draw(){
   fill(0);
   textSize(32);
   text(cval+"%", 10, 20);
-}
+}*/
 
   
