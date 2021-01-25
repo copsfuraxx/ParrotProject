@@ -10,5 +10,4 @@ void loop() {
   
   val = analogRead(analogPin);
   val = map(val, 0, 1024, 0, 360);
-  Serial.println(val);
 }
