@@ -5,11 +5,14 @@ float val;
 int bval;
 
 void setup(){
-  size(450, 100);
-  myPort = new Serial(this, Serial.list()[2], 9600);
+  //size(450, 100);
+  myPort = new Serial(this, Serial.list()[1], 9600);
   printArray(Serial.list());
 }
 
+public void settings() {
+  size(450, 100);
+}
 void draw(){
   while (myPort.available() > 0) {
     String sb = myPort.readStringUntil('\n');
