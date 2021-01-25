@@ -67,13 +67,18 @@ class Bouton {
   }
   
   
-  /*
-  PARAMETRE : le texte du bouton
-  BUT : crée un tableau qui représente  
-  */
+  /**
+  *PARAMETRE : le texte du bouton
+  *BUT : crée un tableau qui représente  
+  **/
   
   private String[] separeLigne(String texte){
-    int coef = 7 * 1 + (int) (this.tailleX *1.7 /this.tailleY);//coef pour trouver le nombre de caractère pour chaque lignes
+    int coef;
+    if ((this.tailleX/this.tailleY > 0.88) && (this.tailleX/this.tailleY < 1.12)){
+      coef = 5 + (int) (this.tailleX /this.tailleY);
+    }else{
+      coef = 5 + (int) (this.tailleX *2 /this.tailleY);//coef pour trouver le nombre de caractère pour chaque lignes
+    }
     System.out.println("test");
     if (texte.length() < coef){
       return new String[]{texte};
@@ -86,7 +91,7 @@ class Bouton {
       if (texte.lastIndexOf(" ",coef) != -1){
         
         if (coef + 1 < texte.length()&& texte.charAt(coef+1) == ' ' ){
-       
+           
           chaineCour = texte.substring(0,coef + 1);
           texte = texte.substring(coef+2, texte.length());
           arrayChaine.add(chaineCour);
