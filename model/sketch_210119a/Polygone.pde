@@ -98,7 +98,7 @@ void dessineCercle(int x, int y, int i){
 }
 
 void dessinePoly(){
-  dessinePoly((int)random(100));
+  dessinePoly((int)random(10));
 }
 
 void dessinePoly(int i){
