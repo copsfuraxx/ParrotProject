@@ -120,3 +120,21 @@ void dessinePoly(int[][] coord){
     line(coord[i][0], coord[i][1], coord[i+1][0], coord[i+1][1]);
   }
 }
+
+void multiFormGeo(){
+  multiFormGeo((int)random(10)+1);
+}
+
+void multiFormGeo(int n){
+  for(int i=0;i<n;i++){
+    int r=(int)random(6);
+    switch(r){
+      case 0:dessinCarre();break;
+      case 1:dessinRectangle();break;
+      case 2:dessineTriangle();break;
+      case 3:dessineEllipse();break;
+      case 4:dessineCercle();break;
+      case 5:dessinePoly();break;
+    }
+  }
+}
