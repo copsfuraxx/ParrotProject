@@ -60,8 +60,6 @@ class Bouton {
       tabReturn[j] = this.y + (placeTexte * this.tailleY)/(this.tabTexte.length + 1) + this.tailleTexte * 0.15 * placeTexte ;
     }
     
-    
-    
     }
     return tabReturn;
   }
@@ -101,10 +99,7 @@ class Bouton {
         texte = texte.substring(texte.lastIndexOf(" ",coef)+1, texte.length());
         arrayChaine.add(chaineCour);
         }
-        
-        
-        
-        
+      
       }
       else {
         chaineCour = texte.substring(0,coef);
@@ -118,7 +113,6 @@ class Bouton {
           System.out.println(texte);
 
     }
-
     
     String[] tabChaine = new String[arrayChaine.size()];
     for(int i = 0;i < arrayChaine.size();i++){
