@@ -26,7 +26,7 @@ String getInput(){ //recuperer 5 infos de l'arduino (pot/b1/b2/b3/b4)
 
 
 //retourne vrais si le bouton 1 est appuye sinon faux
-Boolean getBoutonUn(){
+Boolean boutonJauneAppuye(){
   Boolean val = false;
   String s = getInput();
   if (s != null){
@@ -41,7 +41,7 @@ Boolean getBoutonUn(){
 }
 
 //retourne vrais si le bouton 2 est appuye sinon faux
-Boolean getBoutonDeux(){
+Boolean boutonVertAppuye(){
   Boolean val = false;
   String s = getInput();
   if (s != null){
@@ -56,7 +56,7 @@ Boolean getBoutonDeux(){
 }
 
 //retourne vrais si le bouton 3 est appuye sinon faux
-Boolean getBoutonTrois(){
+Boolean boutonRougeAppuye(){
   Boolean val = false;
   String s = getInput();
   if (s != null){
@@ -71,7 +71,7 @@ Boolean getBoutonTrois(){
 }
 
 //retourne vrais si le bouton 4 est appuye sinon faux
-Boolean getBoutonQuatre(){
+Boolean boutonBleuAppuye(){
   Boolean val = false;
   String s = getInput();
   if (s != null){
