@@ -14,10 +14,73 @@ void connection(){ //etablie la connection arduino - logiciel
 }
 
 
-String getInput(){
+String getInput(){ //recuperer 5 infos de l'arduino (pot/b1/b2/b3/b4)
   String s = null;
   while (arduinoPort.available() > 0) {
     s = arduinoPort.readStringUntil('\n');
   }
   return s;
+}
+
+//retourne la valeur en % du potentiometre
+
+
+//retourne vrais si le bouton 1 est appuye sinon faux
+Boolean getBoutonUn(){
+  Boolean val = false;
+  String s = getInput();
+  if (s != null){
+    String[][] m = matchAll(s, "([0-9]+)");
+    if (m != null){
+      if (m[1][0] == "0"){
+        val = true;
+      }
+    }
+  }
+  return val;
+}
+
+//retourne vrais si le bouton 2 est appuye sinon faux
+Boolean getBoutonDeux(){
+  Boolean val = false;
+  String s = getInput();
+  if (s != null){
+    String[][] m = matchAll(s, "([0-9]+)");
+    if (m != null){
+      if (m[2][0] == "0"){
+        val = true;
+      }
+    }
+  }
+  return val;
+}
+
+//retourne vrais si le bouton 3 est appuye sinon faux
+Boolean getBoutonTrois(){
+  Boolean val = false;
+  String s = getInput();
+  if (s != null){
+    String[][] m = matchAll(s, "([0-9]+)");
+    if (m != null){
+      if (m[3][0] == "0"){
+        val = true;
+      }
+    }
+  }
+  return val;
+}
+
+//retourne vrais si le bouton 4 est appuye sinon faux
+Boolean getBoutonQuatre(){
+  Boolean val = false;
+  String s = getInput();
+  if (s != null){
+    String[][] m = matchAll(s, "([0-9]+)");
+    if (m != null){
+      if (m[4][0] == "0"){
+        val = true;
+      }
+    }
+  }
+  return val;
 }
