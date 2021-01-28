@@ -13,8 +13,9 @@ void connection(){ //etablie la connection arduino - logiciel
   arduinoPort = new Serial(this, Serial.list()[1], 9600); // établie la connection
 }
 
+private String[][] m = null;
 
-String getInput(){ //recuperer 5 infos de l'arduino (pot/b1/b2/b3/b4)
+private String getInput(){ //recuperer 5 infos de l'arduino (pot/b1/b2/b3/b4)
   String s = null;
   while (arduinoPort.available() > 0) {
     s = arduinoPort.readStringUntil('\n');
@@ -22,19 +23,32 @@ String getInput(){ //recuperer 5 infos de l'arduino (pot/b1/b2/b3/b4)
   return s;
 }
 
-//retourne la valeur en % du potentiometre
+private void getInfoArduino(){ //recupere les info de l'arduino et les separe les info dans un tableau
+  String s = getInput();
+  if (s != null){
+    m = matchAll(s, "[0-9]+");
+    //println(m[1][0]);
+  }
+  //return m;
+}
 
+//retourne la valeur en % du potentiometre
+int getPot(){
+  int val = -1;
+  if (m != null){
+    val = Integer.parseInt(m[0][0]);
+  }  
+  return val;
+}
 
 //retourne vrais si le bouton 1 est appuye sinon faux
 Boolean boutonJauneAppuye(){
   Boolean val = false;
-  String s = getInput();
-  if (s != null){
-    String[][] m = matchAll(s, "([0-9]+)");
-    if (m != null){
-      if (m[1][0] == "0"){
-        val = true;
-      }
+  //String[][] m = getMatch();
+
+  if (m != null){
+    if (m[1][0].equals("0")){
+      val = true;
     }
   }
   return val;
@@ -43,13 +57,10 @@ Boolean boutonJauneAppuye(){
 //retourne vrais si le bouton 2 est appuye sinon faux
 Boolean boutonVertAppuye(){
   Boolean val = false;
-  String s = getInput();
-  if (s != null){
-    String[][] m = matchAll(s, "([0-9]+)");
-    if (m != null){
-      if (m[2][0] == "0"){
-        val = true;
-      }
+  //String[][] m = getMatch();
+  if (m != null){
+    if (m[2][0].equals("0")){
+      val = true;
     }
   }
   return val;
@@ -58,13 +69,10 @@ Boolean boutonVertAppuye(){
 //retourne vrais si le bouton 3 est appuye sinon faux
 Boolean boutonRougeAppuye(){
   Boolean val = false;
-  String s = getInput();
-  if (s != null){
-    String[][] m = matchAll(s, "([0-9]+)");
-    if (m != null){
-      if (m[3][0] == "0"){
-        val = true;
-      }
+  //String[][] m = getMatch();
+  if (m != null){
+    if (m[3][0].equals("0")){
+      val = true;
     }
   }
   return val;
@@ -73,13 +81,10 @@ Boolean boutonRougeAppuye(){
 //retourne vrais si le bouton 4 est appuye sinon faux
 Boolean boutonBleuAppuye(){
   Boolean val = false;
-  String s = getInput();
-  if (s != null){
-    String[][] m = matchAll(s, "([0-9]+)");
-    if (m != null){
-      if (m[4][0] == "0"){
-        val = true;
-      }
+  //String[][] m = getMatch();
+  if (m != null){
+    if (m[4][0].equals("0")){
+      val = true;
     }
   }
   return val;

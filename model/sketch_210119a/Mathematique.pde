@@ -1,5 +1,5 @@
 public class Mathematique{
-  public static final AFFINE=1;
+  //public static final AFFINE=1;
   
   private int fonction;
   
