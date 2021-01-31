@@ -1,7 +1,7 @@
 class Bouton { 
-  String[] tabTexte;
-  float x,y,tailleX,tailleY,tailleTexte;
-  Bouton (String texte, float x, float y,float tailleX,float tailleY){
+  private String[] tabTexte;
+  private float x,y,tailleX,tailleY,tailleTexte;
+  public Bouton (String texte, float x, float y,float tailleX,float tailleY){
     
     this.x = x;
     this.y = y;
@@ -124,7 +124,7 @@ class Bouton {
   
   
   
-  void dessineBouton(){
+ public  void dessineBouton(){
     /*
     BUT : dessiner le bouton
     PARAMETRE : Ø

@@ -1,5 +1,54 @@
+void setup(){  
 
+  connection();
+}
 
+public void settings() {
+    size(800, 800);
+}
+
+color c = color(255,255,255); //couleur background
+
+void draw(){
+  
+  getInfoArduino();  
+  
+  dessineTest();
+}
+
+void dessineTest(){
+  int val;
+  val = getPot();
+  if (val < 15){
+    val = 0;
+  }else if (val < 32){
+    val = 1;
+  }else if (val < 50){
+    val = 2;
+  }else if (val < 66){ 
+    val = 3;
+  }else if (val < 82){
+    val = 4;
+  }else {
+    val = 5;
+  }
+  if (boutonVertAppuye()){ //quand on appuie sur le bouton vert
+    fill(0,255,0);
+    multiFormGeoChoix(val);
+  }
+  if (boutonJauneAppuye()){ //quand on appuie sur le bouton jaune
+    fill(255,255,0);
+    multiFormGeoChoix(val);  
+    }
+  if (boutonRougeAppuye()){ //quand on appuie sur le bouton rouge
+    fill(255,0,0);
+    multiFormGeoChoix(val);}
+  if (boutonBleuAppuye()){ //quand on appuie sur le bouton bleu
+    fill(0,0,255);
+    multiFormGeoChoix(val);
+  }
+  
+/*
 void setup(){  
     //test coucou les cons
 
@@ -62,3 +111,4 @@ void dessinePot(){
   textSize(32);
   text(val+"%", 10, 20);
 }
+*/

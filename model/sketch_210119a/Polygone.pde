@@ -138,3 +138,14 @@ void multiFormGeo(int n){
     }
   }
 }
+
+void multiFormGeoChoix(int choix){
+    switch(choix){
+      case 0:dessinCarre();break;
+      case 1:dessinRectangle();break;
+      case 2:dessineTriangle();break;
+      case 3:dessineEllipse();break;
+      case 4:dessineCercle();break;
+      case 5:dessinePoly();break;
+  }
+}
