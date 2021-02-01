@@ -84,8 +84,8 @@ void dessineEllipse(int x1, int y1, int i, int j){
 }
 
 void dessineCercle(){
-  int i=(int)random(max(displayWidth,displayHeight));
-  ellipse(random(displayWidth/2),random(displayHeight/2),i,i);
+  int i=(int)random(max(displayWidth,displayHeight))/4;
+  ellipse(random(displayWidth),random(displayHeight),i,i);
 }
 
 void dessineCercle(int x, int y){
