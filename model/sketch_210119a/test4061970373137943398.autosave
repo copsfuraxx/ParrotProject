@@ -77,8 +77,6 @@ String getNomFigure(int val){
  */
 public class SecondApplet extends PApplet {
  MenuListe menu = new MenuListe(0);
- int dernierPot = getPot();
- 
 
  public void settings(){
     size(400,400);
@@ -90,17 +88,6 @@ public class SecondApplet extends PApplet {
  
  public void draw(){
   background(0,0,0);
-  if ( (dernierPot - 4 > getPot())){
-     menu.descendCurseur();
- }
- else if ( (dernierPot + 4 < getPot())){
-   menu.augmenteCurseur();
- }
- dernierPot = getPot();
-    background(0,0,0);
-  textSize(32);
-  text(menu.getCurseur(),50,50);
- 
   for (int i = 0; i < menu.getListeBoutonTaille();i++){
     if (i == menu.getCurseur()){
       menu.getListeBouton().get(i).active();
@@ -120,8 +107,8 @@ public class SecondApplet extends PApplet {
     textSize(menu.getListeBouton().get(i).getTailleTexte());
     int  j = 0;
     int k = 1;
-    for(int tailleI = 0 ; tailleI < menu.getListeBouton().get(i).getTabTexte().length;tailleI++){
-      text(menu.getListeBouton().get(i).getTabTexte()[tailleI], menu.getListeBouton().get(i).getTabCoord()[j],menu.getListeBouton().get(i).getTabCoord()[k]);
+    for(int texteI = 0 ; texteI < menu.getListeBouton().get(i).getTabTexte().length;texteI++){
+      text(menu.getListeBouton().get(i).getTabTexte()[texteI], menu.getListeBouton().get(i).getTabCoord()[j],menu.getListeBouton().get(i).getTabCoord()[k]);
       j = j+2;
       k = j+1;
     }
@@ -131,6 +118,5 @@ public class SecondApplet extends PApplet {
  }
    
    
-
    
  

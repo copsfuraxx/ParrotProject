@@ -25,10 +25,14 @@ class MenuListe{
   }
    
   public void augmenteCurseur(){
-    this.curseur++;
+    if (this.curseur < this.getListeBoutonTaille()-1){ 
+      this.curseur++;
+    }  
   }
   public void descendCurseur(){
-    this.curseur--;
+    if (this.curseur > 0){
+      this.curseur--;
+    }
   }
   
   public MenuListe(int menuChoix){
