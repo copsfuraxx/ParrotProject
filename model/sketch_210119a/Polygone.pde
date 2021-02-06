@@ -4,7 +4,7 @@ BUT: dessiner un carre totalement aleatoire
 PARAMETRE:Ø
 */
 void dessinCarre(){
-  square(random(displayWidth),random(displayHeight),random(max(displayWidth,displayHeight)));
+  square(random(width),random(height),random(max(width,height))/4);
 }
 
 /*
@@ -12,7 +12,7 @@ BUT: dessiner un carre de taille taille et de position aleatoire
 PARAMETRE:int taille 
 */
 void dessinCarre(int taille){
-  square(random(displayWidth),random(displayHeight),taille);
+  square(random(width),random(height),taille);
 }
 
 /*
@@ -20,7 +20,7 @@ BUT: dessiner un carre de position x, y et de taille aleatoire
 PARAMETRE:int x, int y
 */
 void dessinCarre(int x, int y){
-  square(x,y,random(max(displayWidth,displayHeight)));
+  square(x,y,random(max(width,height))/4);
 }
 
 /*
@@ -36,7 +36,7 @@ BUT: dessiner un carre totalement aleatoire
 PARAMETRE:Ø
 */
 void dessinRectangle(){
-  rect(random(displayWidth),random(displayHeight),random(displayWidth),random(displayHeight));
+  rect(random(width),random(height),random(width)/4,random(height)/4);
 }
 
 /*
@@ -45,9 +45,9 @@ PARAMETRE:Ø
 */
 void dessinRectangle(int i, int j, int type){
   if(type==0){
-    rect(random(displayWidth),random(displayHeight),i,j);
+    rect(random(width),random(height),i,j);
   }else if(type==1){
-    rect(i,j,random(displayWidth),random(displayHeight));
+    rect(i,j,random(width)/4,random(height)/4);
   }  
 }
 
@@ -56,15 +56,15 @@ void dessinRectangle(int x, int y, int i, int j){
 }
 
 void dessineTriangle(){
-  triangle(random(displayWidth),random(displayHeight),random(displayWidth),random(displayHeight),random(displayWidth),random(displayHeight));
+  triangle(random(width),random(height),random(width),random(height),random(width),random(height));
 }
 
 void dessineTriangle(int x, int y){
-  triangle(x,y,random(displayWidth),random(displayHeight),random(displayWidth),random(displayHeight));
+  triangle(x,y,random(width),random(height),random(width),random(height));
 }
 
 void dessineTriangle(int x1, int y1, int x2, int y2){
-  triangle(x1,y1,x2,y2,random(displayWidth),random(displayHeight));
+  triangle(x1,y1,x2,y2,random(width),random(height));
 }
 
 void dessineTriangle(int x1, int y1, int x2, int y2, int x3, int y3){
@@ -72,11 +72,11 @@ void dessineTriangle(int x1, int y1, int x2, int y2, int x3, int y3){
 }
 
 void dessineEllipse(){
-  ellipse(random(displayWidth), random(displayHeight),random(displayWidth), random(displayHeight));
+  ellipse(random(width), random(height),random(width)/4, random(height)/4);
 }
 
 void dessineEllipse(int x, int y){
-  ellipse(x,y,random(displayWidth), random(displayHeight));
+  ellipse(x,y,random(width)/4, random(height)/4);
 }
 
 void dessineEllipse(int x1, int y1, int i, int j){
@@ -84,12 +84,12 @@ void dessineEllipse(int x1, int y1, int i, int j){
 }
 
 void dessineCercle(){
-  int i=(int)random(max(displayWidth,displayHeight))/4;
-  ellipse(random(displayWidth),random(displayHeight),i,i);
+  int i=(int)random(max(width,height))/4;
+  ellipse(random(width),random(height),i,i);
 }
 
 void dessineCercle(int x, int y){
-  int i=(int)random(max(displayWidth,displayHeight));
+  int i=(int)random(max(width,height))/4;
   ellipse(x,y,i,i);
 }
 
@@ -104,8 +104,8 @@ void dessinePoly(){
 void dessinePoly(int i){
   int[][] coord=new int[i][2];
   for(int j=0;j<coord.length;j++){
-    coord[j][0]=(int)random(displayWidth);
-    coord[j][1]=(int)random(displayHeight);
+    coord[j][0]=(int)random(width);
+    coord[j][1]=(int)random(height);
   }
   dessinePoly(coord);
 }
@@ -125,17 +125,16 @@ void multiFormGeo(){
   multiFormGeo((int)random(10)+1);
 }
 
+void multiFormGeo(int[] formeGeo){
+  for(int i=0;i<formeGeo.length;i++){
+    multiFormGeoChoix(formeGeo[i]);
+  }
+}
+
 void multiFormGeo(int n){
   for(int i=0;i<n;i++){
     int r=(int)random(6);
-    switch(r){
-      case 0:dessinCarre();break;
-      case 1:dessinRectangle();break;
-      case 2:dessineTriangle();break;
-      case 3:dessineEllipse();break;
-      case 4:dessineCercle();break;
-      case 5:dessinePoly();break;
-    }
+    multiFormGeoChoix(r);
   }
 }
 
