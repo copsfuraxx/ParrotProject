@@ -10,7 +10,7 @@ Serial arduinoPort; //port usb de connection entre l'ordinateur et la carte
 
 void connection(){ //etablie la connection arduino - logiciel
   printArray(Serial.list()); //liste tout les port usb disponible pour une connection pc - arduino 
-  arduinoPort = new Serial(this, Serial.list()[1], 9600); // établie la connection
+  arduinoPort = new Serial(this, Serial.list()[0], 9600); // établie la connection
 }
 
 private String[][] m = null;
