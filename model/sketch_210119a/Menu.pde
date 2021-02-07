@@ -63,8 +63,8 @@ class MenuListe{
     listeBouton.clear();
     color nonChoix = color(20,20,20);
     color choix = color(255,255,255);
-    Bouton start = new Bouton("start", 100 , 100, 100,70,choix,nonChoix);
-    Bouton quitter = new Bouton("quitter", 100 , 200, 100,70,choix,nonChoix);
+    Bouton start = new Bouton("start", 100 , 100, 140,70,choix,nonChoix);
+    Bouton quitter = new Bouton("quitter", 100 , 200, 140,70,choix,nonChoix);
     listeBouton.add(start);
     listeBouton.add(quitter);
   }
@@ -73,9 +73,9 @@ class MenuListe{
     listeBouton.clear();
     color nonChoix = color(20,20,20);
     color choix = color(255,255,255);
-    Bouton couleur = new Bouton("couleur", 100 , 100, 100,70,choix,nonChoix);
-    Bouton forme = new Bouton("forme", 100 , 200, 100,70,choix,nonChoix);
-    Bouton menu = new Bouton("menu", 100 , 300, 100,70,choix,nonChoix);
+    Bouton couleur = new Bouton("couleur", 100 , 100, 140,70,choix,nonChoix);
+    Bouton forme = new Bouton("forme", 100 , 200, 140,70,choix,nonChoix);
+    Bouton menu = new Bouton("menu", 100 , 300, 140,70,choix,nonChoix);
     listeBouton.add(couleur);
     listeBouton.add(forme);
     listeBouton.add(menu);
