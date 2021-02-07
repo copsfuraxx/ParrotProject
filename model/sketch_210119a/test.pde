@@ -90,16 +90,21 @@ public class SecondApplet extends PApplet {
  
  public void draw(){
   background(0,0,0);
-  if ( (dernierPot - 4 > getPot())){
+  if (boutonBleuAppuye()){ //quand on appuie sur le bouton bleu
+    menu.cliqueBouton();
+    delay(250);
+  }
+  if ( (dernierPot - 1 > getPot())){
      menu.descendCurseur();
- }
- else if ( (dernierPot + 4 < getPot())){
-   menu.augmenteCurseur();
- }
- dernierPot = getPot();
+   }
+   else if ( (dernierPot + 1 < getPot())){
+     menu.augmenteCurseur();
+   }
+   dernierPot = getPot();
     background(0,0,0);
   textSize(32);
   text(menu.getCurseur(),50,50);
+  text(menu.getMenuActuel(),100,50);
  
   for (int i = 0; i < menu.getListeBoutonTaille();i++){
     if (i == menu.getCurseur()){

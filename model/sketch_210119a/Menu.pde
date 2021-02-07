@@ -15,6 +15,11 @@ class MenuListe{
     
   }
   
+  public void setCurseur(int nb){
+     this.curseur = nb; 
+    
+  }
+  
   public int getListeBoutonTaille(){
      return this.listeBouton.size(); 
     
@@ -33,6 +38,14 @@ class MenuListe{
     if (this.curseur > 0){
       this.curseur--;
     }
+  }
+  
+  public int getMenuActuel(){
+   return this.menuActuel; 
+  }
+  
+  public void setMenuActuel(int nb){
+    this.menuActuel = nb; 
   }
   
   public MenuListe(int menuChoix){
@@ -56,15 +69,37 @@ class MenuListe{
     listeBouton.add(quitter);
   }
 
+  private void menuDessin(){
+    listeBouton.clear();
+    color nonChoix = color(20,20,20);
+    color choix = color(255,255,255);
+    Bouton couleur = new Bouton("couleur", 100 , 100, 100,70,choix,nonChoix);
+    Bouton forme = new Bouton("forme", 100 , 200, 100,70,choix,nonChoix);
+    Bouton menu = new Bouton("menu", 100 , 300, 100,70,choix,nonChoix);
+    listeBouton.add(couleur);
+    listeBouton.add(forme);
+    listeBouton.add(menu);
+  }
+  
+  
   public void cliqueBouton(){
    if (menuActuel == 0){
       switch(curseur){
-      case 0:menuActuel = 1;break;
+      case 0:this.setMenuActuel(1);this.menuDessin();break;
       case 1:exit();
       default : System.out.println("erreur");
   }
-     
    }
+  if (menuActuel == 1){
+    switch(curseur){
+      case 0:break;
+      case 1:break;
+      case 2:this.setMenuActuel(0); this.menuDemarrage();this.setCurseur(0);break;
+      default : System.out.println("erreur");
+  }
+  }
+     
+   
     
   }
  
