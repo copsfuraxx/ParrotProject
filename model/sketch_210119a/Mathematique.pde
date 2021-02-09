@@ -16,6 +16,8 @@ public void koch(float x, float y){
 public void koch(float taille){
 }
 public void koch(float x,float y, float taille){
+  if(x+taille>width)x-=taille;
+  if(y+taille>height)y-=taille;
   float rota=random(360)*PI/180;
   float x1,x2,y1,y2,x3,y3;
   x2=x - (x+taille);
