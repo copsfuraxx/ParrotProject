@@ -93,10 +93,10 @@ class MenuListe{
   private void menuCouleur(){
     listeBouton.clear();
     Bouton couleur = new Bouton("couleur", 100 , 100, 140,70,choix,nonChoix);
-    Bouton bleu = new BoutonValeur("bleu", 100 , 200, 140,70,choix,nonChoix,blue(couleurActuelle));
-    Bouton rouge = new BoutonValeur("rouge", 100 , 200, 140,70,choix,nonChoix,red(couleurActuelle));
-    Bouton vert = new BoutonValeur("vert", 100 , 200, 140,70,choix,nonChoix,green(couleurActuelle));
-    Bouton ok = new Bouton("OK", 100 , 300, 140,70,choix,nonChoix);
+    Bouton bleu = new BoutonValeur("bleu " + blue(couleurActuelle), 100 , 200, 140,70,choix,nonChoix,blue(couleurActuelle));
+    Bouton rouge = new BoutonValeur("rouge " + red(couleurActuelle), 100 , 300, 140,70,choix,nonChoix,red(couleurActuelle));
+    Bouton vert = new BoutonValeur("vert " + blue(couleurActuelle), 100 , 400, 140,70,choix,nonChoix,green(couleurActuelle));
+    Bouton ok = new Bouton("OK", 100 , 500, 140,70,choix,nonChoix);
     listeBouton.add(couleur);
     listeBouton.add(bleu);
     listeBouton.add(rouge);
@@ -105,26 +105,28 @@ class MenuListe{
     
   }
   public void cliqueBoutonBleu(){
+        System.out.println("test2");
+
    if (menuActuel == 0){
       switch(curseur){
-      case 0:this.setMenuActuel(1);this.menuDessin();break;
+      case 0:this.menuDessin();this.setCurseur(0);this.setMenuActuel(1);break;
       case 1:exit();
       default : System.out.println("erreur");
   }
-   }
+   }else
   if (menuActuel == 1){
     switch(curseur){
-      case 0:this.setMenuActuel(2); this.menuCouleur();this.setCurseur(0);break;
+      case 0: this.menuCouleur();this.setCurseur(0);this.setMenuActuel(2);break;
       case 1:break;
-      case 2:this.setMenuActuel(0); this.menuDemarrage();this.setCurseur(0);break;
+      case 2: this.menuDemarrage();this.setCurseur(0);this.setMenuActuel(0);break;
       default : System.out.println("erreur");
   }
-  }
+  }else
     if (menuActuel == 2){
     switch(curseur){
       case 0:break;
       case 1:break;
-      case 4:this.setMenuActuel(1);this.menuDessin();break;
+      case 4:this.menuDessin();this.setCurseur(0);this.setMenuActuel(1);break;
       default : System.out.println("erreur");
   }
   }  

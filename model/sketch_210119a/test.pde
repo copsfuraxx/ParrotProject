@@ -78,21 +78,27 @@ String getNomFigure(int val){
 public class SecondApplet extends PApplet {
  MenuListe menu = new MenuListe(0);
  int dernierPot = getPot();
- 
+ int delaiBoutonBleu = 0;
+
 
  public void settings(){
-    size(400,400);
+    size(400,800);
  }
  
  public void setup(){
    surface.setTitle("Menu");
+
  }
  
  public void draw(){
   background(0,0,0);
-  if (boutonBleuAppuye()){ //quand on appuie sur le bouton bleu
+  if (delaiBoutonBleu > 0){
+  delaiBoutonBleu--;
+  }
+  if (boutonBleuAppuye() && delaiBoutonBleu == 0){ //quand on appuie sur le bouton bleu
     menu.cliqueBoutonBleu();
-    delay(250);
+    delaiBoutonBleu = 15;
+    System.out.println("test");
   }
   if ( (dernierPot - 1 > getPot())){
      menu.descendCurseur();
