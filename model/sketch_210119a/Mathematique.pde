@@ -8,137 +8,49 @@ public class Mathematique{
   }
 }
 
-// Koch Curve
-// A class to manage the list of line segments in the snowflake pattern
-
-class KochFractal {
-  PVector start;       // A PVector for the start
-  PVector end;         // A PVector for the end
-  ArrayList<KochLine> lines;   // A list to keep track of all the lines
-  int count;
+public void koch(){
+  koch(random(width), random(height),random(max(width,height))/4);
+}
+public void koch(float x, float y){
+}
+public void koch(float taille){
+}
+public void koch(float x,float y, float taille){
+  if(x+taille>width)x-=taille;
+  if(y+taille>height)y-=taille;
+  float rota=random(360)*PI/180;
+  float x1,x2,y1,y2,x3,y3;
+  x2=x - (x+taille);
+  y2=y - y;
+  x1=x2*cos(rota)+y2*sin(rota)+(x+taille);
+  y1=-x2*sin(rota)+y2*cos(rota)+y;
   
-  KochFractal() {
-    start = new PVector(0,height-20);
-    end = new PVector(width,height-20);
-    lines = new ArrayList<KochLine>();
-    restart();
-  }
-
-  void nextLevel() {  
-    // For every line that is in the arraylist
-    // create 4 more lines in a new arraylist
-    lines = iterate(lines);
-    count++;
-  }
-
-  void restart() { 
-    count = 0;      // Reset count
-    lines.clear();  // Empty the array list
-    lines.add(new KochLine(start,end));  // Add the initial line (from one end PVector to the other)
-  }
+  x2=x1 - x;
+  y2=y1 - y;
+  x3=x2*cos(1.0472)+y2*sin(1.0472)+x;
+  y3=-x2*sin(1.0472)+y2*cos(1.0472)+y;
   
-  int getCount() {
-    return count;
-  }
-  
-  // This is easy, just draw all the lines
-  void render() {
-    for(KochLine l : lines) {
-      l.display();
-    }
-  }
-
-  // This is where the **MAGIC** happens
-  // Step 1: Create an empty arraylist
-  // Step 2: For every line currently in the arraylist
-  //   - calculate 4 line segments based on Koch algorithm
-  //   - add all 4 line segments into the new arraylist
-  // Step 3: Return the new arraylist and it becomes the list of line segments for the structure
-  
-  // As we do this over and over again, each line gets broken into 4 lines, which gets broken into 4 lines, and so on. . . 
-  ArrayList iterate(ArrayList<KochLine> before) {
-    ArrayList now = new ArrayList<KochLine>();    // Create emtpy list
-    for(KochLine l : before) {
-      // Calculate 5 koch PVectors (done for us by the line object)
-      PVector a = l.start();                 
-      PVector b = l.kochleft();
-      PVector c = l.kochmiddle();
-      PVector d = l.kochright();
-      PVector e = l.end();
-      // Make line segments between all the PVectors and add them
-      now.add(new KochLine(a,b));
-      now.add(new KochLine(b,c));
-      now.add(new KochLine(c,d));
-      now.add(new KochLine(d,e));
-    }
-    return now;
-  }
-
+  koch(x,y,x1,y1,5);
+  koch(x1,y1,x3,y3,5);
+  koch(x3,y3,x,y,5);
 }
 
-
-
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-// Koch Curve
-// A class to describe one line segment in the fractal
-// Includes methods to calculate midPVectors along the line according to the Koch algorithm
-
-class KochLine {
-
-  // Two PVectors,
-  // a is the "left" PVector and 
-  // b is the "right PVector
-  PVector a;
-  PVector b;
-
-  KochLine(PVector start, PVector end) {
-    a = start.copy();
-    b = end.copy();
+public void koch(float xa, float ya, float xb, float yb, float n){
+  if(n==0){
+    line(xa,ya,xb,yb);
+    return;
   }
-
-  void display() {
-    stroke(255);
-    line(a.x, a.y, b.x, b.y);
-  }
-
-  PVector start() {
-    return a.copy();
-  }
-
-  PVector end() {
-    return b.copy();
-  }
-
-  // This is easy, just 1/3 of the way
-  PVector kochleft() {
-    PVector v = PVector.sub(b, a);
-    v.div(3);
-    v.add(a);
-    return v;
-  }    
-
-  // More complicated, have to use a little trig to figure out where this PVector is!
-  PVector kochmiddle() {
-    PVector v = PVector.sub(b, a);
-    v.div(3);
-    
-    PVector p = a.copy();
-    p.add(v);
-    
-    v.rotate(-radians(60));
-    p.add(v);
-    
-    return p;
-  }    
-
-  // Easy, just 2/3 of the way
-  PVector kochright() {
-    PVector v = PVector.sub(a, b);
-    v.div(3);
-    v.add(b);
-    return v;
-  }
+  float xc,yc,xd,yd,xe,ye;
+  xc=xa+(xb-xa)/3;
+  yc=ya+(yb-ya)/3;
+  koch(xa,ya,xc,yc,n-1);
+  
+  xd=xa+2*(xb-xa)/3;
+  yd=ya+2*(yb-ya)/3;
+  koch(xd,yd,xb,yb,n-1);
+  
+  xe=(xc+xd)*cos(1.0472)-(yd-yc)*sin(1.0472);
+  ye=(yc+yd)*cos(1.0472)+(xd-xc)*sin(1.0472);
+  koch(xc,yc,xe,ye,n-1);
+  koch(xe,ye,xd,yd,n-1);
 }
