@@ -4,6 +4,7 @@ class Bouton {
   private float x, y, tailleX, tailleY, tailleTexte;
   private color on, off;
   private Boolean choix;
+  
   public Bouton (String texte, float x, float y, float tailleX, float tailleY, color on, color off) {
     this.desactive();
     this.on = on;
@@ -192,4 +193,55 @@ class Bouton {
       k = j+1;
     }
   };
+}
+
+
+class BoutonValeur extends Bouton{
+  
+  private int[] listeEntier;
+  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, color on, color off,int[] listeEntier){
+   super(texte, x, y, tailleX, tailleY, on, off);
+   this.listeEntier = listeEntier;
+  }
+  
+ public int[] getListeEntier(){
+   return this.listeEntier;
+ }
+ 
+ public void setListeEntier(int[] listeEntier){
+  this.listeEntier = listeEntier; 
+ }
+ 
+ public int getEntierDeListeEntier(int place){
+   return listeEntier[place];
+ }
+  
+  public void setEntierDeListeEntier(int place, int entier){
+   this.listeEntier[place] = entier;
+ }
+}
+
+class BoutonListe extends Bouton{
+  
+  private String[] listeChaine;
+  public BoutonListe (String texte, float x, float y, float tailleX, float tailleY, color on, color off,String[] listeChaine){
+   super(texte, x, y, tailleX, tailleY, on, off);
+   this.listeChaine = listeChaine;
+  }
+  
+ public String[] getListeChaine(){
+   return this.listeChaine;
+ }
+ 
+ public void setlisteChaine(String[] listeChaine){
+  this.listeChaine = listeChaine; 
+ }
+ 
+ public String getEntierDelisteChaine(int place){
+   return listeChaine[place];
+ }
+  
+  public void setEntierDelisteChaine(int place, String chaine){
+   this.listeChaine[place] = chaine;
+ }
 }

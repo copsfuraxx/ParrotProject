@@ -8,7 +8,7 @@ class MenuListe{
   */
   private ArrayList<Bouton> listeBouton;
   private int curseur;//savoir sur quel bouton nous sommes
-  
+  private color couleurActuelle;
   
   public int getCurseur(){
      return this.curseur; 
@@ -48,6 +48,14 @@ class MenuListe{
     this.menuActuel = nb; 
   }
   
+  public void setCouleurActuelle(color couleur){
+    this.couleurActuelle = couleur;  
+  }
+  
+  public color getCouleurActuelle(){
+    return this.couleurActuelle; 
+  }
+  
   public MenuListe(int menuChoix){
     if (menuChoix == 0){
       
@@ -81,7 +89,18 @@ class MenuListe{
     listeBouton.add(menu);
   }
   
-  
+  private void menuCouleur(){
+    listeBouton.clear();
+    color nonChoix = color(20,20,20);
+    color choix = color(255,255,255);
+    Bouton couleur = new Bouton("couleur", 100 , 100, 140,70,choix,nonChoix);
+    Bouton forme = new Bouton("forme", 100 , 200, 140,70,choix,nonChoix);
+    Bouton menu = new Bouton("menu", 100 , 300, 140,70,choix,nonChoix);
+    listeBouton.add(couleur);
+    listeBouton.add(forme);
+    listeBouton.add(menu);
+    
+  }
   public void cliqueBouton(){
    if (menuActuel == 0){
       switch(curseur){
