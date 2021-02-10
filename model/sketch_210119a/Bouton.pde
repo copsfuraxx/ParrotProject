@@ -198,25 +198,31 @@ class Bouton {
 
 class BoutonValeur extends Bouton{
   
-  private int[] listeEntier;
-  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, color on, color off,int[] listeEntier){
+  private float[] listeEntier;
+  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, color on, color off,float[] listeEntier){
    super(texte, x, y, tailleX, tailleY, on, off);
    this.listeEntier = listeEntier;
   }
   
- public int[] getListeEntier(){
+  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, color on, color off,float entier){
+   super(texte, x, y, tailleX, tailleY, on, off);
+   float[] listeEntier = new float[1];
+   listeEntier[0] = entier;
+   this.listeEntier = listeEntier;
+  }
+ public float[] getListeEntier(){
    return this.listeEntier;
  }
  
- public void setListeEntier(int[] listeEntier){
+ public void setListeEntier(float[] listeEntier){
   this.listeEntier = listeEntier; 
  }
  
- public int getEntierDeListeEntier(int place){
+ public float getEntierDeListeEntier(int place){
    return listeEntier[place];
  }
   
-  public void setEntierDeListeEntier(int place, int entier){
+  public void setEntierDeListeEntier(int place, float entier){
    this.listeEntier[place] = entier;
  }
 }

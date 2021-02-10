@@ -91,7 +91,7 @@ public class SecondApplet extends PApplet {
  public void draw(){
   background(0,0,0);
   if (boutonBleuAppuye()){ //quand on appuie sur le bouton bleu
-    menu.cliqueBouton();
+    menu.cliqueBoutonBleu();
     delay(250);
   }
   if ( (dernierPot - 1 > getPot())){

@@ -57,20 +57,22 @@ class MenuListe{
   }
   
   public MenuListe(int menuChoix){
+    colorMode(HSB,100);
     if (menuChoix == 0){
       
    this.menuActuel = 0;
    this.listeBouton = new ArrayList<Bouton>();
    this.menuDemarrage();
+   
     }
     
   }
-  
+
+    color nonChoix = color(20,20,20);
+    color choix = color(100,100,100);
   
   private void menuDemarrage(){//menu de départ
     listeBouton.clear();
-    color nonChoix = color(20,20,20);
-    color choix = color(255,255,255);
     Bouton start = new Bouton("start", 100 , 100, 140,70,choix,nonChoix);
     Bouton quitter = new Bouton("quitter", 100 , 200, 140,70,choix,nonChoix);
     listeBouton.add(start);
@@ -79,8 +81,7 @@ class MenuListe{
 
   private void menuDessin(){
     listeBouton.clear();
-    color nonChoix = color(20,20,20);
-    color choix = color(255,255,255);
+
     Bouton couleur = new Bouton("couleur", 100 , 100, 140,70,choix,nonChoix);
     Bouton forme = new Bouton("forme", 100 , 200, 140,70,choix,nonChoix);
     Bouton menu = new Bouton("menu", 100 , 300, 140,70,choix,nonChoix);
@@ -91,17 +92,19 @@ class MenuListe{
   
   private void menuCouleur(){
     listeBouton.clear();
-    color nonChoix = color(20,20,20);
-    color choix = color(255,255,255);
     Bouton couleur = new Bouton("couleur", 100 , 100, 140,70,choix,nonChoix);
-    Bouton forme = new Bouton("forme", 100 , 200, 140,70,choix,nonChoix);
-    Bouton menu = new Bouton("menu", 100 , 300, 140,70,choix,nonChoix);
+    Bouton bleu = new BoutonValeur("bleu", 100 , 200, 140,70,choix,nonChoix,blue(couleurActuelle));
+    Bouton rouge = new BoutonValeur("rouge", 100 , 200, 140,70,choix,nonChoix,red(couleurActuelle));
+    Bouton vert = new BoutonValeur("vert", 100 , 200, 140,70,choix,nonChoix,green(couleurActuelle));
+    Bouton ok = new Bouton("OK", 100 , 300, 140,70,choix,nonChoix);
     listeBouton.add(couleur);
-    listeBouton.add(forme);
-    listeBouton.add(menu);
+    listeBouton.add(bleu);
+    listeBouton.add(rouge);
+    listeBouton.add(vert);
+    listeBouton.add(ok);
     
   }
-  public void cliqueBouton(){
+  public void cliqueBoutonBleu(){
    if (menuActuel == 0){
       switch(curseur){
       case 0:this.setMenuActuel(1);this.menuDessin();break;
@@ -111,13 +114,20 @@ class MenuListe{
    }
   if (menuActuel == 1){
     switch(curseur){
-      case 0:break;
+      case 0:this.setMenuActuel(2); this.menuCouleur();this.setCurseur(0);break;
       case 1:break;
       case 2:this.setMenuActuel(0); this.menuDemarrage();this.setCurseur(0);break;
       default : System.out.println("erreur");
   }
   }
-     
+    if (menuActuel == 2){
+    switch(curseur){
+      case 0:break;
+      case 1:break;
+      case 4:this.setMenuActuel(1);this.menuDessin();break;
+      default : System.out.println("erreur");
+  }
+  }  
    
     
   }
