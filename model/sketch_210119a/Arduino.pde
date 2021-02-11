@@ -6,14 +6,33 @@ Connection sur le deuxieme port disponible (example: port dispo : CM1 et CM4, L'
 
 import processing.serial.*; 
 
-Serial arduinoPort; //port usb de connection entre l'ordinateur et la carte
+private Serial arduinoPort; //port usb de connection entre l'ordinateur et la carte
+private final int EN_COUR_DE_CONNECTION = 0, EST_CONNECTE = 1, EST_PAS_CONNECTE = 2;
+private int etatConnection;
+private String[][] m = null; // valeur des input de l'arduino
 
 void connection(){ //etablie la connection arduino - logiciel
-  printArray(Serial.list()); //liste tout les port usb disponible pour une connection pc - arduino 
-  arduinoPort = new Serial(this, Serial.list()[0], 9600); // établie la connection
+  int i = 0; //numero du port
+  int connection = EN_COUR_DE_CONNECTION;
+  while (connection == EN_COUR_DE_CONNECTION){
+    try{
+      arduinoPort = new Serial(this, Serial.list()[i], 9600); // établie la connection
+      delay(1000);
+      if (getInput() != null){
+        connection = EST_CONNECTE;
+      }
+    }catch (Exception e){
+      connection = EST_PAS_CONNECTE;
+    }
+    i++;
+  }
+  etatConnection = connection;
+  println(etatConnection);
 }
 
-private String[][] m = null;
+private void afficheFenetreConnection(){
+  
+}
 
 private String getInput(){ //recuperer 5 infos de l'arduino (pot/b1/b2/b3/b4)
   String s = null;
