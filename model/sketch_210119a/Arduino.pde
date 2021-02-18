@@ -27,7 +27,6 @@ void connection(){ //etablie la connection arduino - logiciel
     i++;
   }
   etatConnection = connection;
-  //println(etatConnection);
 }
 
 public int getConnection(){
