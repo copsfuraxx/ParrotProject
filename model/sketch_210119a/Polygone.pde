@@ -4,31 +4,36 @@ BUT: dessiner un carre totalement aleatoire
 PARAMETRE:Ø
 */
 void dessinCarre(){
-  square(random(width),random(height),random(max(width,height))/4);
+  dessinCarre(random(width),random(height));
 }
 
 /*
 BUT: dessiner un carre de taille taille et de position aleatoire
 PARAMETRE:int taille 
 */
-void dessinCarre(int taille){
-  square(random(width),random(height),taille);
+void dessinCarre(float taille){
+  dessinCarre(random(width),random(height),taille);
 }
 
 /*
 BUT: dessiner un carre de position x, y et de taille aleatoire
 PARAMETRE:int x, int y
 */
-void dessinCarre(int x, int y){
-  square(x,y,random(max(width,height))/4);
+void dessinCarre(float x, float y){
+  dessinCarre(x,y,random(max(width,height))/4);
 }
 
 /*
 BUT: dessiner un carre de position x, y et de taille taille
 PARAMETRE:Ø
 */
-void dessinCarre(int x, int y,int taille){
+void dessinCarre(float x, float y,float taille){
   square(x,y,taille);
+  ArrayList list=new ArrayList();
+  list.add(x);
+  list.add(y);
+  list.add(taille);
+  save.addHistorique(new Historique(1,1,list));
 }
 
 /*
@@ -43,12 +48,8 @@ void dessinRectangle(){
 BUT: dessiner un carre totalement aleatoire
 PARAMETRE:Ø
 */
-void dessinRectangle(int i, int j, int type){
-  if(type==0){
-    rect(random(width),random(height),i,j);
-  }else if(type==1){
-    rect(i,j,random(width)/4,random(height)/4);
-  }  
+void dessinRectangle(int x, int y){
+   rect(x,y,random(width)/4,random(height)/4);  
 }
 
 void dessinRectangle(int x, int y, int i, int j){

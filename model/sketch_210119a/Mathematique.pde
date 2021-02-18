@@ -9,16 +9,24 @@ public class Mathematique{
 }
 
 public void koch(){
-  koch(random(width), random(height),random(max(width,height))/4);
+  koch(random(width), random(height));
 }
+
 public void koch(float x, float y){
+  koch(x,y,random(max(width,height))/4);
 }
+
 public void koch(float taille){
+  koch(random(width), random(height),taille);
 }
+
 public void koch(float x,float y, float taille){
+  koch(x,y,taille,random(360)*PI/180);
+}
+
+public void koch(float x,float y, float taille, float rota){
   if(x+taille>width)x-=taille;
   if(y+taille>height)y-=taille;
-  float rota=random(360)*PI/180;
   float x1,x2,y1,y2,x3,y3;
   x2=x - (x+taille);
   y2=y - y;
@@ -33,6 +41,12 @@ public void koch(float x,float y, float taille){
   koch(x,y,x1,y1,5);
   koch(x1,y1,x3,y3,5);
   koch(x3,y3,x,y,5);
+  ArrayList list=new ArrayList();
+  list.add(x);
+  list.add(y);
+  list.add(taille);
+  list.add(rota);
+  save.addHistorique(new Historique(2,1,list));
 }
 
 public void koch(float xa, float ya, float xb, float yb, float n){
