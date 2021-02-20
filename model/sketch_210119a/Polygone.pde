@@ -3,31 +3,31 @@
 BUT: dessiner un carre totalement aleatoire
 PARAMETRE:Ø
 */
-void dessinCarre(){
-  dessinCarre(random(width),random(height));
+void dessineCarre(){
+  dessineCarre(random(width),random(height));
 }
 
 /*
 BUT: dessiner un carre de taille taille et de position aleatoire
 PARAMETRE:int taille 
 */
-void dessinCarre(float taille){
-  dessinCarre(random(width),random(height),taille);
+void dessineCarre(float taille){
+  dessineCarre(random(width),random(height),taille);
 }
 
 /*
 BUT: dessiner un carre de position x, y et de taille aleatoire
 PARAMETRE:int x, int y
 */
-void dessinCarre(float x, float y){
-  dessinCarre(x,y,random(max(width,height))/4);
+void dessineCarre(float x, float y){
+  dessineCarre(x,y,random(max(width,height))/4);
 }
 
 /*
 BUT: dessiner un carre de position x, y et de taille taille
 PARAMETRE:Ø
 */
-void dessinCarre(float x, float y,float taille){
+void dessineCarre(float x, float y,float taille){
   square(x,y,taille);
   ArrayList list=new ArrayList();
   list.add(x);
@@ -40,86 +40,113 @@ void dessinCarre(float x, float y,float taille){
 BUT: dessiner un carre totalement aleatoire
 PARAMETRE:Ø
 */
-void dessinRectangle(){
-  rect(random(width),random(height),random(width)/4,random(height)/4);
+void dessineRectangle(){
+  dessineRectangle(random(width),random(height));
 }
 
 /*
 BUT: dessiner un carre totalement aleatoire
 PARAMETRE:Ø
 */
-void dessinRectangle(int x, int y){
-   rect(x,y,random(width)/4,random(height)/4);  
+void dessineRectangle(float x, float y){
+   dessineRectangle(x,y,random(width)/4,random(height)/4);  
 }
 
-void dessinRectangle(int x, int y, int i, int j){
-  rect(x,y,i,j); 
+void dessineRectangle(float x, float y, float i, float j){
+  rect(x,y,i,j);
+  ArrayList list=new ArrayList();
+  list.add(x);
+  list.add(y);
+  list.add(i);
+  list.add(j);
+  save.addHistorique(new Historique(1,2,list));
 }
 
 void dessineTriangle(){
-  triangle(random(width),random(height),random(width),random(height),random(width),random(height));
+  dessineTriangle(random(width),random(height));
 }
 
-void dessineTriangle(int x, int y){
-  triangle(x,y,random(width),random(height),random(width),random(height));
+void dessineTriangle(float x, float y){
+  dessineTriangle(x,y,random(width),random(height));
 }
 
-void dessineTriangle(int x1, int y1, int x2, int y2){
-  triangle(x1,y1,x2,y2,random(width),random(height));
+void dessineTriangle(float x1, float y1, float x2, float y2){
+  dessineTriangle(x1,y1,x2,y2,random(width),random(height));
 }
 
-void dessineTriangle(int x1, int y1, int x2, int y2, int x3, int y3){
+void dessineTriangle(float x1, float y1, float x2, float y2, float x3, float y3){
   triangle(x1,y1,x2,y2,x3,y3);
+  ArrayList list=new ArrayList();
+  list.add(x1);
+  list.add(y1);
+  list.add(x2);
+  list.add(y2);
+  list.add(x3);
+  list.add(y3);
+  save.addHistorique(new Historique(1,3,list));
 }
 
 void dessineEllipse(){
-  ellipse(random(width), random(height),random(width)/4, random(height)/4);
+  dessineEllipse(random(width), random(height));
 }
 
-void dessineEllipse(int x, int y){
-  ellipse(x,y,random(width)/4, random(height)/4);
+void dessineEllipse(float x, float y){
+  dessineEllipse(x,y,random(width)/4, random(height)/4);
 }
 
-void dessineEllipse(int x1, int y1, int i, int j){
-  ellipse(x1,y1,i,j);
+void dessineEllipse(float x, float y, float i, float j){
+  ellipse(x,y,i,j);
+  ArrayList list=new ArrayList();
+  list.add(x);
+  list.add(y);
+  list.add(i);
+  list.add(j);
+  save.addHistorique(new Historique(1,4,list));
 }
 
 void dessineCercle(){
-  int i=(int)random(max(width,height))/4;
-  ellipse(random(width),random(height),i,i);
+  dessineCercle(random(width),random(height));
 }
 
-void dessineCercle(int x, int y){
-  int i=(int)random(max(width,height))/4;
-  ellipse(x,y,i,i);
+void dessineCercle(float x, float y){
+  dessineCercle(x,y,random(max(width,height))/4);
 }
 
-void dessineCercle(int x, int y, int i){
+void dessineCercle(float x, float y, float i){
   ellipse(x,y,i,i);
+  ArrayList list=new ArrayList();
+  list.add(x);
+  list.add(y);
+  list.add(i);
+  save.addHistorique(new Historique(1,5,list));
 }
 
 void dessinePoly(){
-  dessinePoly((int)random(10)+1);
+  dessinePoly((int)random(10)+3);
 }
 
 void dessinePoly(int i){
-  int[][] coord=new int[i][2];
+  if(i<3)return;
+  float[][] coord=new float[i][2];
   for(int j=0;j<coord.length;j++){
-    coord[j][0]=(int)random(width);
-    coord[j][1]=(int)random(height);
+    coord[j][0]=random(width);
+    coord[j][1]=random(height);
   }
   dessinePoly(coord);
 }
 
-void dessinePoly(int x, int y){
-  point(x,y);
-}
-
-void dessinePoly(int[][] coord){
+void dessinePoly(float[][] coord){
   line(coord[0][0], coord[0][1], coord[coord.length-1][0], coord[coord.length-1][1]);
+  ArrayList list=new ArrayList();
+  list.add(coord.length);
   for(int i=0;i<coord.length-1;i++){
     line(coord[i][0], coord[i][1], coord[i+1][0], coord[i+1][1]);
+    list.add(coord[i][0]);
+    list.add(coord[i][1]);
   }
+  list.add(coord[coord.length-1][0]);
+  list.add(coord[coord.length-1][1]);
+  save.addHistorique(new Historique(1,6,list));
 }
 
 void multiFormGeo(){
@@ -134,15 +161,14 @@ void multiFormGeo(int[] formeGeo){
 
 void multiFormGeo(int n){
   for(int i=0;i<n;i++){
-    int r=(int)random(6);
-    multiFormGeoChoix(r);
+    multiFormGeoChoix((int)random(6));
   }
 }
 
 void multiFormGeoChoix(int choix){
     switch(choix){
-      case 0:dessinCarre();break;
-      case 1:dessinRectangle();break;
+      case 0:dessineCarre();break;
+      case 1:dessineRectangle();break;
       case 2:dessineTriangle();break;
       case 3:dessineEllipse();break;
       case 4:dessineCercle();break;

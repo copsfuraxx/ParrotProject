@@ -1,12 +1,12 @@
-public class Mathematique{
-  //public static final AFFINE=1;
+//public class Mathematique{
+//  //public static final AFFINE=1;
   
-  private int fonction;
+//  private int fonction;
   
-  public Mathematique(int fonction){
-    this.fonction=fonction;
-  }
-}
+//  public Mathematique(int fonction){
+//    this.fonction=fonction;
+//  }
+//}
 
 public void koch(){
   koch(random(width), random(height));
