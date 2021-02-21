@@ -4,7 +4,7 @@ class Bouton {
   private float x, y, tailleX, tailleY, tailleTexte;
   private color on, off;
   private Boolean choix;
-  
+
   public Bouton (String texte, float x, float y, float tailleX, float tailleY, color on, color off) {
     this.desactive();
     this.on = on;
@@ -38,46 +38,46 @@ class Bouton {
     this.choix = false;
   }
 
-  public float[] getTabCoord(){
+  public float[] getTabCoord() {
     return this.tabCoord;
   }
-  
-  public String[] getTabTexte(){
+
+  public String[] getTabTexte() {
     return this.tabTexte;
   }
-  
-  public float getX(){
-   return this.x; 
-  }
-  
-  public float getY(){
-   return this.y; 
-  }
-  
-  public float getTailleX(){
-   return this.tailleX; 
+
+  public float getX() {
+    return this.x;
   }
 
-  public float getTailleY(){
-   return this.tailleY; 
+  public float getY() {
+    return this.y;
   }
-  
-  public float getTailleTexte(){
-   return this.tailleTexte; 
+
+  public float getTailleX() {
+    return this.tailleX;
   }
-  
-  public color getCouleurOn(){
-   return this.on; 
+
+  public float getTailleY() {
+    return this.tailleY;
   }
-  
-  public color getCouleurOff(){
-   return this.off ;
+
+  public float getTailleTexte() {
+    return this.tailleTexte;
   }
-  
-  public Boolean getChoix(){
+
+  public color getCouleurOn() {
+    return this.on;
+  }
+
+  public color getCouleurOff() {
+    return this.off ;
+  }
+
+  public Boolean getChoix() {
     return this.choix;
   }
-  
+
   /*
   PARAMETRE : les tailles des bordures du bouton
    BUT: adapter le texte pour qu'il soit à l'intérieur du bouton
@@ -196,58 +196,58 @@ class Bouton {
 }
 
 
-class BoutonValeur extends Bouton{
-  
+class BoutonValeur extends Bouton {
+
   private float[] listeEntier;
-  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, color on, color off,float[] listeEntier){
-   super(texte, x, y, tailleX, tailleY, on, off);
-   this.listeEntier = listeEntier;
+  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, color on, color off, float[] listeEntier) {
+    super(texte, x, y, tailleX, tailleY, on, off);
+    this.listeEntier = listeEntier;
   }
-  
-  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, color on, color off,float entier){
-   super(texte, x, y, tailleX, tailleY, on, off);
-   float[] listeEntier = new float[1];
-   listeEntier[0] = entier;
-   this.listeEntier = listeEntier;
+
+  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, color on, color off, float entier) {
+    super(texte, x, y, tailleX, tailleY, on, off);
+    float[] listeEntier = new float[1];
+    listeEntier[0] = entier;
+    this.listeEntier = listeEntier;
   }
- public float[] getListeEntier(){
-   return this.listeEntier;
- }
- 
- public void setListeEntier(float[] listeEntier){
-  this.listeEntier = listeEntier; 
- }
- 
- public float getEntierDeListeEntier(int place){
-   return listeEntier[place];
- }
-  
-  public void setEntierDeListeEntier(int place, float entier){
-   this.listeEntier[place] = entier;
- }
+  public float[] getListeEntier() {
+    return this.listeEntier;
+  }
+
+  public void setListeEntier(float[] listeEntier) {
+    this.listeEntier = listeEntier;
+  }
+
+  public float getEntierDeListeEntier(int place) {
+    return listeEntier[place];
+  }
+
+  public void setEntierDeListeEntier(int place, float entier) {
+    this.listeEntier[place] = entier;
+  }
 }
 
-class BoutonListe extends Bouton{
-  
+class BoutonListe extends Bouton {
+
   private String[] listeChaine;
-  public BoutonListe (String texte, float x, float y, float tailleX, float tailleY, color on, color off,String[] listeChaine){
-   super(texte, x, y, tailleX, tailleY, on, off);
-   this.listeChaine = listeChaine;
+  public BoutonListe (String texte, float x, float y, float tailleX, float tailleY, color on, color off, String[] listeChaine) {
+    super(texte, x, y, tailleX, tailleY, on, off);
+    this.listeChaine = listeChaine;
   }
-  
- public String[] getListeChaine(){
-   return this.listeChaine;
- }
- 
- public void setlisteChaine(String[] listeChaine){
-  this.listeChaine = listeChaine; 
- }
- 
- public String getEntierDelisteChaine(int place){
-   return listeChaine[place];
- }
-  
-  public void setEntierDelisteChaine(int place, String chaine){
-   this.listeChaine[place] = chaine;
- }
+
+  public String[] getListeChaine() {
+    return this.listeChaine;
+  }
+
+  public void setlisteChaine(String[] listeChaine) {
+    this.listeChaine = listeChaine;
+  }
+
+  public String getEntierDelisteChaine(int place) {
+    return listeChaine[place];
+  }
+
+  public void setEntierDelisteChaine(int place, String chaine) {
+    this.listeChaine[place] = chaine;
+  }
 }
