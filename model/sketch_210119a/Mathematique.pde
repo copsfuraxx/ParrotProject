@@ -35,25 +35,26 @@ public void polyParfait(float x, float y, float angle, float taille, float rota)
 }
 
 public void polyParfait(float x, float y, float angle, float taille, float rota, int nbrCotes) {
+  print(nbrCotes);
   if(angle>90 || angle<-90)return;
   if(angle>-60 && angle<60)return;
   if(nbrCotes<3)return;
   if (x+taille>width)x-=taille;
   if (y+taille>height)y-=taille;
-  float x1, x2, x3=0, y1, y2, y3=0;
+  float x1, x2, x3, y1, y2, y3;
   x2=x+taille/2 - x;
   y2=y - y;
   x1=x2*cos(rota)+y2*sin(rota)+x;
   y1=-x2*sin(rota)+y2*cos(rota)+y;
   
-  float a=360f/nbrCotes;
+  float a=(360f/nbrCotes)*PI/180;
   
   for(int i=0;i<nbrCotes;i++){
-    x2=x - x1;
-    y2=y - y1;
-    x3=x2*cos(a*PI/180)+y2*sin(a*PI/180)+x1;
-    y3=-x2*sin(a*PI/180)+y2*cos(a*PI/180)+y1;
-    fractalKock(x3, y3, x1, y1, angle);
+    x2=x1 - x;
+    y2=y1 - y;
+    x3=x2*cos(a)+y2*sin(a)+x;
+    y3=-x2*sin(a)+y2*cos(a)+y;
+    fractalKock(x1, y1, x3, y3, angle);
     x1=x3;
     y1=y3;
   }
@@ -233,7 +234,7 @@ void multiFormMath(int[] formeGeo) {
 
 void multiFormMath(int n) {
   for (int i=0; i<n; i++) {
-    multiFormMathChoix((int)random(6));
+    multiFormMathChoix((int)random(7));
   }
 }
 
@@ -256,6 +257,9 @@ void multiFormMathChoix(int choix) {
     break;
   case 5:
     fractaleCarre();
+    break;  
+  case 6:
+    fractalKock();
     break;
   }
 }
