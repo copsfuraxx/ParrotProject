@@ -71,6 +71,10 @@ class MenuListe {
       return "rond";
     case 2 :
       return "koch";
+    case 3:
+      return "cesaro";
+    case 4:
+      return "aléa";
     default : 
       return "erreur";
     }
@@ -155,11 +159,16 @@ class MenuListe {
     Bouton carre = new Bouton("carre", 100, 100, 140, 70, color(185, 185, 185), nonChoix);
     Bouton rond = new Bouton("rond", 100, 200, 140, 70, color(185, 185, 185), nonChoix);
     Bouton koch = new Bouton("koch", 100, 300, 140, 70, color(185, 185, 185), nonChoix);
+    Bouton cesaro = new Bouton("cesaro", 100, 400, 140, 70, color(185, 185, 185), nonChoix);
+    Bouton alea = new Bouton("aléatoire", 100, 500, 140, 70, color(185, 185, 185), nonChoix);
+
 
 
     listeBouton.add(carre);
     listeBouton.add(rond);
     listeBouton.add(koch);
+    listeBouton.add(cesaro);
+    listeBouton.add(alea);
   }
 
   public void cliqueBoutonBleu() {
@@ -263,7 +272,10 @@ class MenuListe {
             case 2:
               floconKoch();
               break;
-
+            case 3:
+              cesaro();
+            case 4:
+              multiFormChoix();
             default : 
               System.out.println("erreur");
             }
