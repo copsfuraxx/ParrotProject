@@ -83,30 +83,7 @@ public void fractaleCarre(float x, float y, float angle, float taille) {
 }
 
 public void fractaleCarre(float x, float y, float angle, float taille, float rota) {
-  if(angle>90 || angle<-90)return;
-  if(angle>-60 && angle<60)return;
-  if (x+taille>width)x-=taille;
-  if (y+taille>height)y-=taille;
-  float x1, x2, y1, y2, x3, y3, x4, y4;
-  x2=x+taille - x;
-  y2=y - y;
-  x1=x2*cos(rota)+y2*sin(rota)+x;
-  y1=-x2*sin(rota)+y2*cos(rota)+y;
-
-  x2=x - x1;
-  y2=y - y1;
-  x3=x2*cos(90*PI/180)+y2*sin(90*PI/180)+x1;
-  y3=-x2*sin(90*PI/180)+y2*cos(90*PI/180)+y1;
-  
-  x2=x1 - x3;
-  y2=y1 - y3;
-  x4=x2*cos(90*PI/180)+y2*sin(90*PI/180)+x3;
-  y4=-x2*sin(90*PI/180)+y2*cos(90*PI/180)+y3;
-
-  fractalKock(x1, y1, x, y, angle);
-  fractalKock(x3, y3, x1, y1, angle);
-  fractalKock(x4, y4, x3, y3, angle);
-  fractalKock(x, y, x4, y4, angle);
+  polyParfait(x,y,angle,taille,rota,4);
 }
 
 public void floconKoch() {
@@ -136,24 +113,7 @@ public void fractaleTriangle(float x, float y, float angle, float taille) {
 }
 
 public void fractaleTriangle(float x, float y, float angle, float taille, float rota) {
-  if(angle>90 || angle<-90)return;
-  if(angle>-60 && angle<60)return;
-  if (x+taille>width)x-=taille;
-  if (y+taille>height)y-=taille;
-  float x1, x2, y1, y2, x3, y3;
-  x2=x - (x+taille);
-  y2=y - y;
-  x1=x2*cos(rota)+y2*sin(rota)+(x+taille);
-  y1=-x2*sin(rota)+y2*cos(rota)+y;
-
-  x2=x1 - x;
-  y2=y1 - y;
-  x3=x2*cos(1.0472)+y2*sin(1.0472)+x;
-  y3=-x2*sin(1.0472)+y2*cos(1.0472)+y;
-
-  fractalKock(x, y, x1, y1, angle);
-  fractalKock(x1, y1, x3, y3, angle);
-  fractalKock(x3, y3, x, y, angle);
+  polyParfait(x,y,angle,taille,rota,3);
 }
 
 public void koch() {
