@@ -2,6 +2,7 @@ Save save;
 
 
 void setup() {  
+  background(255, 255, 255);
   connection();
   save=new Save();
   PApplet.runSketch(platformNames, new SecondApplet());
@@ -9,6 +10,7 @@ void setup() {
 
 public void settings() {
   size(800, 800);
+
 }
 
 color c = color(255, 255, 255); //couleur background
@@ -16,7 +18,6 @@ color c = color(255, 255, 255); //couleur background
 void draw() {
 
   getInfoArduino();  
-  background(255, 255, 255);
 
   // dessineTest(getValModifPot());
 }
@@ -46,11 +47,11 @@ public class SecondApplet extends PApplet {
     }
      if (boutonRougeAppuye() && delaiBoutonRouge == 0) { //quand on appuie sur le bouton bleu
       menu.cliqueBoutonRouge();
-      delaiBoutonRouge = 15;
+      delaiBoutonRouge = 12;
     }
     if (boutonBleuAppuye() && delaiBoutonBleu == 0) { //quand on appuie sur le bouton bleu
       menu.cliqueBoutonBleu();
-      delaiBoutonBleu = 15;
+      delaiBoutonBleu = 12;
     }
     if ( (dernierPot - 1 > getPot())) {
       menu.descendCurseur();

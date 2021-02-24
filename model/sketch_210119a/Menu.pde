@@ -63,12 +63,26 @@ class MenuListe {
     return this.couleurActuelle;
   }
 
+  public String getNomForme() {
+    switch(this.forme) {
+    case 0 :
+      return "carre";
+    case 1 :
+      return "rond";
+    case 2 :
+      return "koch";
+    default : 
+      return "erreur";
+    }
+  }
+
   public MenuListe(int menuChoix) {
     if (menuChoix == 0) {
 
       this.menuActuel = 0;
       this.listeBouton = new ArrayList<Bouton>();
       this.menuDemarrage();
+      this.forme = 0;
     }
   }
 
@@ -79,8 +93,14 @@ class MenuListe {
     listeBouton.clear();
     Bouton start = new Bouton("start", 100, 100, 140, 70, choix, nonChoix);
     Bouton quitter = new Bouton("quitter", 100, 200, 140, 70, choix, nonChoix);
+    Bouton sauv = new Bouton("sauver", 100, 300, 140, 70, choix, nonChoix);
+    Bouton charge = new Bouton("charger", 100, 400, 140, 70, choix, nonChoix);
+
+
     listeBouton.add(start);
     listeBouton.add(quitter);
+    listeBouton.add(sauv);
+    listeBouton.add(charge);
   }
 
   private void menuDessin() {//menu avec la feuille de dessin 1
@@ -124,13 +144,22 @@ class MenuListe {
   private void menuInfo() {//menu de suivi de valeur pendant le dessin 4 
     listeBouton.clear();
     Bouton pot = new Bouton("pot : " + getPot(), 100, 100, 140, 70, color(185, 185, 185), nonChoix);
+    Bouton forme = new Bouton(this.getNomForme(), 100, 200, 140, 70, color(185, 185, 185), nonChoix);
+
     listeBouton.add(pot);
+    listeBouton.add(forme);
   }
 
   private void menuForme() {//menu de choix des formes 5
     listeBouton.clear();
     Bouton carre = new Bouton("carre", 100, 100, 140, 70, color(185, 185, 185), nonChoix);
+    Bouton rond = new Bouton("rond", 100, 200, 140, 70, color(185, 185, 185), nonChoix);
+    Bouton koch = new Bouton("koch", 100, 300, 140, 70, color(185, 185, 185), nonChoix);
+
+
     listeBouton.add(carre);
+    listeBouton.add(rond);
+    listeBouton.add(koch);
   }
 
   public void cliqueBoutonBleu() {
@@ -144,6 +173,11 @@ class MenuListe {
         break;
       case 1:
         exit();
+      case 2 :
+        save.save();
+        break;
+      case 3 : 
+        save.load();
       default : 
         System.out.println("erreur");
       }
@@ -156,6 +190,9 @@ class MenuListe {
           this.setMenuActuel(2);
           break;
         case 1:
+          this.menuForme();
+          this.setCurseur(0);
+          this.setMenuActuel(5);
           break;
         case 2: 
           this.menuDemarrage();
@@ -212,13 +249,29 @@ class MenuListe {
             default : 
               System.out.println("erreur");
             }
-          } else if (menuActuel == 3) {
-            switch(curseur) {
+          } else if (menuActuel == 4) {
+            stroke(couleurActuelle);
+            fill(couleurActuelle);
+            switch(forme) {
             case 0:
-              this.forme = 0;break;
+              dessineCarre();
+              break;
+            case 1:
+              dessineCercle();
+              break;
+
+            case 2:
+              floconKoch();
+              break;
+
             default : 
               System.out.println("erreur");
             }
+          } else if (menuActuel == 5) {
+            this.forme = curseur;
+            this.menuDessin();
+            this.setCurseur(0);
+            this.setMenuActuel(1);
           }
   }
 
