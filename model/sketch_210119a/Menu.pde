@@ -147,8 +147,8 @@ class MenuListe {
 
   private void menuInfo() {//menu de suivi de valeur pendant le dessin 4 
     listeBouton.clear();
-    Bouton pot = new Bouton("pot : " + getPot(), 100, 100, 140, 70, color(185, 185, 185), nonChoix);
-    Bouton forme = new Bouton(this.getNomForme(), 100, 200, 140, 70, color(185, 185, 185), nonChoix);
+    Bouton pot = new Bouton("pot : " + getPot(), 100, 100, 140, 70,choix, nonChoix);
+    Bouton forme = new Bouton(this.getNomForme(), 100, 200, 140, 70, choix, nonChoix);
 
     listeBouton.add(pot);
     listeBouton.add(forme);
@@ -156,11 +156,11 @@ class MenuListe {
 
   private void menuForme() {//menu de choix des formes 5
     listeBouton.clear();
-    Bouton carre = new Bouton("carre", 100, 100, 140, 70, color(185, 185, 185), nonChoix);
-    Bouton rond = new Bouton("rond", 100, 200, 140, 70, color(185, 185, 185), nonChoix);
-    Bouton koch = new Bouton("koch", 100, 300, 140, 70, color(185, 185, 185), nonChoix);
-    Bouton cesaro = new Bouton("cesaro", 100, 400, 140, 70, color(185, 185, 185), nonChoix);
-    Bouton alea = new Bouton("aléatoire", 100, 500, 140, 70, color(185, 185, 185), nonChoix);
+    Bouton carre = new Bouton("carre", 100, 100, 140, 70, choix, nonChoix);
+    Bouton rond = new Bouton("rond", 100, 200, 140, 70, choix, nonChoix);
+    Bouton koch = new Bouton("koch", 100, 300, 140, 70,choix, nonChoix);
+    Bouton cesaro = new Bouton("cesaro", 100, 400, 140, 70, choix, nonChoix);
+    Bouton alea = new Bouton("aléatoire", 100, 500, 140, 70, choix, nonChoix);
 
 
 
