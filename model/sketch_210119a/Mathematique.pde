@@ -8,6 +8,57 @@
 //  }
 //}
 
+public void polyParfait(){
+  int r=int(random(0,2));
+  if(r==0)polyParfait(random(60,90));
+  else polyParfait(-random(60,90));
+}
+
+public void polyParfait(float angle){
+  polyParfait(random(width), random(height), angle);
+}
+
+public void polyParfait(float x, float y){
+  polyParfait(x, y, random(60,90));
+}
+
+public void polyParfait(float x, float y, float angle){
+  polyParfait(x, y, angle,random(max(width,height)/4));
+}
+
+public void polyParfait(float x, float y, float angle, float taille){
+  polyParfait(x, y, angle, taille, random(360));
+}
+
+public void polyParfait(float x, float y, float angle, float taille, float rota) {
+  polyParfait(x, y, angle, taille, rota, int(random(3,10)));
+}
+
+public void polyParfait(float x, float y, float angle, float taille, float rota, int nbrCotes) {
+  if(angle>90 || angle<-90)return;
+  if(angle>-60 && angle<60)return;
+  if(nbrCotes<3)return;
+  if (x+taille>width)x-=taille;
+  if (y+taille>height)y-=taille;
+  float x1, x2, x3=0, y1, y2, y3=0;
+  x2=x+taille/2 - x;
+  y2=y - y;
+  x1=x2*cos(rota)+y2*sin(rota)+x;
+  y1=-x2*sin(rota)+y2*cos(rota)+y;
+  
+  float a=360f/nbrCotes;
+  
+  for(int i=0;i<nbrCotes;i++){
+    x2=x - x1;
+    y2=y - y1;
+    x3=x2*cos(a*PI/180)+y2*sin(a*PI/180)+x1;
+    y3=-x2*sin(a*PI/180)+y2*cos(a*PI/180)+y1;
+    fractalKock(x3, y3, x1, y1, angle);
+    x1=x3;
+    y1=y3;
+  }
+}
+
 public void fractaleCarre() {
   int r=int(random(0,2));
   if(r==0)fractaleCarre(random(60,90));
@@ -168,4 +219,43 @@ private void fractalKock(float xa, float ya, float xb, float yb, float angle, in
   fractalKock(xc, yc, xe, ye, angle, n-1);
   fractalKock(xe, ye, xd, yd, angle, n-1);
   fractalKock(xd, yd, xb, yb, angle, n-1);
+}
+
+void multiFormMath() {
+  multiFormMath((int)random(10)+1);
+}
+
+void multiFormMath(int[] formeGeo) {
+  for (int i=0; i<formeGeo.length; i++) {
+    multiFormMathChoix(formeGeo[i]);
+  }
+}
+
+void multiFormMath(int n) {
+  for (int i=0; i<n; i++) {
+    multiFormMathChoix((int)random(6));
+  }
+}
+
+void multiFormMathChoix(int choix) {
+  switch(choix) {
+  case 0:
+    koch();
+    break;
+  case 1:
+    cesaro();
+    break;
+  case 2:
+    fractalKock();
+    break;
+  case 3:
+    floconKoch();
+    break;
+  case 4:
+    fractaleTriangle();
+    break;
+  case 5:
+    fractaleCarre();
+    break;
+  }
 }
