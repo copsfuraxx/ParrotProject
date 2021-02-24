@@ -78,10 +78,7 @@ class Save {
   private void choixFonctionMath(String [] line) {
     switch(int(line[1])) {
     case 1:
-      koch(float(line[2]), float(line[3]), float(line[4]), float(line[5]));
-      break;
-    case 2:
-      cesaro(float(line[2]), float(line[3]), float(line[4]), float(line[5]));
+      fractalKock(float(line[2]), float(line[3]), float(line[4]), float(line[5]), float(line[6]));
       break;
     }
   }

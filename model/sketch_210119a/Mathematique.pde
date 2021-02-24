@@ -8,23 +8,84 @@
 //  }
 //}
 
-public void koch() {
-  koch(random(width), random(height));
+public void fractaleCarre() {
+  int r=int(random(0,2));
+  if(r==0)fractaleCarre(random(60,90));
+  else fractaleCarre(-random(60,90));
 }
 
-public void koch(float x, float y) {
-  koch(x, y, random(max(width, height))/4);
+public void fractaleCarre(float angle) {
+  fractaleCarre(random(width), random(height), angle);
 }
 
-public void koch(float taille) {
-  koch(random(width), random(height), taille);
+public void fractaleCarre(float x, float y) {
+  fractaleCarre(x, y, random(60,90));
 }
 
-public void koch(float x, float y, float taille) {
-  koch(x, y, taille, random(360)*PI/180);
+public void fractaleCarre(float x, float y, float angle) {
+  fractaleCarre(x, y, angle,random(max(width,height)/4));
 }
 
-public void koch(float x, float y, float taille, float rota) {
+public void fractaleCarre(float x, float y, float angle, float taille) {
+  fractaleCarre(x, y, angle, taille, random(360));
+}
+
+public void fractaleCarre(float x, float y, float angle, float taille, float rota) {
+  if(angle>90 || angle<-90)return;
+  if(angle>-60 && angle<60)return;
+  if (x+taille>width)x-=taille;
+  if (y+taille>height)y-=taille;
+  float x1, x2, y1, y2, x3, y3, x4, y4;
+  x2=x+taille - x;
+  y2=y - y;
+  x1=x2*cos(rota)+y2*sin(rota)+x;
+  y1=-x2*sin(rota)+y2*cos(rota)+y;
+
+  x2=x - x1;
+  y2=y - y1;
+  x3=x2*cos(90*PI/180)+y2*sin(90*PI/180)+x1;
+  y3=-x2*sin(90*PI/180)+y2*cos(90*PI/180)+y1;
+  
+  x2=x1 - x3;
+  y2=y1 - y3;
+  x4=x2*cos(90*PI/180)+y2*sin(90*PI/180)+x3;
+  y4=-x2*sin(90*PI/180)+y2*cos(90*PI/180)+y3;
+
+  fractalKock(x1, y1, x, y, angle);
+  fractalKock(x3, y3, x1, y1, angle);
+  fractalKock(x4, y4, x3, y3, angle);
+  fractalKock(x, y, x4, y4, angle);
+}
+
+public void floconKoch() {
+  fractaleTriangle(60);
+}
+
+public void fractaleTriangle() {
+  int r=int(random(0,2));
+  if(r==0)fractaleTriangle(random(60,90));
+  else fractaleTriangle(-random(60,90));
+}
+
+public void fractaleTriangle(float angle) {
+  fractaleTriangle(random(width), random(height), angle);
+}
+
+public void fractaleTriangle(float x, float y) {
+  fractaleTriangle(x, y, random(60,90));
+}
+
+public void fractaleTriangle(float x, float y, float angle) {
+  fractaleTriangle(x, y, angle,random(max(width,height)/4));
+}
+
+public void fractaleTriangle(float x, float y, float angle, float taille) {
+  fractaleTriangle(x, y, angle, taille, random(130));
+}
+
+public void fractaleTriangle(float x, float y, float angle, float taille, float rota) {
+  if(angle>90 || angle<-90)return;
+  if(angle>-60 && angle<60)return;
   if (x+taille>width)x-=taille;
   if (y+taille>height)y-=taille;
   float x1, x2, y1, y2, x3, y3;
@@ -38,81 +99,73 @@ public void koch(float x, float y, float taille, float rota) {
   x3=x2*cos(1.0472)+y2*sin(1.0472)+x;
   y3=-x2*sin(1.0472)+y2*cos(1.0472)+y;
 
-  koch(x, y, x1, y1, 5);
-  koch(x1, y1, x3, y3, 5);
-  koch(x3, y3, x, y, 5);
-  ArrayList list=new ArrayList();
-  list.add(x);
-  list.add(y);
-  list.add(taille);
-  list.add(rota);
-  save.addHistorique(new Historique(2, 1, list));
+  fractalKock(x, y, x1, y1, angle);
+  fractalKock(x1, y1, x3, y3, angle);
+  fractalKock(x3, y3, x, y, angle);
 }
 
-private void koch(float xa, float ya, float xb, float yb, float n) {
-  if (n==0) {
-    line(xa, ya, xb, yb);
-    return;
-  }
-  float xc, yc, xd, yd, xe, ye, angle, a, b;
-  xc=xa+(xb-xa)/3;
-  yc=ya+(yb-ya)/3;
-  
-
-  xd=xa+2*(xb-xa)/3;
-  yd=ya+2*(yb-ya)/3;
-  
-  angle=120*PI/180;
-  a=xa-xc;
-  b=ya-yc;
-
-  xe=a*cos(angle)+b*sin(angle)+xc;
-  ye=-a*sin(angle)+b*cos(angle)+yc;
-  
-  koch(xa, ya, xc, yc, n-1);
-  koch(xd, yd, xb, yb, n-1);
-  koch(xc, yc, xe, ye, n-1);
-  koch(xe, ye, xd, yd, n-1);
+public void koch() {
+  fractalKock(60);
 }
 
 public void cesaro() {
-  cesaro(random(width), random(height));
+  fractalKock(85);
 }
 
-public void cesaro(float x, float y) {
-  cesaro(x, y, random(width), random(height));
+public void fractalKock(){
+  fractalKock(random(60,90));
 }
 
-public void cesaro(float x1, float y1, float x2, float y2) {
-  cesaro(x1,y1,x2,y2,5);
+public void fractalKock(float angle){
+  fractalKock(random(width), random(height), angle);
+}
+
+public void fractalKock(float x, float y) {
+  fractalKock(x, y, random(width), random(height));
+}
+
+public void fractalKock(float x, float y, float angle) {
+  fractalKock(x, y, random(width), random(height), angle);
+}
+
+public void fractalKock(float x1, float y1, float x2, float y2) {
+  fractalKock(x1, y1, x2, y2, random(60,90));
+}
+
+public void fractalKock(float x1, float y1, float x2, float y2, float angle) {
+  if(angle>90 || angle<-90)return;
+  if(angle>-60 && angle<60)return;
+  fractalKock(x1, y1, x2, y2, angle, 5);
   ArrayList list=new ArrayList();
   list.add(x1);
   list.add(y1);
   list.add(x2);
   list.add(y2);
-  save.addHistorique(new Historique(2, 2, list));
+  list.add(angle);
+  save.addHistorique(new Historique(2, 1, list));
 }
 
-private void cesaro(float xa, float ya, float xb, float yb, float n) {
+private void fractalKock(float xa, float ya, float xb, float yb, float angle, int n) {
   if (n==0) {
     line(xa, ya, xb, yb);
     return;
   }
-  float xc, yc, xd, yd, xe, ye, angle, a, b;
-  xc=xa+(xb-xa)*(6f/13);
-  yc=ya+(yb-ya)*(6f/13);
+  float xc, yc, xd, yd, xe, ye, x, y, a;
+  a=3-(abs(angle)-60)/30;
+  xc=xa+(xb-xa)/a;
+  yc=ya+(yb-ya)/a;
 
   xd=xb-(xc-xa);
   yd=yb-(yc-ya);
   
-  angle=95*PI/180;
-  a=xa-xc;
-  b=ya-yc;
-  xe=a*cos(angle)+b*sin(angle)+xc;
-  ye=-a*sin(angle)+b*cos(angle)+yc;
+  a=(180-angle)*PI/180;
+  x=xa-xc;
+  y=ya-yc;
+  xe=x*cos(a)+y*sin(a)+xc;
+  ye=-x*sin(a)+y*cos(a)+yc;
   
-  cesaro(xa, ya, xc, yc, n-1);  
-  cesaro(xd, yd, xb, yb, n-1);
-  cesaro(xc, yc, xe, ye, n-1);
-  cesaro(xe, ye, xd, yd, n-1);
+  fractalKock(xa, ya, xc, yc, angle, n-1);
+  fractalKock(xc, yc, xe, ye, angle, n-1);
+  fractalKock(xe, ye, xd, yd, angle, n-1);
+  fractalKock(xd, yd, xb, yb, angle, n-1);
 }
