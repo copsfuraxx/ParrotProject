@@ -47,11 +47,11 @@ public class SecondApplet extends PApplet {
     }
      if (boutonRougeAppuye() && delaiBoutonRouge == 0) { //quand on appuie sur le bouton bleu
       menu.cliqueBoutonRouge();
-      delaiBoutonRouge = 12;
+      delaiBoutonRouge = 15;
     }
     if (boutonBleuAppuye() && delaiBoutonBleu == 0) { //quand on appuie sur le bouton bleu
       menu.cliqueBoutonBleu();
-      delaiBoutonBleu = 12;
+      delaiBoutonBleu = 15;
     }
     if ( (dernierPot - 1 > getPot())) {
       menu.descendCurseur();
