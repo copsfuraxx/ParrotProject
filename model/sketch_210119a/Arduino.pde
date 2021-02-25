@@ -4,6 +4,8 @@ Classe permettant de faire la connection entre la carte arduino et le logiciel.
  
  */
 
+
+
 import processing.serial.*; 
 
 private Serial arduinoPort; //port usb de connection entre l'ordinateur et la carte
@@ -11,27 +13,51 @@ public final int EN_COUR_DE_CONNECTION = 0, EST_CONNECTE = 1, EST_PAS_CONNECTE =
 private int etatConnection;
 private String[][] m = null; // valeur des input de l'arduino
 
+
+//======= établie la connection a l'arduino =========
+
 void connection() { //etablie la connection arduino - logiciel
   int i = 0; //numero du port
-  int connection = EN_COUR_DE_CONNECTION;
-  while (connection == EN_COUR_DE_CONNECTION) {
+  etatConnection = EN_COUR_DE_CONNECTION;
+  while (etatConnection == EN_COUR_DE_CONNECTION) {
     try {
       arduinoPort = new Serial(this, Serial.list()[i], 9600); // établie la connection
-      delay(1000);
+      delay(2000);
       if (getInput() != null) {
-        connection = EST_CONNECTE;
+        etatConnection = EST_CONNECTE;
       }
     }
     catch (Exception e) {
-      connection = EST_PAS_CONNECTE;
+      etatConnection = EST_PAS_CONNECTE;
     }
     i++;
+    println(getEtatConnection());
   }
-  etatConnection = connection;
 }
 
-public int getConnection() {
-  return etatConnection;
+
+public String getEtatConnection(){
+  String etat = "NULL";
+  switch(etatConnection){
+    case EN_COUR_DE_CONNECTION: etat = "en cours de connection";
+    break;
+    case EST_CONNECTE: etat = "connextion reussi";
+    break;
+    case EST_PAS_CONNECTE: etat = "echec de la connection";
+    break;
+    default: etat = "NULL";
+    break;
+  } 
+  return etat;
+}
+
+
+//============= Recuperation des capteurs ===============
+private void getInfoArduino() { //recupere les info de l'arduino et les separe les info dans un tableau
+  String s = getInput();
+  if (s != null) {
+    m = matchAll(s, "[0-9]+");
+  }
 }
 
 private String getInput() { //recuperer 5 infos de l'arduino (pot/b1/b2/b3/b4)
@@ -42,14 +68,6 @@ private String getInput() { //recuperer 5 infos de l'arduino (pot/b1/b2/b3/b4)
   return s;
 }
 
-private void getInfoArduino() { //recupere les info de l'arduino et les separe les info dans un tableau
-  String s = getInput();
-  if (s != null) {
-    m = matchAll(s, "[0-9]+");
-    //println(m[1][0]);
-  }
-  //return m;
-}
 
 //retourne la valeur en % du potentiometre
 int getPot() {
@@ -59,6 +77,7 @@ int getPot() {
   }  
   return val;
 }
+
 
 //retourne vrais si le bouton 1 est appuye sinon faux
 Boolean boutonJauneAppuye() {
