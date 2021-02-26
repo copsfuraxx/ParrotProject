@@ -4,6 +4,12 @@ class Pinceau {
   private Couleur couleurRemplissage;
   private boolean remplissage;
   
+  public Pinceau(){
+    couleurCrayon =new Couleur(0,0,0);
+    couleurRemplissage=new Couleur(255,255,255);
+    this.epaisseur=1;
+  }
+  
   public Pinceau(int epaisseur){
     couleurCrayon =new Couleur(0,0,0);
     couleurRemplissage=new Couleur(255,255,255);
