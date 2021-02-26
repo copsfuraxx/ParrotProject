@@ -6,6 +6,7 @@ class Save {
   }
 
   public void addHistorique(Historique historique) {
+    historique.addCouleur();
     historiques.add(historique);
   }
 
@@ -28,6 +29,11 @@ class Save {
     String[] lines = loadStrings("save.txt");
     for (int i=0; i<lines.length; i++) {
       String[] line=lines[i].split("/");
+      pinceau.setCouleur(int(line[2]));
+      if(int(line[1])!=-1){
+        pinceau.setCouleurRemplissage(int(line[3]));
+        pinceau.use(true);
+      }else pinceau.use(false);
       choixType(line);
     }
   }
@@ -46,19 +52,19 @@ class Save {
   private void choixFonctionPoly(String [] line) {
     switch(int(line[1])) {
     case 1:
-      dessineCarre(float(line[2]), float(line[3]), float(line[4]));
+      dessineCarre(float(line[4]), float(line[5]), float(line[6]));
       break;
     case 2:
-      dessineRectangle(float(line[2]), float(line[3]), float(line[4]), float(line[5]));
+      dessineRectangle(float(line[4]), float(line[5]), float(line[6]), float(line[7]));
       break;
     case 3:
-      dessineTriangle(float(line[2]), float(line[3]), float(line[4]), float(line[5]), float(line[6]), float(line[7]));
+      dessineTriangle(float(line[4]), float(line[5]), float(line[6]), float(line[7]), float(line[8]), float(line[9]));
       break;
     case 4:
-      dessineEllipse(float(line[2]), float(line[3]), float(line[4]), float(line[5]));
+      dessineEllipse(float(line[4]), float(line[5]), float(line[6]), float(line[7]));
       break;
     case 5:
-      dessineCercle(float(line[2]), float(line[3]), float(line[4]));
+      dessineCercle(float(line[4]), float(line[5]), float(line[6]));
       break;
     case 6:
       loadPoly(line);
@@ -78,7 +84,7 @@ class Save {
   private void choixFonctionMath(String [] line) {
     switch(int(line[1])) {
     case 1:
-      fractalKock(float(line[2]), float(line[3]), float(line[4]), float(line[5]), float(line[6]));
+      fractalKock(float(line[4]), float(line[5]), float(line[6]), float(line[7]), float(line[8]));
       break;
     }
   }

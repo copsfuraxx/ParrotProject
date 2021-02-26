@@ -176,6 +176,9 @@ private void fractalKock(float xa, float ya, float xb, float yb, float angle, in
   xe=x*cos(a)+y*sin(a)+xc;
   ye=-x*sin(a)+y*cos(a)+yc;
   
+  //fill(255*n/6,255*(6-n)/6,255*n/6);
+  //triangle(xc,yc,xe,ye,xd,yd);
+  
   fractalKock(xa, ya, xc, yc, angle, n-1);
   fractalKock(xc, yc, xe, ye, angle, n-1);
   fractalKock(xe, ye, xd, yd, angle, n-1);
