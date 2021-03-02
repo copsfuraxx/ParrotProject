@@ -8,6 +8,45 @@
 //  }
 //}
 
+public void spiralrOr(){
+  spiralrOr(random(width), random(height));
+}
+
+public void spiralrOr(float x, float y){
+  println(x);
+  println(y);
+  spiralrOr(x,y,25);
+}
+
+private void spiralrOr(float X, float Y,int n){
+  float x=X,y=Y,t1=1,t0=0;
+  for(int i=0;i<n;i++){
+    println("x"+i+":"+x);
+    println("y"+i+":"+y);
+    println("t0:"+t0+"/t1:"+t1);
+    switch(i%4){
+      case 0:
+        arc(x, y, t1, t1, PI, PI+HALF_PI);
+        y+=t0/2;
+        break;
+      case 1:
+        arc(x, y, t1, t1, PI+HALF_PI, 2*PI);
+        x-=t0/2;
+        break;
+      case 2:
+        arc(x, y, t1, t1, 0, HALF_PI);
+        y-=t0/2;
+        break;
+      case 3:
+        arc(x, y, t1, t1, HALF_PI, PI);
+        x+=t0/2;
+        break;
+    }
+    t1+=t0;
+    t0=t1-t0;
+  }
+}
+
 public void polyParfait(){
   int r=int(random(0,2));
   if(r==0)polyParfait(random(60,90));
