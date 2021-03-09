@@ -10,3 +10,4 @@ application.macosx
 out
 sketch_210119a.pde
 model/sketch_210119a/save.txt
+model/sketch_210119a/*.save

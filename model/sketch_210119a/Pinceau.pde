@@ -54,7 +54,7 @@ class Pinceau {
   
   public void use(boolean fill){
     remplissage=fill;
-    strokeWeight(epaisseur);
+    //strokeWeight(epaisseur);
     stroke(couleurCrayon.getCouleur());
     if(fill)fill(couleurRemplissage.getCouleur());
     else noFill();

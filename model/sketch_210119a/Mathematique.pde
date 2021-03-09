@@ -16,6 +16,10 @@ public void spiralrOr(float x, float y){
   println(x);
   println(y);
   spiralrOr(x,y,25);
+  ArrayList list=new ArrayList();
+  list.add(x);
+  list.add(y);
+  save.addHistorique(new Historique(2, 2, list));
 }
 
 private void spiralrOr(float X, float Y,int n){

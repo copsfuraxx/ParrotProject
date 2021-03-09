@@ -10,7 +10,7 @@ class Save {
     historiques.add(historique);
   }
 
-  public void save() {
+  public void save(String nom) {
     String[] lines=new String[historiques.size()];
     for (int i=0; i<historiques.size(); i++) {
       Historique historique=historiques.get(i);
@@ -22,15 +22,15 @@ class Save {
         if (j!=arg.size()-1)lines[i]+="/";
       }
     }
-    saveStrings("save.txt", lines);
+    saveStrings(nom+".save", lines);
   }
 
-  public void load() {
-    String[] lines = loadStrings("save.txt");
+  public void load(String nom) {
+    String[] lines = loadStrings(nom+".save");
     for (int i=0; i<lines.length; i++) {
       String[] line=lines[i].split("/");
       pinceau.setCouleur(int(line[2]));
-      if(int(line[1])!=-1){
+      if(int(line[3])!=-1){
         pinceau.setCouleurRemplissage(int(line[3]));
         pinceau.use(true);
       }else pinceau.use(false);
@@ -86,6 +86,8 @@ class Save {
     case 1:
       fractalKock(float(line[4]), float(line[5]), float(line[6]), float(line[7]), float(line[8]));
       break;
+    case 2:
+      spiralrOr(float(line[4]), float(line[5]));
     }
   }
 }
