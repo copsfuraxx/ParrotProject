@@ -8,6 +8,58 @@
 //  }
 //}
 
+public void courbeBezier(){
+  float x0=100,y0=800,x1=100,y1=600,x2=1000,y2=600,x3=1000,y3=800;
+  float ax=x0,ay=y0,bx=x1,by=y1,cx=x2,cy=y2,dx=x0,dy=y0,ex=x1,ey=y1,fx=x0,fy=y0;
+  float x,y;
+  x=fx;y=fy;
+  for(int i=1;i<101;i++){
+    ax=ax+(x1-x0)/100;
+    ay=ay+(y1-y0)/100;
+    bx=bx+(x2-x1)/100;
+    by=by+(y2-y1)/100;
+    cx=cx+(x3-x2)/100;
+    cy=cy+(y3-y2)/100;
+    
+    dx=ax+(bx-ax)*i/100;
+    dy=ay+(by-ay)*i/100;
+    ex=bx+(cx-bx)*i/100;
+    ey=by+(cy-by)*i/100;
+    
+    fx=dx+(ex-dx)*i/100;
+    fy=dy+(ey-dy)*i/100;
+    line(x,y,fx,fy);
+    x=fx;y=fy;
+  }
+}
+
+public void courbeBezier(float[][] droites){
+  if(droites[0].length!=2)return;
+  float[][] points=new float[(droites.length-1)*droites.length/2][2];
+  float x=droites[0][0],y=droites[0][1];
+  for(int i=1;i<101;i++){
+    for(int j=0;j<droites.length-1;j++){
+      points[j][0]=droites[j][0]+(droites[j+1][0]-droites[j][0])*i/100;
+      points[j][1]=droites[j][1]+(droites[j+1][1]-droites[j][1])*i/100;
+      //point(points[j][0],points[j][1]);
+    }
+    int l;
+    int b=l=droites.length-1;
+    for(int a=droites.length-2;a>=0;a--){
+      for(int j=0;j<a;j++){
+        points[b][0]=points[b-l][0]+(points[b-l+1][0]-points[b-l][0])*i/100;
+        points[b][1]=points[b-l][1]+(points[b-l+1][1]-points[b-l][1])*i/100;
+        //point(points[j][0],points[j][1]);
+        b++;
+      }
+      l--;
+    }
+    l=points.length-1;
+    line(x,y,points[l][0],points[l][1]);
+    x=points[l][0];y=points[l][1];
+  }
+}
+
 public void spiralrOr(){
   spiralrOr(random(width), random(height));
 }
