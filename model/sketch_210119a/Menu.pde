@@ -332,6 +332,9 @@ class MenuListe {
               this.menuSauvLettre();
             } else if (curseur == 7) {
               save.save(this.nomJoueur);
+              this.menuDemarrage();
+              this.setCurseur(0);
+              this.setMenuActuel(0);
             }
           } else if (menuActuel == 7) {
             char[] tab = this.nomJoueur.toCharArray();
@@ -339,7 +342,7 @@ class MenuListe {
             this.setNomJoueur(String.valueOf(tab));
             this.menuSauvNom();
             this.setCurseur(0);
-            this.setMenuActuel(0);
+            this.setMenuActuel(6);
           }
   }
 
