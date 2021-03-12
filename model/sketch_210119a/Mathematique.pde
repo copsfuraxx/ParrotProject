@@ -37,18 +37,18 @@ public void courbeBezier(float[][] droites){
   if(droites[0].length!=2)return;
   float[][] points=new float[(droites.length-1)*droites.length/2][2];
   float x=droites[0][0],y=droites[0][1];
-  for(int i=1;i<101;i++){
+  for(int i=1;i<1001;i++){
     for(int j=0;j<droites.length-1;j++){
-      points[j][0]=droites[j][0]+(droites[j+1][0]-droites[j][0])*i/100;
-      points[j][1]=droites[j][1]+(droites[j+1][1]-droites[j][1])*i/100;
+      points[j][0]=droites[j][0]+(droites[j+1][0]-droites[j][0])*i/1000;
+      points[j][1]=droites[j][1]+(droites[j+1][1]-droites[j][1])*i/1000;
       //point(points[j][0],points[j][1]);
     }
     int l;
     int b=l=droites.length-1;
     for(int a=droites.length-2;a>=0;a--){
       for(int j=0;j<a;j++){
-        points[b][0]=points[b-l][0]+(points[b-l+1][0]-points[b-l][0])*i/100;
-        points[b][1]=points[b-l][1]+(points[b-l+1][1]-points[b-l][1])*i/100;
+        points[b][0]=points[b-l][0]+(points[b-l+1][0]-points[b-l][0])*i/1000;
+        points[b][1]=points[b-l][1]+(points[b-l+1][1]-points[b-l][1])*i/1000;
         //point(points[j][0],points[j][1]);
         b++;
       }
