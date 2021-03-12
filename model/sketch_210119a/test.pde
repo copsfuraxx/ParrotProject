@@ -1,10 +1,11 @@
 Save save;
-
+Pinceau pinceau;
 
 void setup() {  
   background(255, 255, 255);
   connection();
   save=new Save();
+  pinceau = new Pinceau();
   PApplet.runSketch(platformNames, new SecondApplet());
 }
 
@@ -63,7 +64,9 @@ public class SecondApplet extends PApplet {
     textSize(32);
     text(menu.getCurseur(), 50, 50);
     text(menu.getMenuActuel(), 100, 50);
-
+    if (menu.getMenuActuel() == 7){
+      menu.menuSauvLettre();
+    }
     for (int i = 0; i < menu.getListeBoutonTaille(); i++) {//dessine tous les boutons
       if (i == menu.getCurseur()) {
         menu.getListeBouton().get(i).active();

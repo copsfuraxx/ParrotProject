@@ -1,4 +1,5 @@
-class Bouton { 
+class Bouton {
+  private String texte;
   private String[] tabTexte;
   private float[] tabCoord;
   private float x, y, tailleX, tailleY, tailleTexte;
@@ -7,6 +8,7 @@ class Bouton {
 
   public Bouton (String texte, float x, float y, float tailleX, float tailleY, color on, color off) {
     this.desactive();
+    this.texte = texte;
     this.on = on;
     this.off = off;
     this.x = x;
@@ -49,9 +51,23 @@ class Bouton {
   public float getX() {
     return this.x;
   }
+  
+  public void setX(float newX){
+    this.x = newX;
+    this.tabTexte = this.separeLigne(texte);
+    this.adapteTexte();
+    this.tabCoord = this.placeLigne();
+  }
 
   public float getY() {
     return this.y;
+  }
+  
+  public void setY(float newY){
+    this.y = newY;
+    this.tabTexte = this.separeLigne(texte);
+    this.adapteTexte();
+    this.tabCoord = this.placeLigne();
   }
 
   public float getTailleX() {
@@ -78,6 +94,9 @@ class Bouton {
     return this.choix;
   }
 
+  public Character getPremierChar(){
+    return this.tabTexte[0].charAt(0);
+  }
   /*
   PARAMETRE : les tailles des bordures du bouton
    BUT: adapter le texte pour qu'il soit à l'intérieur du bouton

@@ -10,8 +10,13 @@ class MenuListe {
   private int curseur;//savoir sur quel bouton nous sommes
   private color couleurActuelle;
   private int forme;
+  private String nomJoueur = "_______";
+  private int  menuActuelCour6 ;
 
 
+  public void setNomJoueur(String nom) {
+    this.nomJoueur = nom;
+  }
   public int getForme() {
     return this.forme;
   }
@@ -147,7 +152,7 @@ class MenuListe {
 
   private void menuInfo() {//menu de suivi de valeur pendant le dessin 4 
     listeBouton.clear();
-    Bouton pot = new Bouton("pot : " + getPot(), 100, 100, 140, 70,choix, nonChoix);
+    Bouton pot = new Bouton("pot : " + getPot(), 100, 100, 140, 70, choix, nonChoix);
     Bouton forme = new Bouton(this.getNomForme(), 100, 200, 140, 70, choix, nonChoix);
 
     listeBouton.add(pot);
@@ -158,7 +163,7 @@ class MenuListe {
     listeBouton.clear();
     Bouton carre = new Bouton("carre", 100, 100, 140, 70, choix, nonChoix);
     Bouton rond = new Bouton("rond", 100, 200, 140, 70, choix, nonChoix);
-    Bouton koch = new Bouton("koch", 100, 300, 140, 70,choix, nonChoix);
+    Bouton koch = new Bouton("koch", 100, 300, 140, 70, choix, nonChoix);
     Bouton cesaro = new Bouton("cesaro", 100, 400, 140, 70, choix, nonChoix);
     Bouton alea = new Bouton("aléatoire", 100, 500, 140, 70, choix, nonChoix);
 
@@ -170,9 +175,42 @@ class MenuListe {
     listeBouton.add(cesaro);
     listeBouton.add(alea);
   }
+  private void menuSauvNom() {//menu de saisie du nomJoueur 6
+    listeBouton.clear();
+    for (int i = 0; i < this.nomJoueur.length(); i++) {
+      Bouton bouton = new Bouton(this.nomJoueur.substring(i, i+1), 20 + i * 40, 100, 40, 40, choix, nonChoix);
+      listeBouton.add(bouton);
+    }
+    Bouton ok = new Bouton("ok", 100, 500, 140, 70, choix, nonChoix);
 
+    listeBouton.add(ok);
+  }
+
+  private void menuSauvLettre() {//menu de la saisie des lettres 7
+    listeBouton.clear();
+    int j = 0;
+    for (int i = 48; i < 58; i++) {
+      Bouton bouton = new Bouton(char(i) + "", 2000, 100, 140, 70, choix, nonChoix);
+
+      if (curseur == j) {
+        bouton.setX(100);
+      }
+      listeBouton.add(bouton);
+
+      j++;
+    }
+    for (int i = 65; i < 91; i++) {
+      Bouton bouton = new Bouton(char(i) + "", 2000, 100, 140, 70, choix, nonChoix);
+
+      if (curseur == j) {
+        bouton.setX(100);
+      }
+      listeBouton.add(bouton);
+
+      j++;
+    }
+  }
   public void cliqueBoutonBleu() {
-
     if (menuActuel == 0) {
       switch(curseur) {
       case 0:
@@ -183,10 +221,12 @@ class MenuListe {
       case 1:
         exit();
       case 2 :
-        save.save();
+        this.menuSauvNom();
+        this.setCurseur(0);
+        this.setMenuActuel(6);
         break;
       case 3 : 
-        save.load();
+        save.load("test");
       default : 
         System.out.println("erreur");
       }
@@ -284,6 +324,22 @@ class MenuListe {
             this.menuDessin();
             this.setCurseur(0);
             this.setMenuActuel(1);
+          } else if (menuActuel == 6) {
+            if (curseur < 7) {
+              menuActuelCour6 = curseur;
+              this.setCurseur(trouveCharListe(this.nomJoueur.charAt(menuActuelCour6)));
+              this.setMenuActuel(7);
+              this.menuSauvLettre();
+            } else if (curseur == 7) {
+              save.save(this.nomJoueur);
+            }
+          } else if (menuActuel == 7) {
+            char[] tab = this.nomJoueur.toCharArray();
+            tab[menuActuelCour6] = this.getListeBouton().get(curseur).getPremierChar();
+            this.setNomJoueur(String.valueOf(tab));
+            this.menuSauvNom();
+            this.setCurseur(0);
+            this.setMenuActuel(0);
           }
   }
 
@@ -309,5 +365,24 @@ class MenuListe {
       }
       this.listeBouton.get(i).dessineBouton();
     }
+  }
+
+  public int trouveCharListe(char c) {
+    for (int i = 0; i < this.getListeBoutonTaille(); i++) {
+      if (this.getListeBouton().get(i).getPremierChar() == c) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  private String nomJoueurSansBarre() {
+    char[] tab = this.nomJoueur.toCharArray();
+    for (int i = 0; i < tab.length; i++) {
+      if (tab[i] == '_') {
+        tab[i] =' ';
+      }
+    }
+    return String.valueOf(tab);
   }
 }
