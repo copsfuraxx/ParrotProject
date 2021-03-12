@@ -136,6 +136,7 @@ void dessinePoly(int i) {
 }
 
 void dessinePoly(float[][] coord) {
+  if(coord[0].length!=2)return;
   line(coord[0][0], coord[0][1], coord[coord.length-1][0], coord[coord.length-1][1]);
   ArrayList list=new ArrayList();
   list.add(coord.length);
