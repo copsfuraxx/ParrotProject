@@ -1,6 +1,3 @@
-Save save;
-Pinceau pinceau;
-
 void setup() {  
   background(255, 255, 255);
   connection();
