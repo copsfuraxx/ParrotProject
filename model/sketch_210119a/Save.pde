@@ -29,12 +29,7 @@ class Save {
     String[] lines = loadStrings(nom+".save");
     for (int i=0; i<lines.length; i++) {
       String[] line=lines[i].split("/");
-      pinceau.setCouleur(int(line[2]));
-      if(int(line[3])!=-1){
-        pinceau.setCouleurRemplissage(int(line[3]));
-        pinceau.use(true);
-      }else pinceau.use(false);
-      choixType(line);
+      pinceau.setCouleur(new Couleur(int(line[2])),new Couleur(int(line[3])));
     }
   }
 

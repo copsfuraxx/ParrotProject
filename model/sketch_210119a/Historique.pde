@@ -22,7 +22,6 @@ class Historique {
   
   public void addCouleur(){
       arg.add(0,pinceau.getCouleur());
-      if(pinceau.isRemplis())arg.add(1,pinceau.getCouleur());
-      else arg.add(1,-1);
+      arg.add(1,pinceau.getCouleur());
   }
 }

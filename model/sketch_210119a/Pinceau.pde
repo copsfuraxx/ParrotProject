@@ -5,7 +5,8 @@ class Pinceau {
   
   public Pinceau(){
     couleurCrayon =new Couleur(0,0,0);
-    couleurRemplissage=new Couleur(255,255,255);
+    couleurRemplissage=new Couleur(0,0,0);
+    use();
     //this.epaisseur=1;
   }
   
@@ -37,6 +38,7 @@ class Pinceau {
   
   public void setCouleur(Couleur c){
     couleurCrayon=c;
+    couleurRemplissage=c;
     use();
   }
   
