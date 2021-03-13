@@ -1,39 +1,49 @@
 class Pinceau {
-  private int epaisseur;
+  //private int epaisseur;
   private Couleur couleurCrayon;
   private Couleur couleurRemplissage;
-  private boolean remplissage;
   
   public Pinceau(){
     couleurCrayon =new Couleur(0,0,0);
     couleurRemplissage=new Couleur(255,255,255);
-    this.epaisseur=1;
+    //this.epaisseur=1;
   }
   
-  public Pinceau(int epaisseur){
-    couleurCrayon =new Couleur(0,0,0);
-    couleurRemplissage=new Couleur(255,255,255);
-    this.epaisseur=epaisseur;
+  //public Pinceau(int epaisseur){
+  //  couleurCrayon =new Couleur(0,0,0);
+  //  couleurRemplissage=new Couleur(255,255,255);
+  //  //this.epaisseur=epaisseur;
+  //}
+  
+  public Pinceau(Couleur c){
+    couleurCrayon = c;
+    couleurRemplissage = c;
+    //epaisseur=1;
+    use();
   }
   
-  public Pinceau(color c1, color c2){
-    couleurCrayon = new Couleur(c1);
-    couleurRemplissage = new Couleur(c2);
-    epaisseur=1;
+  public Pinceau(Couleur c1, Couleur c2){
+    couleurCrayon = c1;
+    couleurRemplissage = c2;
+    //epaisseur=1;
+    use();
   }
   
-  public Pinceau(color c1, color c2, int epaisseur){
-    couleurCrayon = new Couleur(c1);
-    couleurRemplissage = new Couleur(c2);
-    this.epaisseur=epaisseur;
+  //public Pinceau(color c1, color c2, int epaisseur){
+  //  couleurCrayon = new Couleur(c1);
+  //  couleurRemplissage = new Couleur(c2);
+  //  //this.epaisseur=epaisseur;
+  //}
+  
+  public void setCouleur(Couleur c){
+    couleurCrayon=c;
+    use();
   }
   
-  public void setCouleur(color c){
-    couleurCrayon=new Couleur(c);
-  }
-  
-  public void setCouleurRemplissage(color c){
-    couleurRemplissage=new Couleur(c);
+  public void setCouleur(Couleur c1, Couleur c2){
+    couleurCrayon=c1;
+    couleurRemplissage=c2;
+    use();
   }
   
   public color getCouleur(){
@@ -44,20 +54,15 @@ class Pinceau {
     return couleurRemplissage.getCouleur();
   }
   
-  public boolean isRemplis(){
-    return remplissage;
-  }
   
-  public void setEpaisseur(int epaisseur){
-    this.epaisseur=epaisseur;
-  }
+  //public void setEpaisseur(int epaisseur){
+  //  this.epaisseur=epaisseur;
+  //}
   
-  public void use(boolean fill){
-    remplissage=fill;
+  private void use(){
     //strokeWeight(epaisseur);
     stroke(couleurCrayon.getCouleur());
-    if(fill)fill(couleurRemplissage.getCouleur());
-    else noFill();
+    fill(couleurRemplissage.getCouleur());
   }  
 }
 
