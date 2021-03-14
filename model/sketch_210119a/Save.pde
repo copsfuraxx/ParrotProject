@@ -26,7 +26,7 @@ class Save {
   }
 
   public void load(String nom) {
-    String[] lines = loadStrings("saves/"+nom+".save");
+    String[] lines = loadStrings("saves/"+nom);
     for (int i=0; i<lines.length; i++) {
       String[] line=lines[i].split("/");
       pinceau.setCouleur(new Couleur(int(line[2])),new Couleur(int(line[3])));

@@ -178,7 +178,6 @@ class Bouton {
         pasDecouper = false;
         arrayChaine.add(texte);
       }
-      System.out.println(texte);
     }
 
     String[] tabChaine = new String[arrayChaine.size()];

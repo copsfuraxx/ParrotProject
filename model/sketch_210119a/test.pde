@@ -1,4 +1,4 @@
-void setup() {  
+void setup() {
   background(255, 255, 255);
   connection();
   save=new Save();

@@ -12,6 +12,7 @@ class MenuListe {
   private int forme;
   private String nomJoueur = "_______";
   private int  menuActuelCour6 ;
+  private String  nomFichier;
 
 
   public void setNomJoueur(String nom) {
@@ -80,6 +81,7 @@ class MenuListe {
       this.listeBouton = new ArrayList<Bouton>();
       this.menuDemarrage();
       this.forme = 0;
+      this.setCouleurActuelle(new Couleur(0, 0, 0));
     }
   }
 
@@ -157,12 +159,11 @@ class MenuListe {
       if (this.curseur == i) {
         bouton.setX(100);
         bouton.setY(200);
-      }
-      else if (this.curseur == i - 1){
-         bouton.setX(100);
+        nomFichier = listeForme.get(i);
+      } else if (this.curseur == i - 1) {
+        bouton.setX(100);
         bouton.setY(100);
-      }
-      else if (this.curseur == i + 1){
+      } else if (this.curseur == i + 1) {
         bouton.setX(100);
         bouton.setY(300);
       }
@@ -186,19 +187,17 @@ class MenuListe {
     for (int i = 48; i < 58; i++) {
       Bouton bouton = new Bouton(char(i) + "", 2000, 100, 140, 70, choix, nonChoix);
 
-       if (this.curseur == i) {
+      if (this.curseur == j) {
         bouton.setX(100);
         bouton.setY(200);
-      }
-      else if (this.curseur == i - 1){
-         bouton.setX(100);
+      } else if (this.curseur == j - 1) {
+        bouton.setX(100);
         bouton.setY(100);
-      }
-      else if (this.curseur == i + 1){
+      } else if (this.curseur == j + 1) {
         bouton.setX(100);
         bouton.setY(300);
       }
-      
+
       listeBouton.add(bouton);
 
       j++;
@@ -206,14 +205,53 @@ class MenuListe {
     for (int i = 65; i < 91; i++) {
       Bouton bouton = new Bouton(char(i) + "", 2000, 100, 140, 70, choix, nonChoix);
 
-      if (curseur == j) {
+      if (this.curseur == j) {
         bouton.setX(100);
+        bouton.setY(200);
+      } else if (this.curseur == j - 1) {
+        bouton.setX(100);
+        bouton.setY(100);
+      } else if (this.curseur == j + 1) {
+        bouton.setX(100);
+        bouton.setY(300);
       }
+
       listeBouton.add(bouton);
 
       j++;
     }
   }
+
+  private void menuChargement() {//menu de récupération des sauvegardes 8
+    listeBouton.clear();
+    String cheminFichier = sketchPath() + "\\saves";
+    println(cheminFichier);
+    java.io.File dossierSaves = new java.io.File(dataPath(cheminFichier));
+    String[] listeNomFichier= dossierSaves.list();
+    Bouton boutonRetour = new Bouton("retour", 100, 100, 140, 70, choix, nonChoix);
+    listeBouton.add(boutonRetour);
+
+    if ( listeNomFichier.length > 0) {
+      for (int i = 0; i < listeNomFichier.length; i++) {
+        Bouton bouton = new Bouton(listeNomFichier[i], 2000, 100, 140, 70, choix, nonChoix);
+
+        if (this.curseur == i+1) {//position du curseur
+          bouton.setX(100);
+          bouton.setY(300);
+          nomFichier = listeNomFichier[i];
+        } else if (this.curseur == i) {//en dessous du curseur
+          bouton.setX(100);
+          bouton.setY(200);
+        } else if (this.curseur == i + 2) {//au dessus du curseur
+          bouton.setX(100);
+          bouton.setY(400);
+        }
+
+        listeBouton.add(bouton);
+      }
+    }
+  }
+
   public void cliqueBoutonBleu() {
     if (menuActuel == 0) {
       switch(curseur) {
@@ -230,7 +268,10 @@ class MenuListe {
         this.setMenuActuel(6);
         break;
       case 3 : 
-        save.load("test");
+        this.menuChargement();
+        this.setCurseur(0);
+        this.setMenuActuel(8);
+        break;
       default : 
         System.out.println("erreur");
       }
@@ -330,6 +371,11 @@ class MenuListe {
             this.menuSauvNom();
             this.setCurseur(0);
             this.setMenuActuel(6);
+          } else if (menuActuel == 8) {
+            save.load(nomFichier);
+            this.menuDessin();
+            this.setCurseur(0);
+            this.setMenuActuel(1);
           }
   }
 
@@ -385,6 +431,9 @@ class MenuListe {
       break;
     case 7:
       this.menuSauvLettre();
+      break;
+    case 8:
+      this.menuChargement();
       break;
     default : 
       break;
