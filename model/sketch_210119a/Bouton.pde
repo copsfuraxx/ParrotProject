@@ -3,10 +3,10 @@ class Bouton {
   private String[] tabTexte;
   private float[] tabCoord;
   private float x, y, tailleX, tailleY, tailleTexte;
-  private color on, off;
+  private Couleur on, off;
   private Boolean choix;
 
-  public Bouton (String texte, float x, float y, float tailleX, float tailleY, color on, color off) {
+  public Bouton (String texte, float x, float y, float tailleX, float tailleY, Couleur on, Couleur off) {
     this.desactive();
     this.texte = texte;
     this.on = on;
@@ -82,11 +82,11 @@ class Bouton {
     return this.tailleTexte;
   }
 
-  public color getCouleurOn() {
+  public Couleur getCouleurOn() {
     return this.on;
   }
 
-  public color getCouleurOff() {
+  public Couleur getCouleurOff() {
     return this.off ;
   }
 
@@ -198,9 +198,9 @@ class Bouton {
     float[] tabCoord = this.placeLigne();
     noFill();
     if (this.choix) {
-      stroke(this.on);
+      stroke(this.on.getCouleur());
     } else {
-      stroke(this.off);
+      stroke(this.off.getCouleur());
     }
     rect(x, y, tailleX, tailleY);
     textSize(tailleTexte);
@@ -218,12 +218,12 @@ class Bouton {
 class BoutonValeur extends Bouton {
 
   private float[] listeEntier;
-  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, color on, color off, float[] listeEntier) {
+  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, Couleur on, Couleur off, float[] listeEntier) {
     super(texte, x, y, tailleX, tailleY, on, off);
     this.listeEntier = listeEntier;
   }
 
-  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, color on, color off, float entier) {
+  public BoutonValeur (String texte, float x, float y, float tailleX, float tailleY, Couleur on, Couleur off, float entier) {
     super(texte, x, y, tailleX, tailleY, on, off);
     float[] listeEntier = new float[1];
     listeEntier[0] = entier;
@@ -249,7 +249,7 @@ class BoutonValeur extends Bouton {
 class BoutonListe extends Bouton {
 
   private String[] listeChaine;
-  public BoutonListe (String texte, float x, float y, float tailleX, float tailleY, color on, color off, String[] listeChaine) {
+  public BoutonListe (String texte, float x, float y, float tailleX, float tailleY, Couleur on, Couleur off, String[] listeChaine) {
     super(texte, x, y, tailleX, tailleY, on, off);
     this.listeChaine = listeChaine;
   }

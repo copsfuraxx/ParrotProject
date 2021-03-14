@@ -1,9 +1,9 @@
-//Pour julio et son jolie menu
+//Pour julio et son joli menu
 
 Save save;
 Pinceau pinceau;
 
-public ArrayList<String> getForme(){
+public static ArrayList<String> creeListeDeForme(){
   ArrayList<String> formes=new ArrayList<String>();
   formes.add("Carre");
   formes.add("Rectangle");
@@ -23,7 +23,7 @@ public ArrayList<String> getForme(){
   return formes;
 }
 
-public void dessineForme(int id){
+public void dessineFormeParIdDeListe(int id){
   switch(id) {
     case 0:
       dessineCarre();
@@ -75,10 +75,10 @@ public void dessineForme(int id){
 
 public void dessineForme(int id, Couleur c){
   pinceau.setCouleur(c);
-  dessineForme(id);
+  dessineFormeParIdDeListe(id);
 }
 
 public void dessineForme(int id, Couleur c1, Couleur c2){
   pinceau.setCouleur(c1,c2);
-  dessineForme(id);
+  dessineFormeParIdDeListe(id);
 }

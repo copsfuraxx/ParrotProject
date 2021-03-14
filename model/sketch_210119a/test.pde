@@ -37,6 +37,7 @@ public class SecondApplet extends PApplet {
 
   public void draw() {
     background(0, 0, 0);
+    menu.actualise();
     if (delaiBoutonBleu > 0) {
       delaiBoutonBleu--;
     }
@@ -72,9 +73,9 @@ public class SecondApplet extends PApplet {
       }
       noFill();
       if (menu.getListeBouton().get(i).getChoix()) {
-        stroke(menu.getListeBouton().get(i).getCouleurOn());
+        stroke(menu.getListeBouton().get(i).getCouleurOn().getCouleur());
       } else {
-        stroke(menu.getListeBouton().get(i).getCouleurOff());
+        stroke(menu.getListeBouton().get(i).getCouleurOff().getCouleur());
       }
       rect(menu.getListeBouton().get(i).getX(), menu.getListeBouton().get(i).getY(), menu.getListeBouton().get(i).getTailleX(), menu.getListeBouton().get(i).getTailleY());
       textSize(menu.getListeBouton().get(i).getTailleTexte());
@@ -82,9 +83,9 @@ public class SecondApplet extends PApplet {
       int k = 1;
       for (int tailleI = 0; tailleI < menu.getListeBouton().get(i).getTabTexte().length; tailleI++) {//dessine le texte du bouton
         if (menu.getListeBouton().get(i).getChoix()) {
-          fill(menu.getListeBouton().get(i).getCouleurOn());
+          fill(menu.getListeBouton().get(i).getCouleurOn().getCouleur());
         } else {
-          fill(menu.getListeBouton().get(i).getCouleurOff());
+          fill(menu.getListeBouton().get(i).getCouleurOff().getCouleur());
         }       
         text(menu.getListeBouton().get(i).getTabTexte()[tailleI], menu.getListeBouton().get(i).getTabCoord()[j], menu.getListeBouton().get(i).getTabCoord()[k]);
         j = j+2;

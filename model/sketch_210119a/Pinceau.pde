@@ -69,25 +69,49 @@ class Pinceau {
 }
 
 public class Couleur{
-  private int r;
-  private int v;
-  private int b;
+  private float r;
+  private float v;
+  private float b;
   private color couleur;
   
-  public Couleur(int r, int v, int b){
+  public Couleur(float r, float v, float b){
     this.r = r;
     this.v = v;
     this.b = b;
   }
   
   public Couleur(color couleur){
-    r=-1;
-    this.couleur=couleur;
+    r = red(couleur);
+    v = green(couleur);
+    b = blue(couleur);
+    this.couleur = couleur;
   }
   
   public color getCouleur(){
-  if(r==-1)return couleur;
-  else return color(r,v,b);
+    return couleur;
   }
   
+  public float getBleu(){
+    return this.b;
+  }
+  
+  public float getVert(){
+    return this.v;
+  }
+  
+  public float getRouge(){
+    return this.r;
+  }
+  
+  public int getBleuEntier(){
+    return (int)this.b;
+  }
+  
+  public int getVertEntier(){
+    return (int)this.v;
+  }
+  
+  public int  getRougeEntier(){
+    return (int)this.r;
+  }
 }

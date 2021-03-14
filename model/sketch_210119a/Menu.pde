@@ -8,7 +8,7 @@ class MenuListe {
    */
   private ArrayList<Bouton> listeBouton;
   private int curseur;//savoir sur quel bouton nous sommes
-  private color couleurActuelle;
+  private Couleur couleurActuelle;
   private int forme;
   private String nomJoueur = "_______";
   private int  menuActuelCour6 ;
@@ -60,29 +60,17 @@ class MenuListe {
     this.menuActuel = nb;
   }
 
-  public void setCouleurActuelle(color couleur) {
+  public void setCouleurActuelle(Couleur couleur) {
     this.couleurActuelle = couleur;
   }
 
-  public color getCouleurActuelle() {
+  public Couleur getCouleurActuelle() {
     return this.couleurActuelle;
   }
 
   public String getNomForme() {
-    switch(this.forme) {
-    case 0 :
-      return "carre";
-    case 1 :
-      return "rond";
-    case 2 :
-      return "koch";
-    case 3:
-      return "cesaro";
-    case 4:
-      return "aléa";
-    default : 
-      return "erreur";
-    }
+    ArrayList<String> listeForme = creeListeDeForme();
+    return listeForme.get(forme);
   }
 
   public MenuListe(int menuChoix) {
@@ -95,8 +83,8 @@ class MenuListe {
     }
   }
 
-  color nonChoix = color(200, 230, 215);
-  color choix = color(100, 100, 200);
+  Couleur nonChoix = new Couleur(color(200, 230, 215));
+  Couleur choix = new Couleur(color(100, 100, 200));
 
   private void menuDemarrage() {//menu de départ 0
     listeBouton.clear();
@@ -126,9 +114,9 @@ class MenuListe {
   private void menuCouleur() {//menu principal de la couleur 2
     listeBouton.clear();
     Bouton couleur = new Bouton("couleur", 100, 100, 140, 70, choix, couleurActuelle);
-    Bouton bleu = new BoutonValeur("bleu " + blue(couleurActuelle), 100, 200, 140, 70, choix, nonChoix, blue(couleurActuelle));
-    Bouton rouge = new BoutonValeur("rouge " + red(couleurActuelle), 100, 300, 140, 70, choix, nonChoix, red(couleurActuelle));
-    Bouton vert = new BoutonValeur("vert " + green(couleurActuelle), 100, 400, 140, 70, choix, nonChoix, green(couleurActuelle));
+    Bouton bleu = new BoutonValeur("bleu " + couleurActuelle.getBleuEntier(), 100, 200, 140, 70, choix, nonChoix, couleurActuelle.getBleu());
+    Bouton rouge = new BoutonValeur("rouge " + couleurActuelle.getRougeEntier(), 100, 300, 140, 70, choix, nonChoix, couleurActuelle.getRouge());
+    Bouton vert = new BoutonValeur("vert " + couleurActuelle.getVertEntier(), 100, 400, 140, 70, choix, nonChoix, couleurActuelle.getRouge());
     Bouton ok = new Bouton("OK", 100, 500, 140, 70, choix, nonChoix);
     listeBouton.add(couleur);
     listeBouton.add(bleu);
@@ -139,10 +127,10 @@ class MenuListe {
 
   private void menuCouleurChoix() {//menu du choix rapide de la couleur 3
     listeBouton.clear();
-    Bouton noir = new Bouton("noir", 100, 100, 140, 70, color(15, 15, 15), nonChoix);
-    Bouton bleu = new Bouton("bleu", 100, 200, 140, 70, color(0, 0, 255), nonChoix);
-    Bouton rouge = new Bouton("rouge", 100, 300, 140, 70, color(255, 0, 0), nonChoix);
-    Bouton vert = new Bouton("vert", 100, 400, 140, 70, color(0, 255, 0), nonChoix);
+    Bouton noir = new Bouton("noir", 100, 100, 140, 70, new Couleur(15, 15, 15), nonChoix);
+    Bouton bleu = new Bouton("bleu", 100, 200, 140, 70, new Couleur(0, 0, 255), nonChoix);
+    Bouton rouge = new Bouton("rouge", 100, 300, 140, 70, new Couleur(255, 0, 0), nonChoix);
+    Bouton vert = new Bouton("vert", 100, 400, 140, 70, new Couleur(0, 255, 0), nonChoix);
 
     listeBouton.add(noir);
     listeBouton.add(bleu);
@@ -161,19 +149,25 @@ class MenuListe {
 
   private void menuForme() {//menu de choix des formes 5
     listeBouton.clear();
-    Bouton carre = new Bouton("carre", 100, 100, 140, 70, choix, nonChoix);
-    Bouton rond = new Bouton("rond", 100, 200, 140, 70, choix, nonChoix);
-    Bouton koch = new Bouton("koch", 100, 300, 140, 70, choix, nonChoix);
-    Bouton cesaro = new Bouton("cesaro", 100, 400, 140, 70, choix, nonChoix);
-    Bouton alea = new Bouton("aléatoire", 100, 500, 140, 70, choix, nonChoix);
+    ArrayList<String> listeForme = creeListeDeForme();
 
+    for (int i = 0; i < listeForme.size(); i++) {
+      Bouton bouton = new Bouton(listeForme.get(i), 2000, 100, 140, 70, choix, nonChoix);
 
-
-    listeBouton.add(carre);
-    listeBouton.add(rond);
-    listeBouton.add(koch);
-    listeBouton.add(cesaro);
-    listeBouton.add(alea);
+      if (this.curseur == i) {
+        bouton.setX(100);
+        bouton.setY(200);
+      }
+      else if (this.curseur == i - 1){
+         bouton.setX(100);
+        bouton.setY(100);
+      }
+      else if (this.curseur == i + 1){
+        bouton.setX(100);
+        bouton.setY(300);
+      }
+      listeBouton.add(bouton);
+    }
   }
   private void menuSauvNom() {//menu de saisie du nomJoueur 6
     listeBouton.clear();
@@ -192,9 +186,19 @@ class MenuListe {
     for (int i = 48; i < 58; i++) {
       Bouton bouton = new Bouton(char(i) + "", 2000, 100, 140, 70, choix, nonChoix);
 
-      if (curseur == j) {
+       if (this.curseur == i) {
         bouton.setX(100);
+        bouton.setY(200);
       }
+      else if (this.curseur == i - 1){
+         bouton.setX(100);
+        bouton.setY(100);
+      }
+      else if (this.curseur == i + 1){
+        bouton.setX(100);
+        bouton.setY(300);
+      }
+      
       listeBouton.add(bouton);
 
       j++;
@@ -272,25 +276,25 @@ class MenuListe {
           if (menuActuel == 3) {
             switch(curseur) {
             case 0:
-              this.couleurActuelle = color(0, 0, 0);
+              this.couleurActuelle = new Couleur(color(0, 0, 0));
               this.menuCouleur();
               this.setCurseur(1);
               this.setMenuActuel(2);
               break;
             case 1:
-              this.couleurActuelle = color(0, 0, 255);
+              this.couleurActuelle = new Couleur(color(0, 0, 255));
               this.menuCouleur();
               this.setCurseur(1);
               this.setMenuActuel(2);
               break;
             case 2:
-              this.couleurActuelle = color(255, 0, 0);
+              this.couleurActuelle = new Couleur(color(255, 0, 0));
               this.menuCouleur();
               this.setCurseur(1);
               this.setMenuActuel(2);
               break;
             case 3:
-              this.couleurActuelle = color(0, 255, 0);
+              this.couleurActuelle = new Couleur(color(0, 255, 0));
               this.menuCouleur();
               this.setCurseur(1);
               this.setMenuActuel(2);
@@ -299,26 +303,9 @@ class MenuListe {
               System.out.println("erreur");
             }
           } else if (menuActuel == 4) {
-            stroke(couleurActuelle);
-            fill(couleurActuelle);
-            switch(forme) {
-            case 0:
-              dessineCarre();
-              break;
-            case 1:
-              dessineCercle();
-              break;
-
-            case 2:
-              floconKoch();
-              break;
-            case 3:
-              cesaro();
-            case 4:
-              multiFormChoix();
-            default : 
-              System.out.println("erreur");
-            }
+            stroke(couleurActuelle.getCouleur());
+            fill(couleurActuelle.getCouleur());
+            dessineForme(this.getForme(), couleurActuelle);
           } else if (menuActuel == 5) {
             this.forme = curseur;
             this.menuDessin();
@@ -393,6 +380,9 @@ class MenuListe {
 
   public void actualise() {
     switch(this.getMenuActuel()) {
+    case 5:
+      this.menuForme();
+      break;
     case 7:
       this.menuSauvLettre();
       break;
