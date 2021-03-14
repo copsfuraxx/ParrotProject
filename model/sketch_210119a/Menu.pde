@@ -388,4 +388,16 @@ class MenuListe {
     }
     return String.valueOf(tab);
   }
+
+
+
+  public void actualise() {
+    switch(this.getMenuActuel()) {
+    case 7:
+      this.menuSauvLettre();
+      break;
+    default : 
+      break;
+    }
+  }
 }
