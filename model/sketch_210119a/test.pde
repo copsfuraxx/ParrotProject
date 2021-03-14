@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
 void setup() {  
+=======
+void setup() {
+>>>>>>> d8e7d8cad59a918a4a3bf326e7d2b147ee566b7a
   background(255, 255, 255);
   //connection();
   
@@ -35,7 +39,7 @@ void draw() {
 }
 
 public class SecondApplet extends PApplet {
-  MenuListe menu = new MenuListe(0);
+  MenuListe menu = new MenuListe(0,save);
   int dernierPot = getPot();
   int delaiBoutonBleu = 0;
   int delaiBoutonRouge = 0;

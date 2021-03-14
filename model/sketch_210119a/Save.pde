@@ -26,7 +26,7 @@ class Save {
   }
 
   public void load(String nom) {
-    String[] lines = loadStrings("saves/"+nom+".save");
+    String[] lines = loadStrings("saves/"+nom);
     for (int i=0; i<lines.length; i++) {
       String[] line=lines[i].split("/");
       pinceau.setCouleur(new Couleur(int(line[2])),new Couleur(int(line[3])));
@@ -69,10 +69,10 @@ class Save {
   }
 
   private void loadPoly(String [] line) {
-    float[][] coord=new float[int(line[2])][2];
-    for (int i=0; i<int(line[2]); i++) {
-      coord[i][0]=float(line[i*2+3]);
-      coord[i][1]=float(line[i*2+4]);
+    float[][] coord=new float[int(line[4])][2];
+    for (int i=0; i<int(line[4]); i++) {
+      coord[i][0]=float(line[i*2+5]);
+      coord[i][1]=float(line[i*2+6]);
     }
     dessinePoly(coord);
   }
