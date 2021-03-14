@@ -1,9 +1,20 @@
+
 void setup() {  
   background(255, 255, 255);
-  connection();
+  //connection();
+  
+  StringList instructions = getInstructionPourConnectionAuto();
+  
+  initArduino();
+  for (int i=0; i<instructions.size(); i++){
+    println(instructions.get(i));
+  }
+  
   save=new Save();
   pinceau = new Pinceau();
   PApplet.runSketch(platformNames, new SecondApplet());
+  
+  
 }
 
 public void settings() {
@@ -14,9 +25,12 @@ public void settings() {
 color c = color(255, 255, 255); //couleur background
 
 void draw() {
-
-  getInfoArduino();  
-
+  if (getConnection()){
+    getInfoArduino();  
+  }
+  else{
+    autoConnection();
+  }
   // dessineTest(getValModifPot());
 }
 

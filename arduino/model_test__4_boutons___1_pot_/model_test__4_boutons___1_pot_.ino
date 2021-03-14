@@ -25,8 +25,8 @@ void loop() {
   int val = map(analogRead(analogPin), 0, 1023, 0, 100);
   sprintf(buffer,"/%d/%d/%d/%d/%d/",val,
                              digitalRead(boutonJaune), digitalRead(boutonVert),
-                             digitalRead(boutonRouge), digitalRead(boutonBleu));  
+                             digitalRead(boutonRouge), digitalRead(boutonBleu));
   Serial.println(buffer);
 
-   
+
 }
