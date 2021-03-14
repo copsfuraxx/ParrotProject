@@ -225,7 +225,6 @@ class MenuListe {
   private void menuChargement() {//menu de récupération des sauvegardes 8
     listeBouton.clear();
     String cheminFichier = sketchPath() + "\\saves";
-    println(cheminFichier);
     java.io.File dossierSaves = new java.io.File(dataPath(cheminFichier));
     String[] listeNomFichier= dossierSaves.list();
     Bouton boutonRetour = new Bouton("retour", 100, 100, 140, 70, choix, nonChoix);
