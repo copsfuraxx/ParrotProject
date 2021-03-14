@@ -432,6 +432,9 @@ class MenuListe {
     case 7:
       this.menuSauvLettre();
       break;
+    case 8:
+      this.menuChargement();
+      break;
     default : 
       break;
     }
