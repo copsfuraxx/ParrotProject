@@ -21,7 +21,7 @@ void draw() {
 }
 
 public class SecondApplet extends PApplet {
-  MenuListe menu = new MenuListe(0);
+  MenuListe menu = new MenuListe(0,save);
   int dernierPot = getPot();
   int delaiBoutonBleu = 0;
   int delaiBoutonRouge = 0;

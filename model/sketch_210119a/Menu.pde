@@ -13,6 +13,7 @@ class MenuListe {
   private String nomJoueur = "_______";
   private int  menuActuelCour6 ;
   private String  nomFichier;
+  private Save save;
 
 
   public void setNomJoueur(String nom) {
@@ -74,7 +75,7 @@ class MenuListe {
     return listeForme.get(forme);
   }
 
-  public MenuListe(int menuChoix) {
+  public MenuListe(int menuChoix,Save save) {
     if (menuChoix == 0) {
 
       this.menuActuel = 0;
@@ -82,6 +83,7 @@ class MenuListe {
       this.menuDemarrage();
       this.forme = 0;
       this.setCouleurActuelle(new Couleur(0, 0, 0));
+      this.save = save;
     }
   }
 
