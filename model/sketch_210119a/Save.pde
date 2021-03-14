@@ -22,14 +22,15 @@ class Save {
         if (j!=arg.size()-1)lines[i]+="/";
       }
     }
-    saveStrings(nom+".save", lines);
+    saveStrings("saves/"+nom+".save", lines);
   }
 
   public void load(String nom) {
-    String[] lines = loadStrings(nom+".save");
+    String[] lines = loadStrings("saves/"+nom+".save");
     for (int i=0; i<lines.length; i++) {
       String[] line=lines[i].split("/");
       pinceau.setCouleur(new Couleur(int(line[2])),new Couleur(int(line[3])));
+      choixType(line);
     }
   }
 

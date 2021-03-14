@@ -78,6 +78,7 @@ public class Couleur{
     this.r = r;
     this.v = v;
     this.b = b;
+    couleur=color(r,v,b);
   }
   
   public Couleur(color couleur){
