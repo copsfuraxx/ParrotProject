@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-
 void setup() {  
-=======
-void setup() {
->>>>>>> d8e7d8cad59a918a4a3bf326e7d2b147ee566b7a
   background(255, 255, 255);
-  //connection();
   
   StringList instructions = getInstructionPourConnectionAuto();
   

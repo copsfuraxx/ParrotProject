@@ -17,6 +17,8 @@ private int etatConnection;
 private String[][] m = null; // valeur des input de l'arduino
 private boolean connectionEtablie = false;
 
+private String savePortFile = "arduinoPort.config";
+
 public void initArduino() { //etablie la connection arduino - logiciel
   num_ports = Serial.list().length;
   port_list = new String[num_ports];
@@ -42,56 +44,58 @@ public StringList getInstructionPourConnectionAuto(){
 }
 
 public void autoConnection() {
-  /*int i = 0; //numero du port
-  etatConnection = EN_COUR_DE_CONNECTION;
-  while (etatConnection == EN_COUR_DE_CONNECTION) {
-    try {
-      arduinoPort = new Serial(this, Serial.list()[i], 9600); // établie la connection
-      delay(2000);
-      if (getInput() != null) {
+      stringArduinoPort = loadPortArduino();
+      if (stringArduinoPort == null){
+        if ((Serial.list().length > num_ports) && etatConnection != EST_CONNECTE) {
+          etatConnection = EST_CONNECTE;
+          // determine which port the device was plugge into
+          if (num_ports == 0) {
+              stringArduinoPort = Serial.list()[0];
+          }
+          else {
+              // go through the current port list
+              for (int i = 0; i < Serial.list().length; i++) {
+                  // go through the saved port list
+                  for (int j = 0; j < num_ports; j++) {
+                      if (Serial.list()[i].equals(port_list[j])) {
+                          break;
+                      }
+                      if (j == (num_ports - 1)) {
+                          stringArduinoPort = Serial.list()[i];
+                      }
+                  }
+              }
+          }
+        }
+      }
+      else{
         etatConnection = EST_CONNECTE;
       }
-    }
-    catch (Exception e) {
-      etatConnection = EST_PAS_CONNECTE;
-    }
-    i++;
-    println(getEtatConnection());
-  }*/
-      if ((Serial.list().length > num_ports) && etatConnection != EST_CONNECTE) {
-        etatConnection = EST_CONNECTE;
-        // determine which port the device was plugge into
-        boolean str_match = false;
-        if (num_ports == 0) {
-            stringArduinoPort = Serial.list()[0];
-        }
-        else {
-            // go through the current port list
-            for (int i = 0; i < Serial.list().length; i++) {
-                // go through the saved port list
-                for (int j = 0; j < num_ports; j++) {
-                    if (Serial.list()[i].equals(port_list[j])) {
-                        break;
-                    }
-                    if (j == (num_ports - 1)) {
-                        str_match = true;
-                        stringArduinoPort = Serial.list()[i];
-                    }
-                }
-            }
-        }
-    }
-    if (etatConnection == EST_CONNECTE){
-      arduinoPort = new Serial (this, stringArduinoPort, 9600);
-      connectionEtablie = true;
-      println("connection réussi");
+      if (etatConnection == EST_CONNECTE){
+        arduinoPort = new Serial (this, stringArduinoPort, 9600);
+        connectionEtablie = true;
+        savePortArduino(stringArduinoPort);
+        println("connection réussi");
     }
 }
 
-private void manualConnection() {
-
+private void savePortArduino(String port) {
+  PrintWriter pw = createWriter(savePortFile);
+  pw.println(port);
+  pw.flush(); // Writes the remaining data to the file
+  pw.close(); // Finishes the file
 }
 
+private String loadPortArduino(){
+  String[] lines = loadStrings(savePortFile);
+  String port;
+  try{   
+    port = lines[0];
+  } catch(Exception e) {
+    port = null;
+  }
+  return port;
+}
 
 public String getEtatConnection(){
   String etat = "NULL";
