@@ -27,7 +27,7 @@ void draw() {
     getInfoArduino();  
   }
   else{
-    autoConnection();
+    connection();
   }
   // dessineTest(getValModifPot());
 }

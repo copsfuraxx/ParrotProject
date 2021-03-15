@@ -39,12 +39,12 @@ public void initArduino() { //etablie la connection arduino - logiciel
 public StringList getInstructionPourConnectionAuto(){
   StringList listeIntruction = new StringList();
   listeIntruction.append("1/ assurez vous que l'arduino est débranché de l'ordinateur avant de lancer le programme");
-  listeIntruction.append("(Si elle était déjà branché, débranché la et relancez le programme");
+  listeIntruction.append("(Si elle était déjà branché, débranché la et relancez le programme)");
   listeIntruction.append("2/ brancher l'arduino");
   return listeIntruction;
 }
 
-public void autoConnection() {
+public void connection() {
       stringArduinoPort = loadPortArduino();
       if (stringArduinoPort == null){
         if ((Serial.list().length > num_ports) && etatConnection != EST_CONNECTE) {
@@ -83,6 +83,7 @@ public void autoConnection() {
           File file = sketchFile(savePortFile);
           if (file.exists()){
             file.delete();
+            println("S'il vous plait, répètez la procedure de connection de l'arduino (étape 1 et 2)");
           }
         }
     }
