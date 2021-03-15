@@ -39,14 +39,14 @@ public void initArduino() { //etablie la connection arduino - logiciel
 public StringList getInstructionPourConnectionAuto(){
   StringList listeIntruction = new StringList();
   listeIntruction.append("1/ assurez vous que l'arduino est débranché de l'ordinateur avant de lancer le programme");
-  listeIntruction.append("(Si elle était déjà branché, débranché la et relancez le programme)");
+  listeIntruction.append("(Si elle était déjà branché, débranchez la et relancez le programme)");
   listeIntruction.append("2/ brancher l'arduino");
   return listeIntruction;
 }
 
 public void connection() {
       stringArduinoPort = loadPortArduino();
-      if (stringArduinoPort == null){
+      if (stringArduinoPort == null){ //si on a pas de fichier sauvegarde on en initialise un
         if ((Serial.list().length > num_ports) && etatConnection != EST_CONNECTE) {
           etatConnection = EST_CONNECTE;
           // determine which port the device was plugge into
@@ -69,33 +69,41 @@ public void connection() {
           }
         }
       }
-      else{
+      else{ // on se connecte directement sur le port sauvegarder
         etatConnection = EST_CONNECTE;
       }
       if (etatConnection == EST_CONNECTE){
-        try{
+        try{ // on test si on peut se connecter au port de l'arduino
           arduinoPort = new Serial (this, stringArduinoPort, 9600);
           connectionEtablie = true;
           savePortArduino(stringArduinoPort);
           println("connection réussi");
 
-        } catch(Exception e) {
-          File file = sketchFile(savePortFile);
-          if (file.exists()){
+        } catch(Exception e) { // si la connection a échoué avec le fichier sauvegarde, on le supprime et on en recreer un autre
+          File file = sketchFile(savePortFile); 
+          if (file.exists()){ 
             file.delete();
-            println("S'il vous plait, répètez la procedure de connection de l'arduino (étape 1 et 2)");
+            println("S'il vous plait, répètez la procédure de connection de l'arduino (étape 1 et 2)");
           }
         }
     }
 }
 
-private void savePortArduino(String port) {
+/*
+* on creer un fichier qui sauvegarde le port de l'arduino
+* port : le port utilisé
+*/
+private void savePortArduino(String port) { 
   PrintWriter pw = createWriter(savePortFile);
   pw.println(port);
   pw.flush(); // Writes the remaining data to the file
   pw.close(); // Finishes the file
 }
 
+/*
+* on recupere le port sauvegarder
+* return: le port contenu dans le fichier
+*/
 private String loadPortArduino(){
   String port = null;
   File file = sketchFile(savePortFile);
