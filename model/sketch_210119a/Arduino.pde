@@ -6,6 +6,7 @@ Classe permettant de faire la connection entre la carte arduino et le logiciel.
 
 
 import processing.serial.*; 
+import java.io.File;
 
 private int num_ports;
 private String[] port_list;
@@ -72,10 +73,18 @@ public void autoConnection() {
         etatConnection = EST_CONNECTE;
       }
       if (etatConnection == EST_CONNECTE){
-        arduinoPort = new Serial (this, stringArduinoPort, 9600);
-        connectionEtablie = true;
-        savePortArduino(stringArduinoPort);
-        println("connection réussi");
+        try{
+          arduinoPort = new Serial (this, stringArduinoPort, 9600);
+          connectionEtablie = true;
+          savePortArduino(stringArduinoPort);
+          println("connection réussi");
+
+        } catch(Exception e) {
+          File file = sketchFile(savePortFile);
+          if (file.exists()){
+            file.delete();
+          }
+        }
     }
 }
 
@@ -87,12 +96,15 @@ private void savePortArduino(String port) {
 }
 
 private String loadPortArduino(){
-  String[] lines = loadStrings(savePortFile);
-  String port;
-  try{   
-    port = lines[0];
-  } catch(Exception e) {
-    port = null;
+  String port = null;
+  File file = sketchFile(savePortFile);
+  if (file.exists()){
+    String[] lines = loadStrings(savePortFile);
+    try{   
+      port = lines[0];
+    } catch(Exception e) {
+      port = null;
+    }
   }
   return port;
 }
