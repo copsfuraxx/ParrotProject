@@ -21,15 +21,28 @@ public void settings() {
 }
 
 color c = color(255, 255, 255); //couleur background
+int delaiBoutonJaune = 0;
 
 void draw() {
   if (getConnection()){
     getInfoArduino();  
+    prendreScreenshot();
   }
   else{
     connection();
   }
   // dessineTest(getValModifPot());
+}
+
+//prends un screenshot de la fenetre principal
+private void prendreScreenshot(){ 
+  if (delaiBoutonJaune > 0) {
+      delaiBoutonJaune--;
+  }
+  if (boutonJauneAppuye() && delaiBoutonJaune == 0) { //quand on appuie sur le bouton jaune
+    save("screenshot/screenshot-"+str(hour())+"."+str(minute())+"."+str(second())+".png");
+    delaiBoutonJaune = 15;
+  }
 }
 
 public class SecondApplet extends PApplet {
