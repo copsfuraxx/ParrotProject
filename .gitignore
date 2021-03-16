@@ -12,3 +12,5 @@ sketch_210119a.pde
 model/sketch_210119a/save.txt
 model/sketch_210119a/*.save
 model/sketch_210119a/saves/*.save
+model/sketch_210119a/screenshot/*.png
+model/sketch_210119a/*.config
