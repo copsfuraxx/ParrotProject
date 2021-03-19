@@ -65,21 +65,18 @@ public void spiralrOr(){
 }
 
 public void spiralrOr(float x, float y){
-  println(x);
-  println(y);
+  noFill();
   spiralrOr(x,y,25);
+  fill(pinceau.couleurRemplissage.getCouleur());
   ArrayList list=new ArrayList();
   list.add(x);
   list.add(y);
-  save.addHistorique(new Historique(2, 2, list));
+  save.addHistorique(new Historique(8, list));
 }
 
 private void spiralrOr(float X, float Y,int n){
   float x=X,y=Y,t1=1,t0=0;
   for(int i=0;i<n;i++){
-    println("x"+i+":"+x);
-    println("y"+i+":"+y);
-    println("t0:"+t0+"/t1:"+t1);
     switch(i%4){
       case 0:
         arc(x, y, t1, t1, PI, PI+HALF_PI);
@@ -130,7 +127,6 @@ public void polyParfait(float x, float y, float angle, float taille, float rota)
 }
 
 public void polyParfait(float x, float y, float angle, float taille, float rota, int nbrCotes) {
-  print(nbrCotes);
   if(angle>90 || angle<-90)return;
   if(angle>-60 && angle<60)return;
   if(nbrCotes<3)return;
@@ -149,10 +145,18 @@ public void polyParfait(float x, float y, float angle, float taille, float rota,
     y2=y1 - y;
     x3=x2*cos(a)+y2*sin(a)+x;
     y3=-x2*sin(a)+y2*cos(a)+y;
-    fractalKock(x1, y1, x3, y3, angle);
+    fractalKockIntern(x1, y1, x3, y3, angle);
     x1=x3;
     y1=y3;
   }
+  ArrayList list=new ArrayList();
+  list.add(x);
+  list.add(y);
+  list.add(angle);
+  list.add(taille);
+  list.add(rota);
+  list.add(nbrCotes);
+  save.addHistorique(new Historique(7, list));
 }
 
 public void fractaleCarre() {
@@ -240,16 +244,20 @@ public void fractalKock(float x1, float y1, float x2, float y2) {
 }
 
 public void fractalKock(float x1, float y1, float x2, float y2, float angle) {
-  if(angle>90 || angle<-90)return;
-  if(angle>-60 && angle<60)return;
-  fractalKock(x1, y1, x2, y2, angle, 5);
+  fractalKockIntern(x1,y1,x2,y2,angle);
   ArrayList list=new ArrayList();
   list.add(x1);
   list.add(y1);
   list.add(x2);
   list.add(y2);
   list.add(angle);
-  save.addHistorique(new Historique(2, 1, list));
+  save.addHistorique(new Historique(6, list));
+}
+
+private void fractalKockIntern(float x1, float y1, float x2, float y2, float angle) {
+  if(angle>90 || angle<-90)return;
+  if(angle>-60 && angle<60)return;
+  fractalKock(x1, y1, x2, y2, angle, 5);
 }
 
 private void fractalKock(float xa, float ya, float xb, float yb, float angle, int n) {

@@ -1,19 +1,14 @@
 class Historique {
-  private int type, fonction;
+  private int id;
   private ArrayList arg;
 
-  public Historique(int type, int fonction, ArrayList arg) {
-    this.type=type;
-    this.fonction=fonction;
+  public Historique(int id, ArrayList arg) {
+    this.id=id;
     this.arg=new ArrayList(arg);
   }
 
-  public int getType() {
-    return type;
-  }
-
-  public int getFonction() {
-    return fonction;
+  public int getId() {
+    return id;
   }
 
   public ArrayList getArg() {

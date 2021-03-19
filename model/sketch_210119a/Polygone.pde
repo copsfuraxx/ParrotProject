@@ -33,7 +33,7 @@ void dessineCarre(float x, float y, float taille) {
   list.add(x);
   list.add(y);
   list.add(taille);
-  save.addHistorique(new Historique(1, 1, list));
+  save.addHistorique(new Historique(0, list));
 }
 
 /*
@@ -59,7 +59,7 @@ void dessineRectangle(float x, float y, float i, float j) {
   list.add(y);
   list.add(i);
   list.add(j);
-  save.addHistorique(new Historique(1, 2, list));
+  save.addHistorique(new Historique(1, list));
 }
 
 void dessineTriangle() {
@@ -83,7 +83,7 @@ void dessineTriangle(float x1, float y1, float x2, float y2, float x3, float y3)
   list.add(y2);
   list.add(x3);
   list.add(y3);
-  save.addHistorique(new Historique(1, 3, list));
+  save.addHistorique(new Historique(2, list));
 }
 
 void dessineEllipse() {
@@ -101,7 +101,7 @@ void dessineEllipse(float x, float y, float i, float j) {
   list.add(y);
   list.add(i);
   list.add(j);
-  save.addHistorique(new Historique(1, 4, list));
+  save.addHistorique(new Historique(3, list));
 }
 
 void dessineCercle() {
@@ -118,7 +118,7 @@ void dessineCercle(float x, float y, float i) {
   list.add(x);
   list.add(y);
   list.add(i);
-  save.addHistorique(new Historique(1, 5, list));
+  save.addHistorique(new Historique(4, list));
 }
 
 void dessinePoly() {
@@ -147,5 +147,5 @@ void dessinePoly(float[][] coord) {
   }
   list.add(coord[coord.length-1][0]);
   list.add(coord[coord.length-1][1]);
-  save.addHistorique(new Historique(1, 6, list));
+  save.addHistorique(new Historique(5, list));
 }
