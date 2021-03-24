@@ -9,28 +9,17 @@
 //}
 
 public void courbeBezier(){
-  float x0=100,y0=800,x1=100,y1=600,x2=1000,y2=600,x3=1000,y3=800;
-  float ax=x0,ay=y0,bx=x1,by=y1,cx=x2,cy=y2,dx=x0,dy=y0,ex=x1,ey=y1,fx=x0,fy=y0;
-  float x,y;
-  x=fx;y=fy;
-  for(int i=1;i<101;i++){
-    ax=ax+(x1-x0)/100;
-    ay=ay+(y1-y0)/100;
-    bx=bx+(x2-x1)/100;
-    by=by+(y2-y1)/100;
-    cx=cx+(x3-x2)/100;
-    cy=cy+(y3-y2)/100;
-    
-    dx=ax+(bx-ax)*i/100;
-    dy=ay+(by-ay)*i/100;
-    ex=bx+(cx-bx)*i/100;
-    ey=by+(cy-by)*i/100;
-    
-    fx=dx+(ex-dx)*i/100;
-    fy=dy+(ey-dy)*i/100;
-    line(x,y,fx,fy);
-    x=fx;y=fy;
+  courbeBezier((int)random(10)+3);
+}
+
+void courbeBezier(int i) {
+  if (i<3)return;
+  float[][] coord=new float[i][2];
+  for (int j=0; j<coord.length; j++) {
+    coord[j][0]=random(width);
+    coord[j][1]=random(height);
   }
+  courbeBezier(coord);
 }
 
 public void courbeBezier(float[][] droites){
@@ -58,6 +47,13 @@ public void courbeBezier(float[][] droites){
     line(x,y,points[l][0],points[l][1]);
     x=points[l][0];y=points[l][1];
   }
+  ArrayList list=new ArrayList();
+  list.add(droites.length);
+  for (int i=0; i<droites.length; i++) {
+    list.add(droites[i][0]);
+    list.add(droites[i][1]);
+  }
+  save.addHistorique(new Historique(9, list));
 }
 
 public void spiralrOr(){
