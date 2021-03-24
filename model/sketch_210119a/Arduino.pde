@@ -5,118 +5,36 @@ Classe permettant de faire la connection entre la carte arduino et le logiciel.
  */
 
 
-import processing.serial.*; 
-import java.io.File;
 
-private int num_ports;
-private String[] port_list;
+import processing.serial.*; 
 
 private Serial arduinoPort; //port usb de connection entre l'ordinateur et la carte
-private String stringArduinoPort;
 public final int EN_COUR_DE_CONNECTION = 0, EST_CONNECTE = 1, EST_PAS_CONNECTE = 2;
 private int etatConnection;
 private String[][] m = null; // valeur des input de l'arduino
-private boolean connectionEtablie = false;
 
-private String savePortFile = "arduinoPort.config";
-
-public void initArduino() { //etablie la connection arduino - logiciel
-  num_ports = Serial.list().length;
-  port_list = new String[num_ports];
-    for (int i = 0; i < num_ports; i++) {
-        port_list[i] = Serial.list()[i];
-    }
-  etatConnection = EST_PAS_CONNECTE;
-  /*autoConnection();
-  if (etatConnection == EST_PAS_CONNECTE){
-    manualConnection();
-  }*/
-}
 
 //======= établie la connection a l'arduino =========
 
-
-public StringList getInstructionPourConnectionAuto(){
-  StringList listeIntruction = new StringList();
-  listeIntruction.append("1/ assurez vous que l'arduino est débranché de l'ordinateur avant de lancer le programme");
-  listeIntruction.append("(Si elle était déjà branché, débranchez la et relancez le programme)");
-  listeIntruction.append("2/ brancher l'arduino");
-  return listeIntruction;
-}
-
-public void connection() {
-      stringArduinoPort = loadPortArduino();
-      if (stringArduinoPort == null){ //si on a pas de fichier sauvegarde on en initialise un
-        if ((Serial.list().length > num_ports) && etatConnection != EST_CONNECTE) {
-          etatConnection = EST_CONNECTE;
-          // determine which port the device was plugge into
-          if (num_ports == 0) {
-              stringArduinoPort = Serial.list()[0];
-          }
-          else {
-              // go through the current port list
-              for (int i = 0; i < Serial.list().length; i++) {
-                  // go through the saved port list
-                  for (int j = 0; j < num_ports; j++) {
-                      if (Serial.list()[i].equals(port_list[j])) {
-                          break;
-                      }
-                      if (j == (num_ports - 1)) {
-                          stringArduinoPort = Serial.list()[i];
-                      }
-                  }
-              }
-          }
-        }
-      }
-      else{ // on se connecte directement sur le port sauvegarder
+void connection() { //etablie la connection arduino - logiciel
+  int i = 0; //numero du port
+  etatConnection = EN_COUR_DE_CONNECTION;
+  while (etatConnection == EN_COUR_DE_CONNECTION) {
+    try {
+      arduinoPort = new Serial(this, Serial.list()[i], 9600); // établie la connection
+      delay(2000);
+      if (getInput() != null) {
         etatConnection = EST_CONNECTE;
       }
-      if (etatConnection == EST_CONNECTE){
-        try{ // on test si on peut se connecter au port de l'arduino
-          arduinoPort = new Serial (this, stringArduinoPort, 9600);
-          connectionEtablie = true;
-          savePortArduino(stringArduinoPort);
-          println("connection réussi");
-
-        } catch(Exception e) { // si la connection a échoué avec le fichier sauvegarde, on le supprime et on en recreer un autre
-          File file = sketchFile(savePortFile); 
-          if (file.exists()){ 
-            file.delete();
-            println("S'il vous plait, répètez la procédure de connection de l'arduino (étape 1 et 2)");
-          }
-        }
     }
-}
-
-/*
-* on creer un fichier qui sauvegarde le port de l'arduino
-* port : le port utilisé
-*/
-private void savePortArduino(String port) { 
-  PrintWriter pw = createWriter(savePortFile);
-  pw.println(port);
-  pw.flush(); // Writes the remaining data to the file
-  pw.close(); // Finishes the file
-}
-
-/*
-* on recupere le port sauvegarder
-* return: le port contenu dans le fichier
-*/
-private String loadPortArduino(){
-  String port = null;
-  File file = sketchFile(savePortFile);
-  if (file.exists()){
-    String[] lines = loadStrings(savePortFile);
-    try{   
-      port = lines[0];
-    } catch(Exception e) {
-      port = null;
+    catch (Exception e) {
+      etatConnection = EST_PAS_CONNECTE;
     }
+    i++;
+    println(getEtatConnection());
   }
-  return port;
 }
+
 
 public String getEtatConnection(){
   String etat = "NULL";
@@ -133,9 +51,6 @@ public String getEtatConnection(){
   return etat;
 }
 
-public boolean getConnection(){
-  return connectionEtablie;
-}
 
 //============= Recuperation des capteurs ===============
 private void getInfoArduino() { //recupere les info de l'arduino et les separe les info dans un tableau
