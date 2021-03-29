@@ -51,14 +51,14 @@ class Save {
       dessineCercle(float(line[3]),float(line[4]),float(line[5]));
       break;
     case "5":
-      dessinePoly(loadCoord(line));
+      dessinePoly(float(line[3]),float(line[4]),float(line[5]),float(line[6]),int(line[7]));
       break;
     case "6":
       fractalKock(float(line[3]),float(line[4]),float(line[5]),float(line[6]),float(line[7]));
       break;  
-    case "7":
-      polyParfait(float(line[3]),float(line[4]),float(line[5]),float(line[6]),float(line[7]),int(line[8]));
-      break;
+    //case "7":
+    //  polyParfait(float(line[3]),float(line[4]),float(line[5]),float(line[6]),float(line[7]),int(line[8]));
+    //  break;
      case "8":
       spiralrOr(float(line[3]),float(line[4]));
       break;

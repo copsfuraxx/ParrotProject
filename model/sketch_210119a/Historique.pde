@@ -17,6 +17,6 @@ class Historique {
   
   public void addCouleur(){
       arg.add(0,pinceau.getCouleur());
-      arg.add(1,pinceau.getCouleur());
+      arg.add(1,pinceau.getCouleurRemplissage());
   }
 }

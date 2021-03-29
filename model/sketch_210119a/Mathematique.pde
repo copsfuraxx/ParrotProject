@@ -96,63 +96,38 @@ private void spiralrOr(float X, float Y,int n){
   }
 }
 
-public void polyParfait(){
+public void fractalePoly() {
   int r=int(random(0,2));
-  if(r==0)polyParfait(random(60,90));
-  else polyParfait(-random(60,90));
+  if(r==0)fractalePoly(random(60,90));
+  else fractalePoly(-random(60,90));
 }
 
-public void polyParfait(float angle){
-  polyParfait(random(width), random(height), angle);
+public void fractalePoly(float angle) {
+  fractalePoly(random(width), random(height), angle);
 }
 
-public void polyParfait(float x, float y){
-  polyParfait(x, y, random(60,90));
+public void fractalePoly(float x, float y) {
+  fractalePoly(x, y, random(60,90));
 }
 
-public void polyParfait(float x, float y, float angle){
-  polyParfait(x, y, angle,random(max(width,height)/4));
+public void fractalePoly(float x, float y, float angle) {
+  fractalePoly(x, y, angle,random(max(width,height)/4));
 }
 
-public void polyParfait(float x, float y, float angle, float taille){
-  polyParfait(x, y, angle, taille, random(360));
+public void fractalePoly(float x, float y, float angle, float taille) {
+  fractalePoly(x, y, angle, taille, random(360));
 }
 
-public void polyParfait(float x, float y, float angle, float taille, float rota) {
-  polyParfait(x, y, angle, taille, rota, int(random(3,10)));
+public void fractalePoly(float x, float y, float angle, float taille, float rota) {
+  fractalePoly(x,y,angle,taille,rota,int(random(3,10)));
 }
 
-public void polyParfait(float x, float y, float angle, float taille, float rota, int nbrCotes) {
-  if(angle>90 || angle<-90)return;
-  if(angle>-60 && angle<60)return;
-  if(nbrCotes<3)return;
-  if (x+taille>width)x-=taille;
-  if (y+taille>height)y-=taille;
-  float x1, x2, x3, y1, y2, y3;
-  x2=x+taille/2 - x;
-  y2=y - y;
-  x1=x2*cos(rota)+y2*sin(rota)+x;
-  y1=-x2*sin(rota)+y2*cos(rota)+y;
-  
-  float a=(360f/nbrCotes)*PI/180;
-  
-  for(int i=0;i<nbrCotes;i++){
-    x2=x1 - x;
-    y2=y1 - y;
-    x3=x2*cos(a)+y2*sin(a)+x;
-    y3=-x2*sin(a)+y2*cos(a)+y;
-    fractalKockIntern(x1, y1, x3, y3, angle);
-    x1=x3;
-    y1=y3;
+public void fractalePoly(float x, float y, float angle, float taille, float rota, int nbrCotes) {
+  float[][] coord=dessinePoly(x,y,taille,rota,nbrCotes);
+  for(int i=0;i<coord.length-1;i++){
+    fractalKock(coord[i][0],coord[i][1],coord[i+1][0],coord[i+1][1],angle);
   }
-  ArrayList list=new ArrayList();
-  list.add(x);
-  list.add(y);
-  list.add(angle);
-  list.add(taille);
-  list.add(rota);
-  list.add(nbrCotes);
-  save.addHistorique(new Historique(7, list));
+  fractalKock(coord[coord.length-1][0],coord[coord.length-1][1],coord[0][0],coord[0][1],angle);
 }
 
 public void fractaleCarre() {
@@ -178,7 +153,7 @@ public void fractaleCarre(float x, float y, float angle, float taille) {
 }
 
 public void fractaleCarre(float x, float y, float angle, float taille, float rota) {
-  polyParfait(x,y,angle,taille,rota,4);
+  fractalePoly(x,y,angle,taille,rota,4);
 }
 
 public void floconKoch() {
@@ -208,7 +183,7 @@ public void fractaleTriangle(float x, float y, float angle, float taille) {
 }
 
 public void fractaleTriangle(float x, float y, float angle, float taille, float rota) {
-  polyParfait(x,y,angle,taille,rota,3);
+  fractalePoly(x,y,angle,taille,rota,3);
 }
 
 public void koch() {
@@ -276,7 +251,11 @@ private void fractalKock(float xa, float ya, float xb, float yb, float angle, in
   ye=-x*sin(a)+y*cos(a)+yc;
   
   //fill(255*n/6,255*(6-n)/6,255*n/6);
-  //triangle(xc,yc,xe,ye,xd,yd);
+  stroke(pinceau.getCouleurRemplissage());
+  fill(pinceau.getCouleur());
+  triangle(xc,yc,xe,ye,xd,yd);
+  fill(pinceau.getCouleurRemplissage());
+  stroke(pinceau.getCouleur());
   
   fractalKock(xa, ya, xc, yc, angle, n-1);
   fractalKock(xc, yc, xe, ye, angle, n-1);

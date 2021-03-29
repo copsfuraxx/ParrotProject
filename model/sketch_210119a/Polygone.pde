@@ -121,31 +121,61 @@ void dessineCercle(float x, float y, float i) {
   save.addHistorique(new Historique(4, list));
 }
 
-void dessinePoly() {
-  dessinePoly((int)random(10)+3);
+public float[][] dessinePoly() {
+  return dessinePoly(random(width), random(height));
 }
 
-void dessinePoly(int i) {
-  if (i<3)return;
-  float[][] coord=new float[i][2];
-  for (int j=0; j<coord.length; j++) {
-    coord[j][0]=random(width);
-    coord[j][1]=random(height);
+public float[][] dessinePoly(int nbrCotes) {
+  return dessinePoly(random(width), random(height),random(max(width, height))/4,random(360),nbrCotes);
+}
+
+public float[][] dessinePoly(float x, float y){
+  return dessinePoly(x, y,random(max(width, height))/4);
+}
+
+public float[][] dessinePoly(float x, float y, float taille){
+  return dessinePoly(x,y,taille,random(360));
+}
+
+public float[][] dessinePoly(float x, float y, float taille, float rota) {
+  return dessinePoly(x, y, taille, rota, int(random(3,10)));
+}
+
+public float[][] dessinePoly(float x, float y, float taille, float rota, int nbrCotes) {
+  if(nbrCotes<3)return null;
+  if (x+taille>width)x-=taille;
+  if (y+taille>height)y-=taille;
+  float[][] out=new float[nbrCotes][2];
+  float x1, x2, x3, y1, y2, y3;
+  x2=x+taille/2 - x;
+  y2=y - y;
+  x1=x2*cos(rota)+y2*sin(rota)+x;
+  y1=-x2*sin(rota)+y2*cos(rota)+y;
+  
+  float a=(360f/nbrCotes)*PI/180;
+  
+  for(int i=0;i<nbrCotes;i++){
+    out[i][0]=x1;
+    out[i][1]=y1;
+    x2=x1 - x;
+    y2=y1 - y;
+    x3=x2*cos(a)+y2*sin(a)+x;
+    y3=-x2*sin(a)+y2*cos(a)+y;
+    //noStroke();
+    stroke(pinceau.getCouleurRemplissage());
+    triangle(x1,y1,x,y,x3,y3);
+    line(x1,y1,x,y);
+    stroke(pinceau.getCouleur());
+    line(x1,y1,x3,y3);
+    x1=x3;
+    y1=y3;
   }
-  dessinePoly(coord);
-}
-
-void dessinePoly(float[][] coord) {
-  if(coord[0].length!=2)return;
-  line(coord[0][0], coord[0][1], coord[coord.length-1][0], coord[coord.length-1][1]);
   ArrayList list=new ArrayList();
-  list.add(coord.length);
-  for (int i=0; i<coord.length-1; i++) {
-    line(coord[i][0], coord[i][1], coord[i+1][0], coord[i+1][1]);
-    list.add(coord[i][0]);
-    list.add(coord[i][1]);
-  }
-  list.add(coord[coord.length-1][0]);
-  list.add(coord[coord.length-1][1]);
+  list.add(x);
+  list.add(y);
+  list.add(taille);
+  list.add(rota);
+  list.add(nbrCotes);
   save.addHistorique(new Historique(5, list));
+  return out;
 }

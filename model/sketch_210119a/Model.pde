@@ -17,7 +17,7 @@ public static ArrayList<String> creeListeDeForme(){
   formes.add("Flocon de Koch");
   formes.add("Fractale de Triangle");
   formes.add("Fractale de Carre");
-  formes.add("Polygone de koch de Kock");
+  formes.add("Polygone de Kock");
   formes.add("Spirale d'Or");
   formes.add("Courbe de Bezier");
   return formes;
@@ -62,7 +62,7 @@ public void dessineFormeParIdDeListe(int id){
       fractaleCarre();
       break;  
     case 12:
-      polyParfait();
+      fractalePoly();
       break;
      case 13:
       spiralrOr();
