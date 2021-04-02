@@ -226,9 +226,9 @@ class MenuListe {
 
   private void menuChargement() {//menu de récupération des sauvegardes 8
     listeBouton.clear();
-    String cheminFichier = sketchPath() + sketchPath().charAt(0) + "saves";
+    //String cheminFichier = sketchPath() + "\\saves";
+    String cheminFichier = getCheminDossier("saves");
     java.io.File dossierSaves = new java.io.File(dataPath(cheminFichier));
-    println(dossierSaves);
     String[] listeNomFichier= dossierSaves.list();
     Bouton boutonRetour = new Bouton("retour", 100, 100, 140, 70, choix, nonChoix);
     listeBouton.add(boutonRetour);
@@ -252,6 +252,35 @@ class MenuListe {
         listeBouton.add(bouton);
       }
     }
+  }
+  
+  /*
+  * retourne le chemin du dossier se trouvant dans le dossier sketch (en s'adaptant en fonction de l'OS)
+  * dossier : dossier rechercher
+  * retourne un String du chemin associé 
+  */
+  private String getCheminDossier(String dossier){
+    String chemin = "";
+    String cheminSketch = sketchPath();
+    char separateur = '0';
+    char sepMacos = '/';
+    char sepWindows = '\\';
+    for (int i = 0; i < cheminSketch.length(); i++){
+      char sep = cheminSketch.charAt(i);
+      if (sep == sepMacos){
+        separateur = sepMacos;
+      }
+      if (sep == sepWindows){
+        separateur = sepWindows;
+      }
+    }
+    if (separateur != '0'){
+      chemin = cheminSketch + separateur + dossier;
+    }
+    else{
+      chemin = "erreur, dossier \"" + dossier + "\" introuvable";
+    }
+    return chemin;
   }
 
   public void cliqueBoutonBleu() {

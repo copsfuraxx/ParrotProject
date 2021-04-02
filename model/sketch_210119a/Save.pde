@@ -25,13 +25,45 @@ class Save {
   }
 
   public void load(String nom) {
-    String[] lines = loadStrings("saves/"+nom);
+    //String[] lines = loadStrings("saves/"+nom);
+    String[] lines = loadStrings(getCheminFichier("saves", nom));
     for (int i=0; i<lines.length; i++) {
       String[] line=lines[i].split("/");
       pinceau.setCouleur(new Couleur(int(line[1])),new Couleur(int(line[2])));
       dessineFormeParId(line);
     }
   }
+  
+    /*
+  * retourne le chemin du fichier du dossier se trouvant dans le dossier sketch (en s'adaptant en fonction de l'OS)
+  * dossier : dossier cible
+  * fichier : fichier rechercher
+  * retourne un String du chemin associé 
+  */
+  private String getCheminFichier(String dossier, String fichier){
+    String chemin = "";
+    String cheminSketch = sketchPath();
+    char separateur = '0';
+    char sepMacos = '/';
+    char sepWindows = '\\';
+    for (int i = 0; i < cheminSketch.length(); i++){
+      char sep = cheminSketch.charAt(i);
+      if (sep == sepMacos){
+        separateur = sepMacos;
+      }
+      if (sep == sepWindows){
+        separateur = sepWindows;
+      }
+    }
+    if (separateur != '0'){
+      chemin = dossier + separateur + fichier;
+    }
+    else{
+      chemin = "erreur, dossier \"" + dossier + "\" ou fichier \"" + fichier + "\" introuvable";
+    }
+    return chemin;
+  }
+
   
   public void dessineFormeParId(String [] line){
   switch(line[0]) {
