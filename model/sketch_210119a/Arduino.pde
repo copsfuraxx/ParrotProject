@@ -16,7 +16,7 @@ private String[] port_list;
 private Serial arduinoPort; //port usb de connection entre l'ordinateur et la carte
 private String stringArduinoPort;
 
-public final int EN_COUR_DE_CONNECTION = 0, EST_CONNECTE = 1, EST_PAS_CONNECTE = 2, POSITION_CENTRAL_JOYSTICK = 0;
+public final int EN_COUR_DE_CONNECTION = 0, EST_CONNECTE = 1, EST_PAS_CONNECTE = 2;
 private int etatConnection;
 private String[][] m = null; // valeur des input de l'arduino
 private boolean connectionEtablie = false;
@@ -156,7 +156,7 @@ private String getInput() { //recuperer 5 infos de l'arduino (pot/b1/b2/b3/b4)
   return s;
 }
 
-/*
+
 //retourne la valeur en % du potentiometre
 int getPot() {
   int val = -1;
@@ -165,26 +165,7 @@ int getPot() {
   }  
   return val;
 }
-*/
 
-// l'arduino envoie une valeur entre 0 et 100 (50 representant le centre)
-int getXJoystick () {
-  int val = -1;
-  if (m != null) {
-    val = Integer.parseInt(m[0][0]) -50;
-
-  }    
-  return val;
-}
-
-// l'arduino envoie une valeur entre 0 et 100 (50 representant le centre)
-int getYJoystick () {
-  int val = -1;
-  if (m != null) {
-    val = Integer.parseInt(m[1][0]) -50;
-  }    
-  return val;
-}
 
 //retourne vrais si le bouton 1 est appuye sinon faux
 Boolean boutonJauneAppuye() {
@@ -192,7 +173,7 @@ Boolean boutonJauneAppuye() {
   //String[][] m = getMatch();
 
   if (m != null) {
-    if (m[2][0].equals("0")) {
+    if (m[1][0].equals("0")) {
       val = true;
     }
   }
@@ -204,7 +185,7 @@ Boolean boutonVertAppuye() {
   Boolean val = false;
   //String[][] m = getMatch();
   if (m != null) {
-    if (m[3][0].equals("0")) {
+    if (m[2][0].equals("0")) {
       val = true;
     }
   }
@@ -216,7 +197,7 @@ Boolean boutonRougeAppuye() {
   Boolean val = false;
   //String[][] m = getMatch();
   if (m != null) {
-    if (m[4][0].equals("0")) {
+    if (m[3][0].equals("0")) {
       val = true;
     }
   }
@@ -228,7 +209,7 @@ Boolean boutonBleuAppuye() {
   Boolean val = false;
   //String[][] m = getMatch();
   if (m != null) {
-    if (m[5][0].equals("0")) {
+    if (m[4][0].equals("0")) {
       val = true;
     }
   }

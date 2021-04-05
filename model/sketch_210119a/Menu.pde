@@ -144,7 +144,7 @@ class MenuListe {
 
   private void menuInfo() {//menu de suivi de valeur pendant le dessin 4 
     listeBouton.clear();
-    Bouton pot = new Bouton("pot : " + 28, 100, 100, 140, 70, choix, nonChoix);
+    Bouton pot = new Bouton("pot : " + getPot(), 100, 100, 140, 70, choix, nonChoix);
     Bouton forme = new Bouton(this.getNomForme(), 100, 200, 140, 70, choix, nonChoix);
 
     listeBouton.add(pot);

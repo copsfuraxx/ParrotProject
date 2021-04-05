@@ -9,11 +9,12 @@ void setup() {
   save=new Save();
   pinceau = new Pinceau();
   PApplet.runSketch(platformNames, new SecondApplet());
+  save.load("1______.save");
 }
 
 public void settings() {
   size(800, 800);
-
+  
 }
 
 int delaiBoutonJaune = 0;
@@ -23,7 +24,6 @@ void draw() {
   if (getConnection()){
     getInfoArduino();  
     prendreScreenshot();
-    //println("X: "+getXJoystick()+" Y: "+getYJoystick());
   }
   else{
     connection();
@@ -44,9 +44,7 @@ private void prendreScreenshot(){
 
 public class SecondApplet extends PApplet {
   MenuListe menu = new MenuListe(0,save);
-  //int dernierPot = getPot();
-  int dernierePos = 0;
-  int delaiJoystick = 0;
+  int dernierPot = getPot();
   int delaiBoutonBleu = 0;
   int delaiBoutonRouge = 0;
 
@@ -76,29 +74,12 @@ public class SecondApplet extends PApplet {
       menu.cliqueBoutonBleu();
       delaiBoutonBleu = 15;
     }
-    /*
     if ( (dernierPot - 1 > getPot())) {
       menu.descendCurseur();
     } else if ( (dernierPot + 1 < getPot())) {
       menu.augmenteCurseur();
     }
-     dernierPot = getPot();
-   */
-    
-    if (delaiJoystick > 0) {
-      delaiJoystick--;
-    }
-    if (getXJoystick() > POSITION_CENTRAL_JOYSTICK  && delaiJoystick == 0){ 
-      menu.augmenteCurseur();
-      delaiJoystick = 15;
-    }
-    if (getXJoystick() < POSITION_CENTRAL_JOYSTICK && delaiJoystick == 0){
-      menu.descendCurseur();
-      delaiJoystick = 15;
-    }
-
-      
-    
+    dernierPot = getPot();
     background(0, 0, 0);
     textSize(32);
     text(menu.getCurseur(), 50, 50);
