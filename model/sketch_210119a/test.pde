@@ -23,15 +23,18 @@ public void settings() {
 int delaiBoutonJaune = 0;
 color c = color(255, 255, 255); //couleur background
 
+boolean image_affiche = false;
 void draw() {
   if (getConnection()){
+    if (image_affiche){ background(c);}
     getInfoArduino();  
     prendreScreenshot();
   }
   else{
-    image(img, 0, 0);
-
+    image(img, 0, 0, width, height);
+    image_affiche = true;
     connection();
+    delay(2000);
   }
   // dessineTest(getValModifPot());
 }
