@@ -1,3 +1,5 @@
+PImage img;
+
 void setup() {
   background(255, 255, 255);
   StringList instructions = getInstructionPourConnectionAuto();
@@ -9,7 +11,8 @@ void setup() {
   save=new Save();
   pinceau = new Pinceau();
   PApplet.runSketch(platformNames, new SecondApplet());
-  save.load("1______.save");
+    img = loadImage("opening_frame.png");
+
 }
 
 public void settings() {
@@ -26,6 +29,8 @@ void draw() {
     prendreScreenshot();
   }
   else{
+    image(img, 0, 0);
+
     connection();
   }
   // dessineTest(getValModifPot());
