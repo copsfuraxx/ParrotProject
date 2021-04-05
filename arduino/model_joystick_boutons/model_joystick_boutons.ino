@@ -27,12 +27,10 @@ Serial.begin(9600);// ouverture port de communication
 }
 
 void loop() {
-  int x = map(analogRead(joystickX), 0, 1023, -50, 50);
-  int y = map(analogRead(joystickY), 0, 1023, -50, 50);
+  int x = map(analogRead(joystickX), 0, 1023, 0, 100);
+  int y = map(analogRead(joystickY), 0, 1023, 0, 100);
 
-  x = 7;
-  y = 7;
-  sprintf(buffer,"/%d/%d/%d/%d/%d/%d/%d/",x,y,digitalRead(jostickClic),
+  sprintf(buffer,"/%d/%d/%d/%d/%d/%d", x, y,
                              digitalRead(boutonJaune), digitalRead(boutonVert),
                              digitalRead(boutonRouge), digitalRead(boutonBleu));
   Serial.println(buffer);
