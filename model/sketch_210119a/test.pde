@@ -24,14 +24,16 @@ int delaiBoutonJaune = 0;
 color c = color(255, 255, 255); //couleur background
 
 boolean image_affiche = false;
+
 void draw() {
   if (getConnection()){
-    if (image_affiche){ background(c);}
+    if (image_affiche){ //background(c);
+  }
     getInfoArduino();  
     prendreScreenshot();
   }
   else{
-    image(img, 0, 0, width, height);
+    //image(img, 0, 0, width, height);
     image_affiche = true;
     connection();
     delay(2000);
@@ -88,7 +90,7 @@ public class SecondApplet extends PApplet {
       menu.augmenteCurseur();
     }
     dernierPot = getPot();
-    background(0, 0, 0);
+   // background(0, 0, 0);
     textSize(32);
     text(menu.getCurseur(), 50, 50);
     text(menu.getMenuActuel(), 100, 50);
