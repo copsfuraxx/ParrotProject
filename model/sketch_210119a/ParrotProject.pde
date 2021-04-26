@@ -99,9 +99,8 @@ void draw() {
     effaceDessin();
   }
   else{
-    connection();
     if (anim.isEnd()){
-      //delay(2000);
+    connection();
     }
     else anim.dessine();
   }
