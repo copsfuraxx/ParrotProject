@@ -81,24 +81,24 @@ boolean appuyeBoutonJaune = false;
 boolean appuyeBoutonVert = false;
 color c = color(255, 255, 255); //couleur background
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 
 
 
 
 boolean image_affiche = false;
-void draw() {
+/*void draw() {
   if (getConnection()){
     if (image_affiche){ 
       background(c);
       image_affiche = false;
     }
     //background(c);
-=======
+=======*/
 void draw() {
   if (getConnection()){
->>>>>>> 58555a6640d3fd3d92de762a2ac49588ec4c2b38
+//>>>>>>> 58555a6640d3fd3d92de762a2ac49588ec4c2b38
     getInfoArduino();  
     prendreScreenshot();
     if (save.getAfficheSave()){
