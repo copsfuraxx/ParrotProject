@@ -149,7 +149,7 @@ private void effaceDessin(){
   }
 }
 
-/* JOYSTICK VERSION */
+/* JOYSTICK VERSION 
 public class SecondApplet extends PApplet {
   MenuListe menu = new MenuListe(0,save);
 

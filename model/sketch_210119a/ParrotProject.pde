@@ -82,10 +82,14 @@ boolean appuyeBoutonVert = false;
 color c = color(255, 255, 255); //couleur background
 
 
-
+boolean firstConnection = false;
 
 void draw() {
   if (getConnection()){
+    if (!firstConnection){
+      firstConnection = true;
+      background(c);
+    }
     getInfoArduino();  
     prendreScreenshot();
     if (save.getAfficheSave()){
@@ -95,10 +99,9 @@ void draw() {
     effaceDessin();
   }
   else{
+    connection();
     if (anim.isEnd()){
-      delay(2000);
-      background(color(255,255,255));
-      connection();
+      //delay(2000);
     }
     else anim.dessine();
   }
