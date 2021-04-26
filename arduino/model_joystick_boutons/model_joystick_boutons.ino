@@ -27,7 +27,7 @@ Serial.begin(9600);// ouverture port de communication
 }
 
 void loop() {
-  int x = map(analogRead(joystickX), 0, 1023, 0, 100);
+  int x = map(analogRead(joystickX), 0, 1023, 100, 0);
   int y = map(analogRead(joystickY), 0, 1023, 0, 100);
 
   sprintf(buffer,"/%d/%d/%d/%d/%d/%d", x, y,

@@ -223,6 +223,7 @@ public void fractalKock(float x1, float y1, float x2, float y2, float angle) {
   list.add(y2);
   list.add(angle);
   save.addHistorique(new Historique(6, list));
+
 }
 
 private void fractalKockIntern(float x1, float y1, float x2, float y2, float angle) {

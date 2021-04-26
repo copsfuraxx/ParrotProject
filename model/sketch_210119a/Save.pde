@@ -1,5 +1,6 @@
 class Save {
   private ArrayList<Historique> historiques;
+  private boolean afficheSave = false;
 
   public Save() {
     historiques=new ArrayList();
@@ -32,6 +33,7 @@ class Save {
       pinceau.setCouleur(new Couleur(int(line[1])),new Couleur(int(line[2])));
       dessineFormeParId(line);
     }
+    afficheSave = true;
   }
   
     /*
@@ -108,4 +110,22 @@ class Save {
     }
     return coord;
   }
+  
+  
+  public ArrayList<Historique> getHistorique(){
+    return historiques;
+  }
+  
+  public void supprimeHistorique(){
+    historiques=new ArrayList();
+  }
+  
+  public void setAfficheSave(boolean b){
+    afficheSave = b;
+  }
+  
+  public boolean getAfficheSave(){
+    return afficheSave;
+  }
+
 }

@@ -141,6 +141,7 @@ public boolean getConnection(){
 
 
 //============= Recuperation des capteurs ===============
+
 private void getInfoArduino() { //recupere les info de l'arduino et les separe les info dans un tableau
   String s = getInput();
   if (s != null) {
@@ -156,7 +157,78 @@ private String getInput() { //recuperer 5 infos de l'arduino (pot/b1/b2/b3/b4)
   return s;
 }
 
+/* JOYSTICK VERSION */
+//retourne la valeur en X du joystick
+int getJoystickX() {
+  int val = -1;
+  if (m != null) {
+    val = Integer.parseInt(m[1][0]); 
+    val -= 50;
+  }  
+  return val;
+}
 
+//retourne la valeur en Y du joystick
+int getJoystickY() {
+  int val = -1;
+  if (m != null) {
+    val = Integer.parseInt(m[0][0]);
+    val -= 50;
+  }  
+  return val;
+}
+
+
+//retourne vrais si le bouton 1 est appuye sinon faux
+Boolean boutonJauneAppuye() {
+  Boolean val = false;
+  //String[][] m = getMatch();
+
+  if (m != null) {
+    if (m[2][0].equals("0")) {
+      val = true;
+    }
+  }
+  return val;
+}
+
+//retourne vrais si le bouton 2 est appuye sinon faux
+Boolean boutonVertAppuye() {
+  Boolean val = false;
+  //String[][] m = getMatch();
+  if (m != null) {
+    if (m[3][0].equals("0")) {
+      val = true;
+    }
+  }
+  return val;
+}
+
+//retourne vrais si le bouton 3 est appuye sinon faux
+Boolean boutonRougeAppuye() {
+  Boolean val = false;
+  //String[][] m = getMatch();
+  if (m != null) {
+    if (m[4][0].equals("0")) {
+      val = true;
+    }
+  }
+  return val;
+}
+
+//retourne vrais si le bouton 4 est appuye sinon faux
+Boolean boutonBleuAppuye() {
+  Boolean val = false;
+  //String[][] m = getMatch();
+  if (m != null) {
+    if (m[5][0].equals("0")) {
+      val = true;
+    }
+  }
+  return val;
+}
+
+/* POTENTIOMETRE VERSION 
 //retourne la valeur en % du potentiometre
 int getPot() {
   int val = -1;
@@ -214,4 +286,4 @@ Boolean boutonBleuAppuye() {
     }
   }
   return val;
-}
+}*/
