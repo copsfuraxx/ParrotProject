@@ -213,7 +213,7 @@ public class SecondApplet extends PApplet {
   private void gestionJoystick(){
     int jy = getJoystickY();
     
-    if (jy < 10 && jy > -10){
+    /*if (jy < 5 && jy > -5){
       indexY = 0;
     }
     
@@ -224,7 +224,7 @@ public class SecondApplet extends PApplet {
       indexY += 2;
     }
     if(jy >= 45){
-      indexY += 3;
+      indexY += 6;
     }
 
     if (jy <= -25 && jy < 0){
@@ -234,16 +234,20 @@ public class SecondApplet extends PApplet {
       indexY -= 2;
     }
     if(jy <= -45){
-      indexY -= 3;
-    }
+      indexY -= 6;
+    }*/
     
-    if (indexY >= 50){
+    
+    int time = 250;
+    if (jy >= 40){
       menu.augmenteCurseur();
-      indexY = 0;
+      delay(time);
+      //indexY = 25;
     }
-    if (indexY <= -50){
+    if (jy <= -40){
       menu.descendCurseur();
-      indexY = 0;
+      delay(time);
+      //indexY = -25;
     }
   }
 }
