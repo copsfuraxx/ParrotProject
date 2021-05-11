@@ -1,40 +1,49 @@
 class Pinceau {
-  //private int epaisseur;
+  private int epaisseur;
   private Couleur couleurCrayon;
   private Couleur couleurRemplissage;
   
   public Pinceau(){
     couleurCrayon =new Couleur(0,0,0);
     couleurRemplissage=new Couleur(0,0,0);
+    epaisseur=1;
     use();
-    //this.epaisseur=1;
   }
   
-  //public Pinceau(int epaisseur){
-  //  couleurCrayon =new Couleur(0,0,0);
-  //  couleurRemplissage=new Couleur(255,255,255);
-  //  //this.epaisseur=epaisseur;
-  //}
+  public Pinceau(int epaisseur){
+    couleurCrayon =new Couleur(0,0,0);
+    couleurRemplissage=new Couleur(255,255,255);
+    this.epaisseur=epaisseur;
+    use();
+  }
   
   public Pinceau(Couleur c){
     couleurCrayon = c;
     couleurRemplissage = c;
-    //epaisseur=1;
+    epaisseur=1;
+    use();
+  }
+  
+  public Pinceau(Couleur c, int epaisseur){
+    couleurCrayon = c;
+    couleurRemplissage = c;
+    this.epaisseur=epaisseur;
     use();
   }
   
   public Pinceau(Couleur c1, Couleur c2){
     couleurCrayon = c1;
     couleurRemplissage = c2;
-    //epaisseur=1;
+    epaisseur=1;
     use();
   }
   
-  //public Pinceau(color c1, color c2, int epaisseur){
-  //  couleurCrayon = new Couleur(c1);
-  //  couleurRemplissage = new Couleur(c2);
-  //  //this.epaisseur=epaisseur;
-  //}
+  public Pinceau(Couleur c1, Couleur c2, int epaisseur){
+    couleurCrayon = c1;
+    couleurRemplissage = c2;
+    this.epaisseur=epaisseur;
+    use();
+  }
   
   public void setCouleur(Couleur c){
     couleurCrayon=c;
@@ -57,12 +66,16 @@ class Pinceau {
   }
   
   
-  //public void setEpaisseur(int epaisseur){
-  //  this.epaisseur=epaisseur;
-  //}
+  public void setEpaisseur(int epaisseur){
+    this.epaisseur=epaisseur;
+  }
+  
+  public int getEpaisseur(){
+    return epaisseur;
+  }
   
   private void use(){
-    //strokeWeight(epaisseur);
+    strokeWeight(epaisseur);
     stroke(couleurCrayon.getCouleur());
     fill(couleurRemplissage.getCouleur());
   }  
