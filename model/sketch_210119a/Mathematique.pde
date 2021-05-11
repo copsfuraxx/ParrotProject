@@ -16,8 +16,8 @@ void courbeBezier(int i) {
   if (i<3)return;
   float[][] coord=new float[i][2];
   for (int j=0; j<coord.length; j++) {
-    coord[j][0]=random(width);
-    coord[j][1]=random(height);
+    coord[j][0]=random(lmin,lmax);
+    coord[j][1]=random(hmin,hmax);
   }
   courbeBezier(coord);
 }
@@ -57,7 +57,7 @@ public void courbeBezier(float[][] droites){
 }
 
 public void spiralrOr(){
-  spiralrOr(random(width), random(height));
+  spiralrOr(random(lmin,lmax), random(hmin,hmax));
 }
 
 public void spiralrOr(float x, float y){
@@ -103,7 +103,7 @@ public void fractalePoly() {
 }
 
 public void fractalePoly(float angle) {
-  fractalePoly(random(width), random(height), angle);
+  fractalePoly(random(lmin,lmax), random(hmin,hmax), angle);
 }
 
 public void fractalePoly(float x, float y) {
@@ -111,7 +111,7 @@ public void fractalePoly(float x, float y) {
 }
 
 public void fractalePoly(float x, float y, float angle) {
-  fractalePoly(x, y, angle,random(max(width,height)/4));
+  fractalePoly(x, y, angle,random(min(lmin,hmin),max(lmax,hmax)));
 }
 
 public void fractalePoly(float x, float y, float angle, float taille) {
@@ -137,7 +137,7 @@ public void fractaleCarre() {
 }
 
 public void fractaleCarre(float angle) {
-  fractaleCarre(random(width), random(height), angle);
+  fractaleCarre(random(lmin,lmax), random(hmin,hmax), angle);
 }
 
 public void fractaleCarre(float x, float y) {
@@ -145,7 +145,7 @@ public void fractaleCarre(float x, float y) {
 }
 
 public void fractaleCarre(float x, float y, float angle) {
-  fractaleCarre(x, y, angle,random(max(width,height)/4));
+  fractaleCarre(x, y, angle,random(min(lmin,hmin),max(lmax,hmax)));
 }
 
 public void fractaleCarre(float x, float y, float angle, float taille) {
@@ -167,7 +167,7 @@ public void fractaleTriangle() {
 }
 
 public void fractaleTriangle(float angle) {
-  fractaleTriangle(random(width), random(height), angle);
+  fractaleTriangle(random(lmin,lmax), random(hmin,hmax), angle);
 }
 
 public void fractaleTriangle(float x, float y) {
@@ -175,7 +175,7 @@ public void fractaleTriangle(float x, float y) {
 }
 
 public void fractaleTriangle(float x, float y, float angle) {
-  fractaleTriangle(x, y, angle,random(max(width,height)/4));
+  fractaleTriangle(x, y, angle,random(min(lmin,hmin),max(lmax,hmax)));
 }
 
 public void fractaleTriangle(float x, float y, float angle, float taille) {
@@ -199,15 +199,15 @@ public void fractalKock(){
 }
 
 public void fractalKock(float angle){
-  fractalKock(random(width), random(height), angle);
+  fractalKock(random(lmin,lmax), random(hmin,hmax), angle);
 }
 
 public void fractalKock(float x, float y) {
-  fractalKock(x, y, random(width), random(height));
+  fractalKock(x, y, random(lmin,lmax), random(hmin,hmax));
 }
 
 public void fractalKock(float x, float y, float angle) {
-  fractalKock(x, y, random(width), random(height), angle);
+  fractalKock(x, y, random(lmin,lmax), random(hmin,hmax), angle);
 }
 
 public void fractalKock(float x1, float y1, float x2, float y2) {

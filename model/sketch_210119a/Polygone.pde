@@ -4,7 +4,7 @@ BUT: dessiner un carre totalement aleatoire
  PARAMETRE:Ø
  */
 void dessineCarre() {
-  dessineCarre(random(width), random(height));
+  dessineCarre(random(lmin,lmax), random(hmin,hmax));
 }
 
 /*
@@ -12,7 +12,7 @@ BUT: dessiner un carre de taille taille et de position aleatoire
  PARAMETRE:int taille 
  */
 void dessineCarre(float taille) {
-  dessineCarre(random(width), random(height), taille);
+  dessineCarre(random(lmin,lmax), random(hmin,hmax), taille);
 }
 
 /*
@@ -20,7 +20,7 @@ BUT: dessiner un carre de position x, y et de taille aleatoire
  PARAMETRE:int x, int y
  */
 void dessineCarre(float x, float y) {
-  dessineCarre(x, y, random(max(width, height))/4);
+  dessineCarre(x, y, random(min(lmin,hmin),max(lmax,hmax)));
 }
 
 /*
@@ -41,7 +41,7 @@ BUT: dessiner un carre totalement aleatoire
  PARAMETRE:Ø
  */
 void dessineRectangle() {
-  dessineRectangle(random(width), random(height));
+  dessineRectangle(random(lmin,lmax), random(hmin,hmax));
 }
 
 /*
@@ -49,7 +49,7 @@ BUT: dessiner un carre totalement aleatoire
  PARAMETRE:Ø
  */
 void dessineRectangle(float x, float y) {
-  dessineRectangle(x, y, random(width)/4, random(height)/4);
+  dessineRectangle(x, y, random(lmin,lmax), random(hmin,hmax));
 }
 
 void dessineRectangle(float x, float y, float i, float j) {
@@ -63,15 +63,15 @@ void dessineRectangle(float x, float y, float i, float j) {
 }
 
 void dessineTriangle() {
-  dessineTriangle(random(width), random(height));
+  dessineTriangle(random(lmin,lmax), random(hmin,hmax));
 }
 
 void dessineTriangle(float x, float y) {
-  dessineTriangle(x, y, random(width), random(height));
+  dessineTriangle(x, y, random(lmin,lmax), random(hmin,hmax));
 }
 
 void dessineTriangle(float x1, float y1, float x2, float y2) {
-  dessineTriangle(x1, y1, x2, y2, random(width), random(height));
+  dessineTriangle(x1, y1, x2, y2, random(lmin,lmax), random(hmin,hmax));
 }
 
 void dessineTriangle(float x1, float y1, float x2, float y2, float x3, float y3) {
@@ -87,11 +87,11 @@ void dessineTriangle(float x1, float y1, float x2, float y2, float x3, float y3)
 }
 
 void dessineEllipse() {
-  dessineEllipse(random(width), random(height));
+  dessineEllipse(random(lmin,lmax), random(hmin,hmax));
 }
 
 void dessineEllipse(float x, float y) {
-  dessineEllipse(x, y, random(width)/4, random(height)/4);
+  dessineEllipse(x, y, random(lmin,lmax)/4, random(hmin,hmax)/4);
 }
 
 void dessineEllipse(float x, float y, float i, float j) {
@@ -105,11 +105,11 @@ void dessineEllipse(float x, float y, float i, float j) {
 }
 
 void dessineCercle() {
-  dessineCercle(random(width), random(height));
+  dessineCercle(random(lmin,lmax), random(hmin,hmax));
 }
 
 void dessineCercle(float x, float y) {
-  dessineCercle(x, y, random(max(width, height))/4);
+  dessineCercle(x, y, random(min(lmin,hmin),max(lmax,hmax)));
 }
 
 void dessineCercle(float x, float y, float i) {
@@ -122,15 +122,15 @@ void dessineCercle(float x, float y, float i) {
 }
 
 public float[][] dessinePoly() {
-  return dessinePoly(random(width), random(height));
+  return dessinePoly(random(lmin,lmax), random(hmin,hmax));
 }
 
 public float[][] dessinePoly(int nbrCotes) {
-  return dessinePoly(random(width), random(height),random(max(width, height))/4,random(360),nbrCotes);
+  return dessinePoly(random(lmin,lmax), random(hmin,hmax),random(min(lmin,hmin),max(lmax,hmax)),random(360),nbrCotes);
 }
 
 public float[][] dessinePoly(float x, float y){
-  return dessinePoly(x, y,random(max(width, height))/4);
+  return dessinePoly(x, y,random(min(lmin,hmin),max(lmax,hmax)));
 }
 
 public float[][] dessinePoly(float x, float y, float taille){
@@ -143,8 +143,6 @@ public float[][] dessinePoly(float x, float y, float taille, float rota) {
 
 public float[][] dessinePoly(float x, float y, float taille, float rota, int nbrCotes) {
   if(nbrCotes<3)return null;
-  if (x+taille>width)x-=taille;
-  if (y+taille>height)y-=taille;
   float[][] out=new float[nbrCotes][2];
   float x1, x2, x3, y1, y2, y3;
   x2=x+taille/2 - x;

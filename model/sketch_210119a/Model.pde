@@ -2,6 +2,7 @@
 
 Save save;
 Pinceau pinceau;
+int hmin,hmax,lmin,lmax;
 
 public static ArrayList<String> creeListeDeForme(){
   ArrayList<String> formes=new ArrayList<String>();
