@@ -58,312 +58,31 @@ void setup() {
   pinceau = new Pinceau();
 
 
-  Settings reglageLightThemeWithTitle = new Settings(Settings.LIGHTTHEMEWITHTITLE);
-  Settings reglageLightTheme = new Settings(Settings.LIGHTTHEME);
-
-  menuDemarrage = new Menu(reglageLightTheme);
-  menuDessin = new Menu(reglageLightTheme);
-  menuCouleurUn = new Menu(reglageLightTheme);
-  menuCouleurDeux = new Menu(reglageLightTheme);
-  menuCouleurTrois = new Menu(reglageLightTheme);
-  menuCouleurChoix = new Menu(reglageLightTheme);
-  menuResume = new Menu(reglageLightTheme);
-  menuForme = new Menu(reglageLightTheme);
-  menuSauv = new Menu(reglageLightThemeWithTitle);
-  menuChargement = new Menu(reglageLightTheme);
+ 
+  creeMenu();
+ 
   int[] size = new int[2];
   size[0] = 500;
   size[1] = 1200;
   mtp = new MenuThreePoint(size);
   PApplet.runSketch(platformNames, mtp);
 
-//menuDemarrage
-  menuDemarrage.addButton("start->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuDessin);
-    }
-  }
-  );
-  menuDemarrage.addButton("quitter", new ButtonListener() {
-    public void buttonListener() {
-      exit();
-    }
-  }
-  );
-  menuDemarrage.addButton("sauver", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuSauv);
-    }
-  }
-  );
-  menuDemarrage.addButton("<-charger", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuChargement);
-    }
-  }
-  );
+  creeMenuDemarrage();
+  creeMenuDessin();
+  creeMenuCouleurUn();
+  creeMenuCouleurDeux();
+  creeMenuCouleurTrois();
+  creeMenuResume();
+  creeMenuForme();
+  creeMenuSauv();
 
-  //menuDessin
-  menuDessin.addButton("couleur->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurChoix);
-    }
-  }
-  );
-  menuDessin.addButton("forme", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuForme);
-    }
-  }
-  );
-  menuDessin.addButton("<-menu", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuDemarrage);
-    }
-  }
-  );
-
-  //menuCouleurUn
-  for (int i = 0; i<256; i++) {
-    final int j = i;
-    menuCouleurUn.addButton(i+"", new ButtonListener() {
-      public void buttonListener() {
-        donnee.setRouge(j);
-      }
-    }
-    );
-  }
-  menuCouleurUn.addButton("<-couleur", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurChoix);
-    }
-  }
-  );
-  menuCouleurUn.addButton("vert->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurDeux);
-    }
-  }
-  );
-
-
-  //menuCouleurDeux
-  for (int i = 0; i<256; i++) {
-    final int j = i;
-    menuCouleurDeux.addButton(i+"", new ButtonListener() {
-      public void buttonListener() {
-        donnee.setVert(j);
-      }
-    }
-    );
-  }
-  menuCouleurDeux.addButton("<-rouge", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurUn);
-    }
-  }
-  );
-  menuCouleurDeux.addButton("bleu->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurTrois);
-    }
-  }
-  );
-
-
-  //menuCouleurTrois
-  for (int i = 0; i<256; i++) {
-    final int j = i;
-    menuCouleurTrois.addButton(i+"", new ButtonListener() {
-      public void buttonListener() {
-        donnee.setBleu(j);
-      }
-    }
-    );
-  }
-  menuCouleurTrois.addButton("<-bleu", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurDeux);
-    }
-  }
-  );
-  menuCouleurTrois.addButton("forme->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuForme);
-    }
-  }
-  );
-
-  //menuCouleurChoix
-  menuCouleurChoix.addButton("noir", new ButtonListener() {
-    public void buttonListener() {
-      donnee.setRouge(0);
-      donnee.setVert(0);
-      donnee.setBleu(0);
-    }
-  }
-  );
-  menuCouleurChoix.addButton("bleu", new ButtonListener() {
-    public void buttonListener() {
-      donnee.setRouge(255);
-      donnee.setVert(255);
-      donnee.setBleu(255);
-    }
-  }
-  );
-  menuCouleurChoix.addButton("rouge", new ButtonListener() {
-    public void buttonListener() {
-      donnee.setRouge(255);
-      donnee.setVert(0);
-      donnee.setBleu(0);
-    }
-  }
-  );
-  menuCouleurChoix.addButton("vert", new ButtonListener() {
-    public void buttonListener() {
-      donnee.setRouge(0);
-      donnee.setVert(255);
-      donnee.setBleu(0);
-    }
-  }
-  );
-
-  menuCouleurChoix.addButton("R", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurUn);
-    }
-  }
-  );
-
-  menuCouleurChoix.addButton("G", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurDeux);
-    }
-  }
-  );
-
-
-  menuCouleurChoix.addButton("<-B", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurTrois);
-    }
-  }
-  );
-
-  menuCouleurChoix.addButton("forme->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuForme);
-    }
-  }
-  );
-
-
-  //menuResume
-  menuResume.addButton("couleurActu", null);
-  menuResume.addButton("forme", null);
-  menuResume.addButton("<-menu", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuDemarrage);
-    }
-  }
-  );
-
-  menuResume.addButton("<-forme", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuForme);
-    }
-  }
-  );
-
-  menuResume.addButton("sauver->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuSauv);
-    }
-  }
-  );
-
-  //menuForme
-  ArrayList<String> listeForme = creeListeDeForme();
-
-  for (int i = 0; i < listeForme.size(); i++) {
-    final int j = i;
-    menuForme.addButton(listeForme.get(i),new ButtonListener() {
-    public void buttonListener() {
-            stroke(donnee.getCouleur());
-            fill(donnee.getCouleur());
-            dessineForme(j, new Couleur(donnee.getCouleur()));    }
-  }
-  );
-  }
-  menuForme.addButton("<-B", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurTrois);
-    }
-  }
-  );
-
-  //menuSauv
-  menuSauv.addTitle(donnee.nomJoueur);
-  for (int i = 65; i < 91; i++) {
-    final int j = i;
-    menuSauv.addButton(char(i) + "", new ButtonListener() {
-    public void buttonListener() {
-      donnee.setNomJoueur(donnee.getNomJoueur()+char(j));
-      menuSauv.addTitle(donnee.getNomJoueur());
-    }
-  }
-  );
-  }
-  menuSauv.addButton("charger->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuChargement);
-    }
-  }
-  );
-
-  menuSauv.addButton("<-resume", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuResume);
-    }
-  }
-  );
-  menuSauv.addButton("SAUVER", new ButtonListener() {
-    public void buttonListener() {
-      save.save(donnee.nomJoueur);
-    }
-  }
-  );
-
-  //menuChargement
-  String cheminFichier = getCheminDossier("saves");
-  java.io.File dossierSaves = new java.io.File(dataPath(cheminFichier));
-  String[] listeNomFichier= dossierSaves.list();
-    menuChargement.addButton("retour", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuDemarrage);
-    }
-  }
-  );
-  if ( listeNomFichier.length > 0) {
-    for (int i = 0; i < listeNomFichier.length; i++) {
-      final String cour = listeNomFichier[i];
-      menuChargement.addButton(listeNomFichier[i],new ButtonListener() {
-    public void buttonListener() {
-      save.load(cour);
-    }
-  }
-  );
-    }
-  }
-
-    mtp.setMenuCurrent(menuDemarrage);
+  mtp.setMenuCurrent(menuDemarrage);
 
 
   noFill();
   strokeWeight(2);
   anim=new Animation();
   frameRate(30);
-
 }
 
 public void settings() {
@@ -514,5 +233,4 @@ private void gestionJoystick() {
     delay(time);
     //indexY = -25;
   }
-
 }
