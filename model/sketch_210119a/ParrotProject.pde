@@ -12,44 +12,10 @@ Menu menuResume;
 Menu menuForme;
 Menu menuSauv ;
 Menu menuChargement;
-public class Animation {
-  private int i;
-  private ArrayList<int[]> triangles;
-
-  public Animation() {
-    i=0;
-    triangles=new ArrayList();
-    String[] lines = loadStrings("Triangle.txt");
-    for (int c=0; c<lines.length; c++) {
-      String[] line=lines[c].split("/");
-      if (line.length!=1) {
-        int[] triangle=new int[6];
-        for (int c2=0; c2<6; c2++) {
-          triangle[c2]=int(line[c2]);
-        }
-        triangles.add(triangle);
-      }
-    }
-  }
-
-  public void dessine() {
-    triangle2(triangles.get(i));
-    i++;
-  }
-
-  public boolean isEnd() {
-    return triangles.size()<=i;
-  }
-}
-
-public void triangle2(int[] triangle) {
-  triangle(triangle[0]/9600f*800, triangle[1]/5400f*800, triangle[2]/9600f*800, triangle[3]/5400f*800, triangle[4]/9600f*800, triangle[5]/5400f*800);
-}
 
 void setup() {
   background(255, 255, 255);
   StringList instructions = getInstructionPourConnectionAuto();
-
   initArduino();
   for (int i=0; i<instructions.size(); i++) {
     println(instructions.get(i));
@@ -57,8 +23,6 @@ void setup() {
   save=new Save();
   pinceau = new Pinceau();
 
-
- 
   creeMenu();
  
   int[] size = new int[2];
@@ -78,10 +42,8 @@ void setup() {
 
   mtp.setMenuCurrent(menuDemarrage);
 
-
-  noFill();
   strokeWeight(2);
-  anim=new Animation();
+  anim=new Animation1();
   frameRate(30);
 }
 
@@ -106,6 +68,7 @@ void draw() {
 
   if (getConnection()) {
     if (!firstConnection) {
+      delay(1000);
       firstConnection = true;
       background(c);
     }
@@ -117,9 +80,9 @@ void draw() {
     }
     effaceDessin();
   } else {
-    if (anim==null || anim.isEnd()) {
-      anim=null;
-      connection();
+    if (anim.isEnd()) {
+      if(anim.isAnime()==1)anim=new Animation2();
+      else connection();
     } else anim.dessine();
   }
   // dessineTest(getValModifPot());
