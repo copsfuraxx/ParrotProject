@@ -5,6 +5,10 @@ class ManipulationImage{
   
   //====== Construteur
   
+  public ManipulationImage(){
+    File f = new File("Images");
+  }
+  
   //creer une image
   public ManipulationImage(String cheminImage){
     img = loadImage(cheminImage);

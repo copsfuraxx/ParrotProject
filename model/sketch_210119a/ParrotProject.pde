@@ -3,6 +3,7 @@ public class Animation{
   private int i;
   private ArrayList<int[]> triangles;
   
+  
 public Animation(){
     i=0;
     triangles=new ArrayList();
