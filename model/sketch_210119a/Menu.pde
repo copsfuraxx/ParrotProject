@@ -342,7 +342,41 @@ private String getCheminDossier(String dossier) {
   }
   return chemin;
 }
+void changeMenu(int menuCour) {
+    switch(menuCour) {
 
+    case 0:
+      mtp.setMenuCurrent(menuSauv);
+      break;
+    case 1:
+    mtp.setMenuCurrent(menuChargement);
+      break;
+    case 2:
+    mtp.setMenuCurrent(menuDemarrage);
+      break;
+    case 3:
+    mtp.setMenuCurrent(menuDessin);
+      break;
+    case 4:
+    mtp.setMenuCurrent(menuCouleurUn);
+      break;
+    case 5:
+    mtp.setMenuCurrent(menuCouleurDeux);
+      break;
+    case 6:
+    mtp.setMenuCurrent(menuCouleurTrois);
+      break;
+    case 7:
+    mtp.setMenuCurrent(menuCouleurChoix);
+      break;
+    case 8:
+    mtp.setMenuCurrent(menuForme);
+      break;
+    case 9:
+    mtp.setMenuCurrent(menuResume);
+      break;
+    }
+  }
 
 public class Donnee {
   public int MAXINT = 10;
@@ -389,39 +423,14 @@ public class Donnee {
     if (menu == 0) {
       menu = this.MAXINT;
     }
-    this.changeMenu();
+   changeMenu(this.menu);
   }
   void droiteCurseur() {
     this.menu++;
     if (menu == this.MAXINT) {
       menu = 0;
     }
-    this.changeMenu();
+    changeMenu(this.menu);
   }
-  void changeMenu() {
-    switch(menu) {
-
-    case 0:
-      mtp.setMenuCurrent(menuDemarrage);
-      break;
-    case 1:
-      break;
-    case 2:
-      break;
-    case 3:
-      break;
-    case 4:
-      break;
-    case 5:
-      break;
-    case 6:
-      break;
-    case 7:
-      break;
-    case 8:
-      break;
-    case 9:
-      break;
-    }
-  }
+  
 }

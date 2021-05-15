@@ -12,7 +12,7 @@ Menu menuResume;
 Menu menuForme;
 Menu menuSauv ;
 Menu menuChargement;
->>>>>>> fce56051aa7579ae0ce8dd1a71d3607255899db3
+
 
 void setup() {
   background(255, 255, 255);
@@ -25,7 +25,7 @@ void setup() {
   pinceau = new Pinceau();
 
   creeMenu();
- 
+
   int[] size = new int[2];
   size[0] = 500;
   size[1] = 1200;
@@ -82,7 +82,7 @@ void draw() {
     effaceDessin();
   } else {
     if (anim.isEnd()) {
-      if(anim.isAnime()==1)anim=new Animation2();
+      if (anim.isAnime()==1)anim=new Animation2();
       else connection();
     } else anim.dessine();
   }
@@ -161,6 +161,8 @@ private void gestionControleur() {
 private int indexY = 0;
 private void gestionJoystick() {
   int jy = getJoystickY();
+  int jx = getJoystickX();
+
   /*if (jy < 5 && jy > -5){
    indexY = 0;
    }
@@ -194,6 +196,16 @@ private void gestionJoystick() {
   }
   if (jy <= -40) {
     mtp.getMenuCurrent().upCursor();
+    delay(time);
+    //indexY = -25;
+  }
+  if (jx >= 40) {
+    donnee.droiteCurseur();
+    delay(time);
+    //indexY = 25;
+  }
+  if (jx <= -40) {
+    donnee.gaucheCurseur();
     delay(time);
     //indexY = -25;
   }
