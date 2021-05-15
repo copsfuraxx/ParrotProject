@@ -345,7 +345,9 @@ private String getCheminDossier(String dossier) {
 
 
 public class Donnee {
+  public int MAXINT = 10;
   private int rouge, vert, bleu;
+  private int menu;
   private String nomJoueur;
   public Donnee() {
     this.rouge = 0;
@@ -381,5 +383,45 @@ public class Donnee {
   }
   public void setNomJoueur(String nomJoueur) {
     this.nomJoueur = nomJoueur;
+  }
+  void gaucheCurseur() {
+    this.menu--;
+    if (menu == 0) {
+      menu = this.MAXINT;
+    }
+    this.changeMenu();
+  }
+  void droiteCurseur() {
+    this.menu++;
+    if (menu == this.MAXINT) {
+      menu = 0;
+    }
+    this.changeMenu();
+  }
+  void changeMenu() {
+    switch(menu) {
+
+    case 0:
+      mtp.setMenuCurrent(menuDemarrage);
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+    case 6:
+      break;
+    case 7:
+      break;
+    case 8:
+      break;
+    case 9:
+      break;
+    }
   }
 }
