@@ -37,9 +37,12 @@ void setup() {
   creeMenuCouleurUn();
   creeMenuCouleurDeux();
   creeMenuCouleurTrois();
+  creeMenuCouleurChoix();
   creeMenuResume();
   creeMenuForme();
   creeMenuSauv();
+  creeMenuChargement();
+
 
   mtp.setMenuCurrent(menuDemarrage);
 
@@ -49,7 +52,7 @@ void setup() {
 }
 
 public void settings() {
-  size(800, 800);
+  size(1300, 600);
   hmin=lmax=0;
   hmax=lmax=800;
 }
@@ -200,13 +203,15 @@ private void gestionJoystick() {
     //indexY = -25;
   }
   if (jx >= 40) {
-    donnee.droiteCurseur();
+    //donnee.gaucheCurseur();
+    println("gauche");
     delay(time);
     //indexY = 25;
   }
   if (jx <= -40) {
-    donnee.gaucheCurseur();
+    //donnee.droiteCurseur();
     delay(time);
     //indexY = -25;
   }
+  println(jx);
 }

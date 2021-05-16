@@ -128,7 +128,7 @@ void creeMenuCouleurTrois() {
     }
     );
   }
-  menuCouleurTrois.addButton("<-bleu", new ButtonListener() {
+  menuCouleurTrois.addButton("<-vert", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuCouleurDeux);
     }
@@ -155,8 +155,8 @@ void creeMenuCouleurChoix() {
   );
   menuCouleurChoix.addButton("bleu", new ButtonListener() {
     public void buttonListener() {
-      donnee.setRouge(255);
-      donnee.setVert(255);
+      donnee.setRouge(0);
+      donnee.setVert(0);
       donnee.setBleu(255);
     }
   }
@@ -210,28 +210,32 @@ void creeMenuCouleurChoix() {
 
 void creeMenuResume() {
   //menuResume
-  menuResume.addButton("couleurActu", null);
-  menuResume.addButton("forme", null);
-  menuResume.addButton("<-menu", new ButtonListener() {
+  menuResume.addButton("couleurActu", new ButtonListener() {
     public void buttonListener() {
-      mtp.setMenuCurrent(menuDemarrage);
+      mtp.setMenuCurrent(menuCouleurChoix);
     }
   }
   );
-
+  menuResume.addButton("forme", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuForme);
+    }
+  }
+  );
   menuResume.addButton("<-forme", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuForme);
     }
   }
   );
-
   menuResume.addButton("sauver->", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuSauv);
     }
   }
   );
+
+
 }
 
 void creeMenuForme() {
@@ -296,9 +300,15 @@ void creeMenuChargement() {
   String cheminFichier = getCheminDossier("saves");
   java.io.File dossierSaves = new java.io.File(dataPath(cheminFichier));
   String[] listeNomFichier= dossierSaves.list();
-  menuChargement.addButton("retour", new ButtonListener() {
+  menuChargement.addButton("menu->", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuDemarrage);
+    }
+  }
+  );
+  menuChargement.addButton("<-sauver", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuSauv);
     }
   }
   );
@@ -343,40 +353,40 @@ private String getCheminDossier(String dossier) {
   return chemin;
 }
 void changeMenu(int menuCour) {
-    switch(menuCour) {
+  switch(menuCour) {
 
-    case 0:
-      mtp.setMenuCurrent(menuSauv);
-      break;
-    case 1:
+  case 0:
+    mtp.setMenuCurrent(menuSauv);
+    break;
+  case 1:
     mtp.setMenuCurrent(menuChargement);
-      break;
-    case 2:
+    break;
+  case 2:
     mtp.setMenuCurrent(menuDemarrage);
-      break;
-    case 3:
+    break;
+  case 3:
     mtp.setMenuCurrent(menuDessin);
-      break;
-    case 4:
+    break;
+  case 4:
     mtp.setMenuCurrent(menuCouleurUn);
-      break;
-    case 5:
+    break;
+  case 5:
     mtp.setMenuCurrent(menuCouleurDeux);
-      break;
-    case 6:
+    break;
+  case 6:
     mtp.setMenuCurrent(menuCouleurTrois);
-      break;
-    case 7:
+    break;
+  case 7:
     mtp.setMenuCurrent(menuCouleurChoix);
-      break;
-    case 8:
+    break;
+  case 8:
     mtp.setMenuCurrent(menuForme);
-      break;
-    case 9:
+    break;
+  case 9:
     mtp.setMenuCurrent(menuResume);
-      break;
-    }
+    break;
   }
+}
 
 public class Donnee {
   public int MAXINT = 10;
@@ -423,7 +433,7 @@ public class Donnee {
     if (menu == 0) {
       menu = this.MAXINT;
     }
-   changeMenu(this.menu);
+    changeMenu(this.menu);
   }
   void droiteCurseur() {
     this.menu++;
@@ -432,5 +442,4 @@ public class Donnee {
     }
     changeMenu(this.menu);
   }
-  
 }
