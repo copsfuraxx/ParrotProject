@@ -12,7 +12,6 @@ Menu menuResume;
 Menu menuForme;
 Menu menuSauv ;
 Menu menuChargement;
->>>>>>> fce56051aa7579ae0ce8dd1a71d3607255899db3
 
 void setup() {
   background(255, 255, 255);
