@@ -342,10 +342,46 @@ private String getCheminDossier(String dossier) {
   }
   return chemin;
 }
+void changeMenu(int menuCour) {
+    switch(menuCour) {
 
+    case 0:
+      mtp.setMenuCurrent(menuSauv);
+      break;
+    case 1:
+    mtp.setMenuCurrent(menuChargement);
+      break;
+    case 2:
+    mtp.setMenuCurrent(menuDemarrage);
+      break;
+    case 3:
+    mtp.setMenuCurrent(menuDessin);
+      break;
+    case 4:
+    mtp.setMenuCurrent(menuCouleurUn);
+      break;
+    case 5:
+    mtp.setMenuCurrent(menuCouleurDeux);
+      break;
+    case 6:
+    mtp.setMenuCurrent(menuCouleurTrois);
+      break;
+    case 7:
+    mtp.setMenuCurrent(menuCouleurChoix);
+      break;
+    case 8:
+    mtp.setMenuCurrent(menuForme);
+      break;
+    case 9:
+    mtp.setMenuCurrent(menuResume);
+      break;
+    }
+  }
 
 public class Donnee {
+  public int MAXINT = 10;
   private int rouge, vert, bleu;
+  private int menu;
   private String nomJoueur;
   public Donnee() {
     this.rouge = 0;
@@ -382,4 +418,19 @@ public class Donnee {
   public void setNomJoueur(String nomJoueur) {
     this.nomJoueur = nomJoueur;
   }
+  void gaucheCurseur() {
+    this.menu--;
+    if (menu == 0) {
+      menu = this.MAXINT;
+    }
+   changeMenu(this.menu);
+  }
+  void droiteCurseur() {
+    this.menu++;
+    if (menu == this.MAXINT) {
+      menu = 0;
+    }
+    changeMenu(this.menu);
+  }
+  
 }
