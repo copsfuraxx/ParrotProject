@@ -19,4 +19,8 @@ class Historique {
       arg.add(0,pinceau.getCouleur());
       arg.add(1,pinceau.getCouleurRemplissage());
   }
+  
+  public void addEpaisseur(){
+      arg.add(pinceau.getEpaisseur());
+  }
 }

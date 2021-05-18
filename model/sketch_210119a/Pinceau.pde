@@ -57,17 +57,17 @@ class Pinceau {
     use();
   }
   
+  public void setEpaisseur(int epaisseur){
+    this.epaisseur=epaisseur;
+    use();
+  }
+  
   public color getCouleur(){
     return couleurCrayon.getCouleur();
   }
   
   public color getCouleurRemplissage(){
     return couleurRemplissage.getCouleur();
-  }
-  
-  
-  public void setEpaisseur(int epaisseur){
-    this.epaisseur=epaisseur;
   }
   
   public int getEpaisseur(){

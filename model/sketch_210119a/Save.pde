@@ -8,6 +8,7 @@ class Save {
 
   public void addHistorique(Historique historique) {
     historique.addCouleur();
+    historique.addEpaisseur();
     historiques.add(historique);
   }
 
@@ -17,10 +18,11 @@ class Save {
       Historique historique=historiques.get(i);
       lines[i]=historique.getId()+"/";
       ArrayList arg=historique.getArg();
-      for (int j=0; j<arg.size(); j++) {
+      for (int j=0; j<arg.size()-1; j++) {
         lines[i]+=arg.get(j);
-        if (j!=arg.size()-1)lines[i]+="/";
+        if (j!=arg.size()-2)lines[i]+="/";
       }
+      lines[i]+=":"+(arg.size()-1);
     }
     saveStrings("saves/"+nom+".save", lines);
   }
@@ -29,7 +31,9 @@ class Save {
     //String[] lines = loadStrings("saves/"+nom);
     String[] lines = loadStrings(getCheminFichier("saves", nom));
     for (int i=0; i<lines.length; i++) {
-      String[] line=lines[i].split("/");
+      String[] line=lines[i].split(":");
+      int epaisseur=int(line[1]);
+      line=line[0].split("/");
       pinceau.setCouleur(new Couleur(int(line[1])),new Couleur(int(line[2])));
       dessineFormeParId(line);
     }
