@@ -193,9 +193,9 @@ void creeMenuCouleurChoix() {
   );
 
 
-  menuCouleurChoix.addButton("<-B", new ButtonListener() {
+  menuCouleurChoix.addButton("<-menu", new ButtonListener() {
     public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurTrois);
+      mtp.setMenuCurrent(menuDessin);
     }
   }
   );
@@ -253,7 +253,7 @@ void creeMenuForme() {
     }
     );
   }
-  menuForme.addButton("<-B", new ButtonListener() {
+  menuForme.addButton("<-bleu", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuCouleurTrois);
     }
@@ -398,6 +398,7 @@ public class Donnee {
     this.vert = 0;
     this.bleu = 0;
     this.nomJoueur = "";
+    this.menu = 0;
   }
 
   public color getCouleur() {
@@ -440,6 +441,7 @@ public class Donnee {
     if (menu == this.MAXINT) {
       menu = 0;
     }
+    println("menu numero : " + this.menu);
     changeMenu(this.menu);
   }
 }

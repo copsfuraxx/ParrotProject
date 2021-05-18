@@ -215,3 +215,29 @@ private void gestionJoystick() {
   }
   println(jx);
 }
+void keyPressed(){
+if (int(keyCode)==38){
+  mtp.getMenuCurrent().upCursor();
+}
+if (int(keyCode)==40){
+  mtp.getMenuCurrent().downCursor();
+}
+if (int(keyCode)==39){
+ donnee.gaucheCurseur();
+}
+if (int(keyCode)==37){
+  donnee.droiteCurseur();
+}
+if (int(keyCode)==98){
+    mtp.getMenuCurrent().click();
+}
+if (int(keyCode)==100){
+  //rouge
+}
+if (int(keyCode)==102){
+  //vert
+}
+if (int(keyCode)==104){
+  //jaune
+}
+}
