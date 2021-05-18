@@ -252,11 +252,11 @@ private void fractalKock(float xa, float ya, float xb, float yb, float angle, in
   ye=-x*sin(a)+y*cos(a)+yc;
   
   //fill(255*n/6,255*(6-n)/6,255*n/6);
-  stroke(pinceau.getCouleurRemplissage());
-  fill(pinceau.getCouleur());
+  Couleur c1=new Couleur(pinceau.getCouleurRemplissage());
+  Couleur c2=new Couleur(pinceau.getCouleur());
+  fill(c1.degrader(c2,n));
   triangle(xc,yc,xe,ye,xd,yd);
   fill(pinceau.getCouleurRemplissage());
-  stroke(pinceau.getCouleur());
   
   fractalKock(xa, ya, xc, yc, angle, n-1);
   fractalKock(xc, yc, xe, ye, angle, n-1);

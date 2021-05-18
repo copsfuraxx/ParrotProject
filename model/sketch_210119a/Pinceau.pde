@@ -128,4 +128,19 @@ public class Couleur{
   public int  getRougeEntier(){
     return (int)this.r;
   }
+  
+  public color degrader(Couleur c, int n){
+    float r;
+    if(this.r<c.r)r=c.r-(c.r-this.r)*n/6;
+    else r=c.r+(this.r-c.r)*n/6;
+    
+    float v;
+    if(this.v<c.v)v=c.v-(c.v-this.v)*n/6;
+    else v=c.v+(this.v-c.v)*n/6;
+    
+    float b;
+    if(this.b<c.b)b=c.b-(c.b-this.b)*n/6;
+    else b=c.b+(this.b-c.b)*n/6;
+    return color(r,v,b);
+  }
 }
