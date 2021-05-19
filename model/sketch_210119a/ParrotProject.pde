@@ -3,15 +3,20 @@ Animation anim;
 MenuThreePoint mtp;
 Donnee donnee = new Donnee();
 Menu menuDemarrage;
-Menu menuDessin;
-Menu menuCouleurUn;
-Menu menuCouleurDeux;
-Menu menuCouleurTrois;
-Menu menuCouleurChoix;
-Menu menuResume;
+Menu menuCouleurUnExt;
+Menu menuCouleurDeuxExt;
+Menu menuCouleurTroisExt;
+Menu menuCouleurChoixExt;
+Menu menuCouleurUnInte;
+Menu menuCouleurDeuxInte;
+Menu menuCouleurTroisInte;
+Menu menuCouleurChoixInte;
 Menu menuForme;
 Menu menuSauv ;
 Menu menuChargement;
+Menu menuPinceau;
+Menu menuValeur;
+
 
 
 void setup() {
@@ -33,15 +38,18 @@ void setup() {
   PApplet.runSketch(platformNames, mtp);
 
   creeMenuDemarrage();
-  creeMenuDessin();
-  creeMenuCouleurUn();
-  creeMenuCouleurDeux();
-  creeMenuCouleurTrois();
-  creeMenuCouleurChoix();
-  creeMenuResume();
+  creeMenuCouleurUnInte();
+  creeMenuCouleurDeuxInte();
+  creeMenuCouleurTroisInte();
+  creeMenuCouleurChoixInte();
+  creeMenuCouleurUnExt();
+  creeMenuCouleurDeuxExt();
+  creeMenuCouleurTroisExt();
+  creeMenuCouleurChoixExt();
   creeMenuForme();
   creeMenuSauv();
   creeMenuChargement();
+  creeMenuPinceau();
 
 
   mtp.setMenuCurrent(menuDemarrage);

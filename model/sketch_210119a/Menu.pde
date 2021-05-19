@@ -3,30 +3,34 @@ void creeMenu() {
   Settings reglageLightTheme = new Settings(Settings.LIGHTTHEME);
 
   menuDemarrage = new Menu(reglageLightTheme);
-  menuDessin = new Menu(reglageLightTheme);
-  menuCouleurUn = new Menu(reglageLightTheme);
-  menuCouleurDeux = new Menu(reglageLightTheme);
-  menuCouleurTrois = new Menu(reglageLightTheme);
-  menuCouleurChoix = new Menu(reglageLightTheme);
-  menuResume = new Menu(reglageLightTheme);
+  menuCouleurUnInte = new Menu(reglageLightThemeWithTitle);
+  menuCouleurDeuxInte = new Menu(reglageLightThemeWithTitle);
+  menuCouleurTroisInte = new Menu(reglageLightThemeWithTitle);
+  menuCouleurChoixInte = new Menu(reglageLightThemeWithTitle);
+  menuCouleurUnExt = new Menu(reglageLightThemeWithTitle);
+  menuCouleurDeuxExt = new Menu(reglageLightThemeWithTitle);
+  menuCouleurTroisExt = new Menu(reglageLightThemeWithTitle);
+  menuCouleurChoixExt = new Menu(reglageLightThemeWithTitle);
   menuForme = new Menu(reglageLightTheme);
   menuSauv = new Menu(reglageLightThemeWithTitle);
   menuChargement = new Menu(reglageLightTheme);
+  menuPinceau = new  Menu(reglageLightTheme);
 }
 
 
 
 void creeMenuDemarrage() {
   //menuDemarrage
-  menuDemarrage.addButton("start->", new ButtonListener() {
+  menuDemarrage.addButton("start", new ButtonListener() {
     public void buttonListener() {
-      mtp.setMenuCurrent(menuDessin);
+      mtp.setMenuCurrent(menuPinceau);
     }
   }
   );
-  menuDemarrage.addButton("quitter", new ButtonListener() {
+
+  menuDemarrage.addButton("mosaique", new ButtonListener() {
     public void buttonListener() {
-      exit();
+      //to do
     }
   }
   );
@@ -36,206 +40,257 @@ void creeMenuDemarrage() {
     }
   }
   );
-  menuDemarrage.addButton("<-charger", new ButtonListener() {
+  menuDemarrage.addButton("charger", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuChargement);
     }
   }
   );
-}
-
-void creeMenuDessin() {
-  //menuDessin
-  menuDessin.addButton("couleur->", new ButtonListener() {
+  menuDemarrage.addButton("quitter", new ButtonListener() {
     public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurChoix);
-    }
-  }
-  );
-  menuDessin.addButton("forme", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuForme);
-    }
-  }
-  );
-  menuDessin.addButton("<-menu", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuDemarrage);
+      exit();
     }
   }
   );
 }
 
-void creeMenuCouleurUn() {
+
+void creeMenuCouleurUnInte() {
   //menuCouleurUn
+   menuCouleurUnInte.addTitle("R : " + donnee.getRougeInte());
   for (int i = 0; i<256; i++) {
     final int j = i;
-    menuCouleurUn.addButton(i+"", new ButtonListener() {
+    menuCouleurUnInte.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
-        donnee.setRouge(j);
+        donnee.setRougeInte(j);
       }
     }
     );
   }
-  menuCouleurUn.addButton("<-couleur", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurChoix);
-    }
-  }
-  );
-  menuCouleurUn.addButton("vert->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurDeux);
-    }
-  }
-  );
+  menuCouleurUnInte.addTitle(""+donnee.getRougeInte());
 }
 
 
-void creeMenuCouleurDeux() {
+void creeMenuCouleurDeuxInte() {
   //menuCouleurDeux
+   menuCouleurDeuxInte.addTitle( "V : " + donnee.getVertInte());
   for (int i = 0; i<256; i++) {
     final int j = i;
-    menuCouleurDeux.addButton(i+"", new ButtonListener() {
+    menuCouleurDeuxInte.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
-        donnee.setVert(j);
+        donnee.setVertInte(j);
       }
     }
     );
   }
-  menuCouleurDeux.addButton("<-rouge", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurUn);
-    }
-  }
-  );
-  menuCouleurDeux.addButton("bleu->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurTrois);
-    }
-  }
-  );
+  menuCouleurUnInte.addTitle(""+donnee.getVertInte());
 }
 
-void creeMenuCouleurTrois() {
+void creeMenuCouleurTroisInte() {
   //menuCouleurTrois
+   menuCouleurTroisInte.addTitle("B : " + donnee.getBleuInte());
   for (int i = 0; i<256; i++) {
     final int j = i;
-    menuCouleurTrois.addButton(i+"", new ButtonListener() {
+    menuCouleurTroisInte.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
-        donnee.setBleu(j);
+        donnee.setBleuInte(j);
       }
     }
     );
   }
-  menuCouleurTrois.addButton("<-vert", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurDeux);
-    }
-  }
-  );
-  menuCouleurTrois.addButton("forme->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuForme);
-    }
-  }
-  );
+  menuCouleurUnInte.addTitle(""+donnee.getBleuInte());
 }
 
 
-void creeMenuCouleurChoix() {
+void creeMenuCouleurChoixInte() {
   //menuCouleurChoix
-  menuCouleurChoix.addButton("noir", new ButtonListener() {
+  menuCouleurChoixInte.addTitle("R : " + donnee.getRougeInte() + "V : " + donnee.getVertInte() + "B : " + donnee.getBleuInte());
+  menuCouleurChoixInte.addButton("R", new ButtonListener() {
     public void buttonListener() {
-      donnee.setRouge(0);
-      donnee.setVert(0);
-      donnee.setBleu(0);
-    }
-  }
-  );
-  menuCouleurChoix.addButton("bleu", new ButtonListener() {
-    public void buttonListener() {
-      donnee.setRouge(0);
-      donnee.setVert(0);
-      donnee.setBleu(255);
-    }
-  }
-  );
-  menuCouleurChoix.addButton("rouge", new ButtonListener() {
-    public void buttonListener() {
-      donnee.setRouge(255);
-      donnee.setVert(0);
-      donnee.setBleu(0);
-    }
-  }
-  );
-  menuCouleurChoix.addButton("vert", new ButtonListener() {
-    public void buttonListener() {
-      donnee.setRouge(0);
-      donnee.setVert(255);
-      donnee.setBleu(0);
+      mtp.setMenuCurrent(menuCouleurUnInte);
     }
   }
   );
 
-  menuCouleurChoix.addButton("R", new ButtonListener() {
+  menuCouleurChoixInte.addButton("V", new ButtonListener() {
     public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurUn);
+      mtp.setMenuCurrent(menuCouleurDeuxInte);
     }
   }
   );
-
-  menuCouleurChoix.addButton("G", new ButtonListener() {
+menuCouleurChoixInte.addButton("B", new ButtonListener() {
     public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurDeux);
+      mtp.setMenuCurrent(menuCouleurTroisInte);
     }
   }
   );
-
-
-  menuCouleurChoix.addButton("<-menu", new ButtonListener() {
+  menuCouleurChoixInte.addButton("Retour", new ButtonListener() {
     public void buttonListener() {
-      mtp.setMenuCurrent(menuDessin);
-    }
-  }
-  );
-
-  menuCouleurChoix.addButton("forme->", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuForme);
+      mtp.setMenuCurrent(menuPinceau);
     }
   }
   );
 }
 
-void creeMenuResume() {
-  //menuResume
-  menuResume.addButton("couleurActu", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurChoix);
+
+void creeMenuCouleurUnExt() {
+  //menuCouleurUn
+    menuCouleurUnExt.addTitle("R : " + donnee.getRougeExt());
+
+  for (int i = 0; i<256; i++) {
+    final int j = i;
+    menuCouleurUnExt.addButton(i+"", new ButtonListener() {
+      public void buttonListener() {
+        donnee.setRougeExt(j);
+      }
     }
+    );
   }
-  );
-  menuResume.addButton("forme", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuForme);
+menuCouleurUnInte.addTitle(""+donnee.getRougeExt());
+}
+
+
+void creeMenuCouleurDeuxExt() {
+  //menuCouleurDeux
+    menuCouleurDeuxExt.addTitle("V : " + donnee.getVertExt());
+
+  for (int i = 0; i<256; i++) {
+    final int j = i;
+    menuCouleurDeuxExt.addButton(i+"", new ButtonListener() {
+      public void buttonListener() {
+        donnee.setVertExt(j);
+      }
     }
+    );
   }
-  );
-  menuResume.addButton("<-forme", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuForme);
+menuCouleurUnInte.addTitle(""+donnee.getVertExt());
+}
+
+void creeMenuCouleurTroisExt() {
+  //menuCouleurTrois
+    menuCouleurTroisExt.addTitle( "B : " + donnee.getBleuExt());
+
+  for (int i = 0; i<256; i++) {
+    final int j = i;
+    menuCouleurTroisExt.addButton(i+"", new ButtonListener() {
+      public void buttonListener() {
+        donnee.setBleuInte(j);
+      }
     }
+    );
   }
-  );
-  menuResume.addButton("sauver->", new ButtonListener() {
+menuCouleurUnInte.addTitle(""+donnee.getBleuExt());
+}
+
+
+void creeMenuCouleurChoixExt() {
+  //menuCouleurChoix
+  menuCouleurChoixExt.addTitle("R : " + donnee.getRougeExt() + "V : " + donnee.getVertExt() + "B : " + donnee.getBleuExt());
+  menuCouleurChoixExt.addButton("R", new ButtonListener() {
     public void buttonListener() {
-      mtp.setMenuCurrent(menuSauv);
+      mtp.setMenuCurrent(menuCouleurUnExt);
     }
   }
   );
 
+  menuCouleurChoixExt.addButton("V", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuCouleurDeuxExt);
+    }
+  }
+  );
+menuCouleurChoixExt.addButton("B", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuCouleurTroisExt);
+    }
+  }
+  );
+}
+void creeMenuValeur() {
+  menuValeur.addButton("couleurInt", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+  menuValeur.addButton("couleurExt", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
 
+  menuValeur.addButton("eppai", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+  menuValeur.addButton("tail", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+
+  menuValeur.addButton("formeActu", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+  menuValeur.addButton("choix", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+  menuValeur.addButton("Retour", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+}
+
+
+
+void creeMenuPinceau() {
+  menuPinceau.addButton("Couleur Ext", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuCouleurChoixExt);
+    }
+  }
+  );
+  menuPinceau.addButton("Couleur Int", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuCouleurChoixInte);
+    }
+  }
+  );
+  menuPinceau.addButton("Epaisseur", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+  menuPinceau.addButton("Taille", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+  menuPinceau.addButton("Forme", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+  menuPinceau.addButton("Zone", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+  menuPinceau.addButton("Valeurs", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+  menuPinceau.addButton("Menu", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
 }
 
 void creeMenuForme() {
@@ -246,19 +301,14 @@ void creeMenuForme() {
     final int j = i;
     menuForme.addButton(listeForme.get(i), new ButtonListener() {
       public void buttonListener() {
-        stroke(donnee.getCouleur());
-        fill(donnee.getCouleur());
-        dessineForme(j, new Couleur(donnee.getCouleur()));
+        /*stroke(donnee.getCouleur());
+         fill(donnee.getCouleur());
+         dessineForme(j, new Couleur(donnee.getCouleur()));
+         */
       }
     }
     );
   }
-  menuForme.addButton("<-bleu", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuCouleurTrois);
-    }
-  }
-  );
 }
 
 void creeMenuSauv() {
@@ -274,16 +324,9 @@ void creeMenuSauv() {
     }
     );
   }
-  menuSauv.addButton("charger->", new ButtonListener() {
+  menuSauv.addButton("retour", new ButtonListener() {
     public void buttonListener() {
-      mtp.setMenuCurrent(menuChargement);
-    }
-  }
-  );
-
-  menuSauv.addButton("<-resume", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuResume);
+      mtp.setMenuCurrent(menuDemarrage);
     }
   }
   );
@@ -364,70 +407,79 @@ void changeMenu(int menuCour) {
   case 2:
     mtp.setMenuCurrent(menuDemarrage);
     break;
-  case 3:
-    mtp.setMenuCurrent(menuDessin);
-    break;
-  case 4:
-    mtp.setMenuCurrent(menuCouleurUn);
-    break;
-  case 5:
-    mtp.setMenuCurrent(menuCouleurDeux);
-    break;
-  case 6:
-    mtp.setMenuCurrent(menuCouleurTrois);
-    break;
-  case 7:
-    mtp.setMenuCurrent(menuCouleurChoix);
-    break;
-  case 8:
-    mtp.setMenuCurrent(menuForme);
-    break;
-  case 9:
-    mtp.setMenuCurrent(menuResume);
-    break;
   }
 }
 
 public class Donnee {
   public int MAXINT = 10;
-  private int rouge, vert, bleu;
-  private int menu;
+  private int[] inte, ext; 
+  private int menu, forme;
   private String nomJoueur;
   public Donnee() {
-    this.rouge = 0;
-    this.vert = 0;
-    this.bleu = 0;
+    inte = new int[]{0, 0, 0};
+    ext = new int[]{0, 0, 0};
     this.nomJoueur = "";
     this.menu = 0;
+    this.forme = 0;
   }
 
-  public color getCouleur() {
-    return color(this.rouge, this.vert, this.bleu);
+  public color getCouleurInte() {
+    return color(inte[0], inte[1], inte[2]);
   }
 
-  public int getRouge() {
-    return rouge;
+  public int getRougeInte() {
+    return inte[0];
   }
-  public void setRouge(int rouge) {
-    this.rouge = rouge;
+  public void setRougeInte(int rouge) {
+    this.inte[0] = rouge;
   }
-  public int getVert() {
-    return vert;
+  public int getVertInte() {
+    return inte[1];
   }
-  public void setVert(int vert) {
-    this.vert = vert;
+  public void setVertInte(int vert) {
+    this.inte[1] = vert;
   }
-  public int getBleu() {
-    return bleu;
+  public int getBleuInte() {
+    return inte[2];
   }
-  public void setBleu(int bleu) {
-    this.bleu = bleu;
+  public void setBleuInte(int bleu) {
+    this.inte[2] = bleu;
+  }
+
+  public color getCouleurExt() {
+    return color(ext[0], ext[1], ext[2]);
+  }
+
+  public int getRougeExt() {
+    return ext[0];
+  }
+  public void setRougeExt(int rouge) {
+    this.ext[0] = rouge;
+  }
+  public int getVertExt() {
+    return ext[1];
+  }
+  public void setVertExt(int vert) {
+    this.ext[1] = vert;
+  }
+  public int getBleuExt() {
+    return ext[2];
+  }
+  public void setBleuExt(int bleu) {
+    this.ext[2] = bleu;
   }
   public String getNomJoueur() {
     return nomJoueur;
   }
   public void setNomJoueur(String nomJoueur) {
     this.nomJoueur = nomJoueur;
+  }
+  public void setForme(int forme) {
+    this.forme = forme;
+    //renameforme
+  }
+  public String getNomForme() {
+    return creeListeDeForme().get(this.forme);
   }
   void gaucheCurseur() {
     this.menu--;
