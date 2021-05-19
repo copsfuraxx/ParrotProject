@@ -54,7 +54,8 @@ void setup() {
 public void settings() {
   size(1300, 600);
   hmin=lmax=0;
-  hmax=lmax=800;
+  hmax=600;
+  lmax=1300;
 }
 
 
@@ -75,6 +76,7 @@ void draw() {
       delay(1000);
       firstConnection = true;
       background(c);
+      println("test");
     }
     getInfoArduino();  
     prendreScreenshot();
