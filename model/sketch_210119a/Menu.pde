@@ -431,14 +431,14 @@ public class Donnee {
   }
   void gaucheCurseur() {
     this.menu--;
-    if (menu == 0) {
+    if (menu < 0) {
       menu = this.MAXINT;
     }
     changeMenu(this.menu);
   }
   void droiteCurseur() {
     this.menu++;
-    if (menu == this.MAXINT) {
+    if (menu > this.MAXINT) {
       menu = 0;
     }
     println("menu numero : " + this.menu);
