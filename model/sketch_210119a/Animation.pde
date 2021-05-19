@@ -113,7 +113,7 @@ public class Triangle{
   public boolean isEnd(){return i<0;}
   
   public void triangle2(int[] triangle){
-    triangle(triangle[0]/9600f*1920,triangle[1]/5400f*1080,triangle[2]/9600f*1920,triangle[3]/5400f*1080,triangle[4]/9600f*1920,triangle[5]/5400f*1080);
+    triangle(triangle[0]/9600f*width,triangle[1]/5400f*height,triangle[2]/9600f*width,triangle[3]/5400f*height,triangle[4]/9600f*width,triangle[5]/5400f*height);
   }
 
   private void triangle2(int[] triangle, int[] centre, int sens, int taille, int rota){
