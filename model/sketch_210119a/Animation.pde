@@ -126,10 +126,10 @@ public class Triangle{
       points2[c*2+1]= int(- xM * sin (angle) + yM * cos (angle) + centre[1]);
     }
     switch(sens){
-      case 0:triangle(points2[0]/9600f*1920-taille,points2[1]/5400f*1080,points2[2]/9600f*1920-taille,points2[3]/5400f*1080,points2[4]/9600f*1920-taille,points2[5]/5400f*1080);break;
-      case 1:triangle(points2[0]/9600f*1920,points2[1]/5400f*1080-taille,points2[2]/9600f*1920,points2[3]/5400f*1080-taille,points2[4]/9600f*1920,points2[5]/5400f*1080-taille);break;
-      case 2:triangle(points2[0]/9600f*1920+taille,points2[1]/5400f*1080,points2[2]/9600f*1920+taille,points2[3]/5400f*1080,points2[4]/9600f*1920+taille,points2[5]/5400f*1080);break;
-      case 3:triangle(points2[0]/9600f*1920,points2[1]/5400f*1080+taille,points2[2]/9600f*1920,points2[3]/5400f*1080+taille,points2[4]/9600f*1920,points2[5]/5400f*1080+taille);break;
+      case 0:triangle(points2[0]/9600f*width-taille,points2[1]/5400f*height,points2[2]/9600f*width-taille,points2[3]/5400f*height,points2[4]/9600f*width-taille,points2[5]/5400f*height);break;
+      case 1:triangle(points2[0]/9600f*width,points2[1]/5400f*height-taille,points2[2]/9600f*width,points2[3]/5400f*height-taille,points2[4]/9600f*width,points2[5]/5400f*height-taille);break;
+      case 2:triangle(points2[0]/9600f*width+taille,points2[1]/5400f*height,points2[2]/9600f*width+taille,points2[3]/5400f*height,points2[4]/9600f*width+taille,points2[5]/5400f*height);break;
+      case 3:triangle(points2[0]/9600f*width,points2[1]/5400f*height+taille,points2[2]/9600f*width,points2[3]/5400f*height+taille,points2[4]/9600f*width,points2[5]/5400f*height+taille);break;
     }
   }
 }
