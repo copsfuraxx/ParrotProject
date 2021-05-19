@@ -223,6 +223,7 @@ if (int(keyCode)==40){
   mtp.getMenuCurrent().downCursor();
 }
 if (int(keyCode)==39){
+  println("gauche");
  donnee.gaucheCurseur();
 }
 if (int(keyCode)==37){
