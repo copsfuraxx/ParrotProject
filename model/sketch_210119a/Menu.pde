@@ -2,6 +2,7 @@ void creeMenu() {
   Settings reglageLightThemeWithTitle = new Settings(Settings.LIGHTTHEMEWITHTITLE);
   Settings reglageLightTheme = new Settings(Settings.LIGHTTHEME);
 
+  reglageLightThemeWithTitle.setSizeText(16);
   menuDemarrage = new Menu(reglageLightTheme);
   menuCouleurUnInte = new Menu(reglageLightThemeWithTitle);
   menuCouleurDeuxInte = new Menu(reglageLightThemeWithTitle);
@@ -15,6 +16,7 @@ void creeMenu() {
   menuSauv = new Menu(reglageLightThemeWithTitle);
   menuChargement = new Menu(reglageLightTheme);
   menuPinceau = new  Menu(reglageLightTheme);
+  menuEpaisseur = new  Menu(reglageLightTheme);
 }
 
 
@@ -57,12 +59,13 @@ void creeMenuDemarrage() {
 
 void creeMenuCouleurUnInte() {
   //menuCouleurUn
-   menuCouleurUnInte.addTitle("R : " + donnee.getRougeInte());
-  for (int i = 0; i<256; i++) {
+  menuCouleurUnInte.addTitle("R : " + donnee.getRougeInte());
+  for (int i = 0; i<256; i=i+5) {
     final int j = i;
     menuCouleurUnInte.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
         donnee.setRougeInte(j);
+        mtp.setMenuCurrent(menuCouleurChoixInte);
       }
     }
     );
@@ -73,12 +76,13 @@ void creeMenuCouleurUnInte() {
 
 void creeMenuCouleurDeuxInte() {
   //menuCouleurDeux
-   menuCouleurDeuxInte.addTitle( "V : " + donnee.getVertInte());
-  for (int i = 0; i<256; i++) {
+  menuCouleurDeuxInte.addTitle( "V : " + donnee.getVertInte());
+  for (int i = 0; i<256; i=i+5) {
     final int j = i;
     menuCouleurDeuxInte.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
         donnee.setVertInte(j);
+        mtp.setMenuCurrent(menuCouleurChoixInte);
       }
     }
     );
@@ -88,12 +92,13 @@ void creeMenuCouleurDeuxInte() {
 
 void creeMenuCouleurTroisInte() {
   //menuCouleurTrois
-   menuCouleurTroisInte.addTitle("B : " + donnee.getBleuInte());
-  for (int i = 0; i<256; i++) {
+  menuCouleurTroisInte.addTitle("B : " + donnee.getBleuInte());
+  for (int i = 0; i<256; i=i+5) {
     final int j = i;
     menuCouleurTroisInte.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
         donnee.setBleuInte(j);
+        mtp.setMenuCurrent(menuCouleurChoixInte);
       }
     }
     );
@@ -104,7 +109,7 @@ void creeMenuCouleurTroisInte() {
 
 void creeMenuCouleurChoixInte() {
   //menuCouleurChoix
-  menuCouleurChoixInte.addTitle("R : " + donnee.getRougeInte() + "V : " + donnee.getVertInte() + "B : " + donnee.getBleuInte());
+  menuCouleurChoixInte.addTitle("R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte());
   menuCouleurChoixInte.addButton("R", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuCouleurUnInte);
@@ -118,7 +123,7 @@ void creeMenuCouleurChoixInte() {
     }
   }
   );
-menuCouleurChoixInte.addButton("B", new ButtonListener() {
+  menuCouleurChoixInte.addButton("B", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuCouleurTroisInte);
     }
@@ -135,57 +140,60 @@ menuCouleurChoixInte.addButton("B", new ButtonListener() {
 
 void creeMenuCouleurUnExt() {
   //menuCouleurUn
-    menuCouleurUnExt.addTitle("R : " + donnee.getRougeExt());
+  menuCouleurUnExt.addTitle("R : " + donnee.getRougeExt());
 
-  for (int i = 0; i<256; i++) {
+  for (int i = 0; i<256; i=i+5) {
     final int j = i;
     menuCouleurUnExt.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
         donnee.setRougeExt(j);
+        mtp.setMenuCurrent(menuCouleurChoixExt);
       }
     }
     );
   }
-menuCouleurUnInte.addTitle(""+donnee.getRougeExt());
+  menuCouleurUnInte.addTitle(""+donnee.getRougeExt());
 }
 
 
 void creeMenuCouleurDeuxExt() {
   //menuCouleurDeux
-    menuCouleurDeuxExt.addTitle("V : " + donnee.getVertExt());
+  menuCouleurDeuxExt.addTitle("V : " + donnee.getVertExt());
 
-  for (int i = 0; i<256; i++) {
+  for (int i = 0; i<256; i=i+5) {
     final int j = i;
     menuCouleurDeuxExt.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
         donnee.setVertExt(j);
+        mtp.setMenuCurrent(menuCouleurChoixExt);
       }
     }
     );
   }
-menuCouleurUnInte.addTitle(""+donnee.getVertExt());
+  menuCouleurUnInte.addTitle(""+donnee.getVertExt());
 }
 
 void creeMenuCouleurTroisExt() {
   //menuCouleurTrois
-    menuCouleurTroisExt.addTitle( "B : " + donnee.getBleuExt());
+  menuCouleurTroisExt.addTitle( "B : " + donnee.getBleuExt());
 
-  for (int i = 0; i<256; i++) {
+  for (int i = 0; i<256; i=i+5) {
     final int j = i;
     menuCouleurTroisExt.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
         donnee.setBleuInte(j);
+        mtp.setMenuCurrent(menuCouleurChoixExt);
       }
     }
     );
   }
-menuCouleurUnInte.addTitle(""+donnee.getBleuExt());
+  menuCouleurUnInte.addTitle(""+donnee.getBleuExt());
 }
 
 
 void creeMenuCouleurChoixExt() {
   //menuCouleurChoix
-  menuCouleurChoixExt.addTitle("R : " + donnee.getRougeExt() + "V : " + donnee.getVertExt() + "B : " + donnee.getBleuExt());
+  menuCouleurChoixExt.addTitle("R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt());
   menuCouleurChoixExt.addButton("R", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuCouleurUnExt);
@@ -199,9 +207,15 @@ void creeMenuCouleurChoixExt() {
     }
   }
   );
-menuCouleurChoixExt.addButton("B", new ButtonListener() {
+  menuCouleurChoixExt.addButton("B", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuCouleurTroisExt);
+    }
+  }
+  );
+  menuCouleurChoixExt.addButton("Retour", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuPinceau);
     }
   }
   );
@@ -292,7 +306,22 @@ void creeMenuPinceau() {
   }
   );
 }
+void creeMenuEpaisseur(){
+  for (int i = 0; i < 36; i++) {
+    final int j = i;
+    menuForme.addButton(j+"", new ButtonListener() {
+      public void buttonListener() {
+        donnee.setEpaisseur(j);
+        mtp.setMenuCurrent(menuPinceau);
 
+        /*stroke(donnee.getCouleur());
+         fill(donnee.getCouleur());
+         dessineForme(j, new Couleur(donnee.getCouleur()));
+         */
+      }
+    }
+    );
+}
 void creeMenuForme() {
   //menuForme
   ArrayList<String> listeForme = creeListeDeForme();
@@ -301,6 +330,9 @@ void creeMenuForme() {
     final int j = i;
     menuForme.addButton(listeForme.get(i), new ButtonListener() {
       public void buttonListener() {
+        donnee.setForme(j);
+        mtp.setMenuCurrent(menuPinceau);
+
         /*stroke(donnee.getCouleur());
          fill(donnee.getCouleur());
          dessineForme(j, new Couleur(donnee.getCouleur()));
@@ -413,7 +445,7 @@ void changeMenu(int menuCour) {
 public class Donnee {
   public int MAXINT = 10;
   private int[] inte, ext; 
-  private int menu, forme;
+  private int menu, forme,epaisseur;
   private String nomJoueur;
   public Donnee() {
     inte = new int[]{0, 0, 0};
@@ -421,8 +453,14 @@ public class Donnee {
     this.nomJoueur = "";
     this.menu = 0;
     this.forme = 0;
+    this.epaisseur = 2;
   }
-
+  public void setEpaisseur(int cour){
+    this.epaisseur = cour;
+  }
+  public int getEpaisseur(){
+   return this.epaisseur; 
+  }
   public color getCouleurInte() {
     return color(inte[0], inte[1], inte[2]);
   }
@@ -432,18 +470,28 @@ public class Donnee {
   }
   public void setRougeInte(int rouge) {
     this.inte[0] = rouge;
+    menuCouleurChoixInte.addTitle("R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte());
+    menuCouleurUnInte.addTitle("R : " + donnee.getRougeInte());
+
+    
   }
   public int getVertInte() {
     return inte[1];
   }
   public void setVertInte(int vert) {
     this.inte[1] = vert;
+    menuCouleurChoixInte.addTitle("R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte());
+    menuCouleurDeuxInte.addTitle("V : " + donnee.getVertInte());
+    
   }
   public int getBleuInte() {
     return inte[2];
   }
   public void setBleuInte(int bleu) {
-    this.inte[2] = bleu;
+        this.inte[2] = bleu;
+
+    menuCouleurChoixInte.addTitle("R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte());
+    menuCouleurTroisInte.addTitle("B : " + donnee.getBleuInte());
   }
 
   public color getCouleurExt() {
@@ -455,18 +503,27 @@ public class Donnee {
   }
   public void setRougeExt(int rouge) {
     this.ext[0] = rouge;
+    menuCouleurChoixExt.addTitle("R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt());
+    menuCouleurUnExt.addTitle( "R : " + donnee.getBleuExt());
+    
   }
   public int getVertExt() {
     return ext[1];
   }
   public void setVertExt(int vert) {
     this.ext[1] = vert;
+    menuCouleurChoixExt.addTitle("R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt());
+    menuCouleurDeuxExt.addTitle( "V : " + donnee.getVertExt());
+    
   }
   public int getBleuExt() {
     return ext[2];
   }
   public void setBleuExt(int bleu) {
     this.ext[2] = bleu;
+    menuCouleurChoixExt.addTitle("R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt());
+    menuCouleurTroisExt.addTitle( "B : " + donnee.getBleuExt());
+    
   }
   public String getNomJoueur() {
     return nomJoueur;

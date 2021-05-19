@@ -16,7 +16,7 @@ Menu menuSauv ;
 Menu menuChargement;
 Menu menuPinceau;
 Menu menuValeur;
-
+Menu menuEpaisseur;
 
 
 void setup() {
