@@ -25,6 +25,31 @@ void creeMenu() {
   menuChoixForme = new  Menu(reglageLightTheme);
   menuTailleMosaique = new  Menu(reglageLightTheme);
   menuChoixImage = new  Menu(reglageLightTheme);
+  menuNbMosaique = new  Menu(reglageLightTheme);
+}
+
+void creeMenuNbMosaique() {
+  menuChoixForme.addButton("peu", new ButtonListener() {
+    public void buttonListener() {
+      donnee.setNbFormeMosaique(50);
+      mtp.setMenuCurrent(menuMosaique);
+    }
+  }
+  );
+  menuChoixForme.addButton("moyen", new ButtonListener() {
+    public void buttonListener() {
+      donnee.setNbFormeMosaique(100);
+      mtp.setMenuCurrent(menuMosaique);
+    }
+  }
+  );
+  menuChoixForme.addButton("beaucoup", new ButtonListener() {
+    public void buttonListener() {
+      donnee.setNbFormeMosaique(150);
+      mtp.setMenuCurrent(menuMosaique);
+    }
+  }
+  );
 }
 void creeMenuChoixImage() {
   String cheminFichier = getCheminDossier("image");
@@ -42,9 +67,14 @@ void creeMenuChoixImage() {
       final String cour = listeNomFichier[i];
       menuChoixImage.addButton(listeNomFichier[i], new ButtonListener() {
         public void buttonListener() {
+<<<<<<< Updated upstream
           setImage("image/"+cour);
           mtp.setMenuCurrent(menuMosaique);
 
+=======
+          setImage("image/" + cour);
+          mtp.setMenuCurrent(menuMosaique);
+>>>>>>> Stashed changes
         }
       }
       );
@@ -125,24 +155,22 @@ void creeMenuMosaique() {
     }
   }
   );
-    menuMosaique.addButton("affiche : " + donnee.getAfficheImage(), new ButtonListener() {
+  menuMosaique.addButton("affiche : " + donnee.getAfficheImage(), new ButtonListener() {
     public void buttonListener() {
       donnee.setAfficheImage(!donnee.getAfficheImage());
-      menuMosaique.renameButton(3,"affiche : " + donnee.getAfficheImage());
+      menuMosaique.renameButton(3, "affiche : " + donnee.getAfficheImage());
       afficheImage();
-      
     }
   }
   );
   menuMosaique.addButton("lancer", new ButtonListener() {
     public void buttonListener() {
-      for(int i = 0; i< 204;i++){
-      dessineMosaique(donnee.getChoixFormeMosaique(), donnee.getTailleMosaique());
-      }  
-  }
+      for (int i = 0; i< donnee.getNbFormeMosaique(); i++) {
+        dessineMosaique(donnee.getChoixFormeMosaique(), donnee.getTailleMosaique());
+      }
+    }
   }
   );
-
 }
 
 
@@ -464,12 +492,12 @@ void creeMenuCouleurChoixExt() {
   );
 }
 void creeMenuValeur() {
-  menuValeur.addButton("couleurInt", new ButtonListener() {
+  menuValeur.addButton("Int : "+ "R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte(), new ButtonListener() {
     public void buttonListener() {
     }
   }
   );
-  menuValeur.addButton("couleurExt", new ButtonListener() {
+  menuValeur.addButton("Ext : "+ "R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt(), new ButtonListener() {
     public void buttonListener() {
     }
   }
@@ -485,19 +513,20 @@ void creeMenuValeur() {
     }
   }
   );
+  menuValeur.addButton("zone: "+ donnee.getZone(), new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+  menuValeur.addButton(donnee.getNomForme(), new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
 
-  menuValeur.addButton("formeActu", new ButtonListener() {
-    public void buttonListener() {
-    }
-  }
-  );
-  menuValeur.addButton("choix", new ButtonListener() {
-    public void buttonListener() {
-    }
-  }
-  );
   menuValeur.addButton("Retour", new ButtonListener() {
     public void buttonListener() {
+      mtp.setMenuCurrent(menuPinceau);
     }
   }
   );
@@ -690,7 +719,7 @@ void changeMenu(int menuCour) {
 public class Donnee {
   public int MAXINT = 10, PETIT = 0, MOYEN = 1, GRAND = 2;
   private int[] inte, ext; 
-  private int menu, forme, epaisseur, tailleForme, zone, tailleMosaique, choixFormeMosaique;
+  private int menu, forme, epaisseur, tailleForme, zone, tailleMosaique, choixFormeMosaique, nbFormeMosaique;
   private String nomJoueur;
   private Boolean afficheImage;
   public Donnee() {
@@ -705,14 +734,21 @@ public class Donnee {
     this.tailleMosaique = 1;
     this.choixFormeMosaique = 6;//aléatoire
     this.afficheImage = false;
+    this.nbFormeMosaique = 50;
   }
-  public void setAfficheImage(Boolean cour){
+  public void setNbFormeMosaique(int cour) {
+    this.nbFormeMosaique = cour;
+  }
+  public int getNbFormeMosaique() {
+    return this.nbFormeMosaique;
+  }
+  public void setAfficheImage(Boolean cour) {
     this.afficheImage = cour;
   }
-  public Boolean getAfficheImage(){
+  public Boolean getAfficheImage() {
     return this.afficheImage;
   }
-  
+
   public void setChoixFormeMosaique(int cour) {
     this.choixFormeMosaique = cour;
   }
@@ -729,18 +765,51 @@ public class Donnee {
 
   public void setZone(int cour) {
     this.zone = cour;
+    String texte;
+    switch(cour) {
+      case(0):
+      texte = "ensemble de l'écran";
+      case(1):
+      texte = "gauche";
+
+      case(2):
+      texte = "centre";
+      case(3):
+      texte = "droite";
+      case(4):
+      texte = "haut gauche";
+      case(5):
+      texte = "haut centre";
+      case(6):
+      texte = "haut droite";
+      case(7):
+      texte = "centre gauche";
+      case(8):
+      texte = "centre";
+      case(9):
+      texte = "centre droite";
+      case(10):
+      texte = "bas gauche";
+      case(11):
+      texte = "bas centre";
+      case(12):
+      texte = "bas droite";
+    }
+    menuValeur.renameButton(4, "zone: "+ donnee.getZone());
   }
   public int getZone() {
     return this.zone;
   }
   public void setTailleForme(int cour) {
     this.tailleForme = cour;
+    menuValeur.renameButton(3, "taille forme : "+ donnee.getTailleForme());
   }
   public int getTailleForme() {
     return this.tailleForme;
   }
   public void setEpaisseur(int cour) {
     this.epaisseur = cour;
+    menuValeur.renameButton(2, "epaisseur : "+ donnee.getEpaisseur());
   }
   public int getEpaisseur() {
     return this.epaisseur;
@@ -754,6 +823,8 @@ public class Donnee {
   }
   public void setRougeInte(int rouge) {
     this.inte[0] = rouge;
+    menuValeur.renameButton(1, "Int : "+ "R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte());
+
     menuCouleurChoixInte.addTitle("R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte());
     menuCouleurUnInte.addTitle("R : " + donnee.getRougeInte());
   }
@@ -762,6 +833,8 @@ public class Donnee {
   }
   public void setVertInte(int vert) {
     this.inte[1] = vert;
+    menuValeur.renameButton(1, "Int : "+ "R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte());
+
     menuCouleurChoixInte.addTitle("R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte());
     menuCouleurDeuxInte.addTitle("V : " + donnee.getVertInte());
   }
@@ -770,7 +843,7 @@ public class Donnee {
   }
   public void setBleuInte(int bleu) {
     this.inte[2] = bleu;
-
+    menuValeur.renameButton(1, "Int : "+ "R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte());
     menuCouleurChoixInte.addTitle("R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte());
     menuCouleurTroisInte.addTitle("B : " + donnee.getBleuInte());
   }
@@ -784,6 +857,8 @@ public class Donnee {
   }
   public void setRougeExt(int rouge) {
     this.ext[0] = rouge;
+    menuValeur.renameButton(0, "Ext : "+ "R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt());
+
     menuCouleurChoixExt.addTitle("R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt());
     menuCouleurUnExt.addTitle( "R : " + donnee.getBleuExt());
   }
@@ -792,6 +867,8 @@ public class Donnee {
   }
   public void setVertExt(int vert) {
     this.ext[1] = vert;
+    menuValeur.renameButton(0, "Ext : "+ "R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt());
+
     menuCouleurChoixExt.addTitle("R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt());
     menuCouleurDeuxExt.addTitle( "V : " + donnee.getVertExt());
   }
@@ -800,6 +877,7 @@ public class Donnee {
   }
   public void setBleuExt(int bleu) {
     this.ext[2] = bleu;
+    menuValeur.renameButton(0, "Ext : "+ "R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt());
     menuCouleurChoixExt.addTitle("R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt());
     menuCouleurTroisExt.addTitle( "B : " + donnee.getBleuExt());
   }
@@ -811,6 +889,8 @@ public class Donnee {
   }
   public void setForme(int forme) {
     this.forme = forme;
+    menuValeur.renameButton(5, donnee.getNomForme());
+
     //renameforme
   }
   public int getForme() {

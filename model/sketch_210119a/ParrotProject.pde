@@ -23,6 +23,7 @@ Menu menuMosaique;
 Menu menuChoixForme;
 Menu menuTailleMosaique;
 Menu menuChoixImage;
+Menu menuNbMosaique;
 
 private ManipulationImage manipImage;
 private int w = 800, h = 450;
@@ -71,6 +72,7 @@ void setup() {
   creeMenuChoixForme();
   creeMenuTailleMosaique();
   creeMenuChoixImage();
+  creeMenuNbMosaique();
   
 
 
