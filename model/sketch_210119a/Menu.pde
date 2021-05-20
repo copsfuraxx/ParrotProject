@@ -30,6 +30,29 @@ void creeMenuChoixImage(){
 }
 
 void creeMenuChoixForme(){
+   menuChoixForme.addButton("Aléatoire", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuMosaique);
+    }
+  }
+  );
+   ArrayList<String> listeForme = creeListeDeForme();
+
+  for (int i = 0; i < listeForme.size(); i++) {
+    final int j = i;
+    menuChoixForme.addButton(listeForme.get(i), new ButtonListener() {
+      public void buttonListener() {
+        donnee.setForme(j);
+        mtp.setMenuCurrent(menuMosaique);
+
+        /*stroke(donnee.getCouleur());
+         fill(donnee.getCouleur());
+         dessineForme(j, new Couleur(donnee.getCouleur()));
+         */
+      }
+    }
+    );
+  }
   
 }
 
@@ -216,7 +239,7 @@ void creeMenuDemarrage() {
 
   menuDemarrage.addButton("Mosaique", new ButtonListener() {
     public void buttonListener() {
-      //to do
+      mtp.setMenuCurrent(menuMosaique);
     }
   }
   );
