@@ -26,23 +26,24 @@ void creeMenu() {
   menuTailleMosaique = new  Menu(reglageLightTheme);
   menuChoixImage = new  Menu(reglageLightTheme);
 }
-void creeMenuChoixImage(){
+void creeMenuChoixImage() {
 }
 
-void creeMenuChoixForme(){
-   menuChoixForme.addButton("Aléatoire", new ButtonListener() {
+void creeMenuChoixForme() {
+  menuChoixForme.addButton("Aléatoire", new ButtonListener() {
     public void buttonListener() {
+      donnee.setChoixFormeMosaique(5);
       mtp.setMenuCurrent(menuMosaique);
     }
   }
   );
-   ArrayList<String> listeForme = creeListeDeForme();
+  ArrayList<String> listeForme = creeListeDeForme();
 
-  for (int i = 0; i < listeForme.size(); i++) {
+  for (int i = 0; i < 5; i++) {
     final int j = i;
     menuChoixForme.addButton(listeForme.get(i), new ButtonListener() {
       public void buttonListener() {
-        donnee.setForme(j);
+        donnee.setChoixFormeMosaique(j);
         mtp.setMenuCurrent(menuMosaique);
 
         /*stroke(donnee.getCouleur());
@@ -53,7 +54,6 @@ void creeMenuChoixForme(){
     }
     );
   }
-  
 }
 
 
@@ -659,7 +659,7 @@ void changeMenu(int menuCour) {
 public class Donnee {
   public int MAXINT = 10, PETIT = 0, MOYEN = 1, GRAND = 2;
   private int[] inte, ext; 
-  private int menu, forme, epaisseur, tailleForme, zone, tailleMosaique;
+  private int menu, forme, epaisseur, tailleForme, zone, tailleMosaique, choixFormeMosaique;
   private String nomJoueur;
   public Donnee() {
     inte = new int[]{0, 0, 0};
@@ -671,7 +671,15 @@ public class Donnee {
     this.tailleForme = 1;
     this.zone = 0;
     this.tailleMosaique = 1;
+    this.choixFormeMosaique = 5;//aléatoire
   }
+  public void setChoixFormeMosaique(int cour) {
+    this.choixFormeMosaique = cour;
+  }
+  public int getChoixFormeMosaique() {
+    return this.choixFormeMosaique;
+  }
+
   public void setTailleMosaique(int cour) {
     this.tailleMosaique = cour;
   }
