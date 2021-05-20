@@ -31,7 +31,8 @@ class ManipulationImage{
     float x,y;
     x = random(0,fenetreWidth);
     y = random(0,fenetreHeight);
-    getPinceau().setCouleur(getColor(int(x),int(y)));
+    Couleur c = new Couleur(getColor(int(x),int(y)));
+    getPinceau().setCouleur(c);
     if (forme == -1){forme = int(random(0,6));}
     switch(forme){
       case 0: dessineCarre(x, y,  taille); break;
