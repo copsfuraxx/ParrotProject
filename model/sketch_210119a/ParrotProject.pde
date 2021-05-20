@@ -60,6 +60,10 @@ void setup() {
   creeMenuValeur();
   creeMenuTailleForme();
   creeMenuZone();
+  creeMenuMosaique();
+  creeMenuChoixForme();
+  creeMenuTailleMosaique();
+  creeMenuChoixImage();
   
 
 
