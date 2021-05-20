@@ -17,6 +17,8 @@ Menu menuChargement;
 Menu menuPinceau;
 Menu menuValeur;
 Menu menuEpaisseur;
+Menu menuTailleForme;
+Menu menuZone;
 
 
 void setup() {
@@ -50,6 +52,11 @@ void setup() {
   creeMenuSauv();
   creeMenuChargement();
   creeMenuPinceau();
+  creeMenuEpaisseur();
+  creeMenuValeur();
+  creeMenuTailleForme();
+  creeMenuZone();
+  
 
 
   mtp.setMenuCurrent(menuDemarrage);
