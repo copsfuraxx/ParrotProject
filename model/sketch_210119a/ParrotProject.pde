@@ -133,12 +133,15 @@ public void dessineMosaique(int forme, int taille){
 }
 
 private boolean imageAffiche = false;
-
+private String tempoScreenshoot = "tempoScreenshot.png";
 public void afficheImage(){
   PImage img = manipImage.getImage();
   if(img != null){
-    if (!imageAffiche){background(img); imageAffiche = true;}
-    else{background(c); imageAffiche = false;} //si l'image est déjà affiché on l'efface
+    if (!imageAffiche){
+      save(tempoScreenshoot);
+      background(img);
+      imageAffiche = true;}
+    else{background(loadImage(tempoScreenshoot)); imageAffiche = false;} //si l'image est déjà affiché on l'efface
   }
 }
 
