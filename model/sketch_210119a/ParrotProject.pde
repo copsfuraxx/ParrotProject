@@ -24,6 +24,8 @@ Menu menuChoixForme;
 Menu menuTailleMosaique;
 Menu menuChoixImage;
 
+private ManipulationImage manipImage;
+private int h,w;
 
 void setup() {
   background(255, 255, 255);
@@ -34,7 +36,9 @@ void setup() {
   }
   save=new Save();
   pinceau = new Pinceau();
-
+  w = 1300;
+  h = 600;
+  manipImage = new ManipulationImage(w,h);
   creeMenu();
 
   int[] size = new int[2];
@@ -75,7 +79,7 @@ void setup() {
 }
 
 public void settings() {
-  size(1300, 600);
+  size(w, h);
   hmin=lmax=0;
   hmax=600;
   lmax=1300;
@@ -99,7 +103,7 @@ void draw() {
       delay(1000);
       firstConnection = true;
       background(c);
-      println("test");
+      //println("test");
     }
     getInfoArduino();  
     prendreScreenshot();
@@ -116,6 +120,20 @@ void draw() {
   }
   // dessineTest(getValModifPot());
   gestionControleur();
+}
+
+private boolean imageAffiche = false;
+
+public void afficheImage(){
+  PImage img = manipImage.getImage();
+  if(img != null){
+    if (!imageAffiche){background(img); imageAffiche = true;}
+    else{background(c); imageAffiche = false;} //si l'image est déjà affiché on l'efface
+  }
+}
+
+public Pinceau getPinceau(){
+  return pinceau;
 }
 
 private void afficheForme() {
