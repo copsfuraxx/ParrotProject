@@ -74,6 +74,56 @@ public void dessineFormeParIdDeListe(int id){
   }
 }
 
+public void dessineFormeParIdDeListe(int id, int taille){
+  switch(id) {
+    case 0:
+      dessineCarre(taille);
+      break;
+    case 1:
+      dessineRectangle(taille);
+      break;
+    case 2:
+      dessineTriangle(taille);
+      break;
+    case 3:
+      dessineEllipse(taille);
+      break;
+    case 4:
+      dessineCercle(taille);
+      break;
+    case 5:
+      dessinePoly(taille);
+      break;
+    case 6:
+      koch();
+      break;
+    case 7:
+      cesaro();
+      break;
+    case 8:
+      fractalKock();
+      break;
+    case 9:
+      floconKoch();
+      break;
+    case 10:
+      fractaleTriangle();
+      break;
+    case 11:
+      fractaleCarre();
+      break;  
+    case 12:
+      fractalePoly();
+      break;
+     case 13:
+      spiralrOr();
+      break;
+     case 14:
+      courbeBezier();
+      break;
+  }
+}
+
 public void dessineForme(int id, Couleur c){
   pinceau.setCouleur(c);
   dessineFormeParIdDeListe(id);

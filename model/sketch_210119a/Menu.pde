@@ -503,7 +503,7 @@ void creeMenuValeur() {
     }
   }
   );
-  menuValeur.addButton("taille : " + getNomTaille(), new ButtonListener() {
+  menuValeur.addButton("taille : " + donnee.getNomTaille(), new ButtonListener() {
     public void buttonListener() {
     }
   }

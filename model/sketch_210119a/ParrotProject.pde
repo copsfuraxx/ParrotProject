@@ -286,28 +286,32 @@ if (int(keyCode)==98){
 }
 if (int(keyCode)==100){
   //rouge
+  /*gros = (50*fenetreHeight)/350;
+    petit = (7*fenetreHeight)/350; 
+    moyen = (gros+petit)/2;*/
   pinceau=new Pinceau(new Couleur(donnee.getCouleurExt()),new Couleur(donnee.getCouleurInte()),donnee.getEpaisseur());
-  dessineFormeParIdDeListe(donnee.getForme());
-  switch(donnee.getZone()){
-    case(1):lmin=0;lmax=0+(donnee.getTailleForme()+1)*width/3;break;
-    case(2):lmin=width/3;lmax=lmin+(donnee.getTailleForme()+1)*width/3;break;
-    case(3):lmin=width/3*2;lmax=lmin+(donnee.getTailleForme()+1)*width/3;break;
-    case(4):lmin=0;lmax=0+(donnee.getTailleForme()+1)*width/3;
-      hmin=0;hmax=0+(donnee.getTailleForme()+1)*height/3;
-      break;
-    case(5):lmin=width/3;lmax=lmin+(donnee.getTailleForme()+1)*width/3;
-      hmin=height/3;hmax=hmin+(donnee.getTailleForme()+1)*height/3;
-      break;
-    case(6):lmin=width/3*2;lmax=lmin+(donnee.getTailleForme()+1)*width/3;
-      hmin=height/3*2;hmax=hmin+(donnee.getTailleForme()+1)*height/3;
-      break;
-    case(7):break;
-    case(8):break;
-    case(9):break;
-    case(10):break;
-    case(11):break;
-    case(12):break;
+  int taille=0;
+  switch(donnee.getTailleForme()){
+    case 0:taille=(7*height)/350;break;
+    case 1:taille=((50*height)/350+(7*height)/350)/2;break;
+    case 2:taille=(50*height)/350;break;
   }
+  switch(donnee.getZone()){
+    case 0:lmin=0;lmax=width;hmin=0;hmax=height;break;
+    case(1):lmin=0;lmax=width/2;hmin=0;hmax=height;break;
+    case(2):lmin=width/3;lmax=width*2/3;hmin=0;hmax=height;break;
+    case(3):lmin=width/2;lmax=width;hmin=0;hmax=height;break;
+    case(4):lmin=0;lmax=width/3;hmin=0;hmax=height/3;break;
+    case(5):lmin=width/3;lmax=width*2/3;hmin=0;hmax=height/3;break;
+    case(6):lmin=width*2/3;lmax=width;hmin=0;hmax=height/3;break;
+    case(7):lmin=0;lmax=width/3;hmin=height/3;hmax=height*2/3;break;
+    case(8):lmin=width/3;lmax=width*2/3;hmin=height/3;hmax=height*2/3;break;
+    case(9):lmin=width*2/3;lmax=width;hmin=height/3;hmax=height*2/3;break;
+    case(10):lmin=0;lmax=width/3;hmin=0;hmin=height*2/3;hmax=height;break;
+    case(11):lmin=width/3;lmax=width*2/3;hmin=height*2/3;hmax=height;break;
+    case(12):lmin=width*2/3;lmax=width;hmin=height*2/3;hmax=height;break;
+  }
+  dessineFormeParIdDeListe(donnee.getForme(),taille);
 }
 if (int(keyCode)==102){
   //vert
