@@ -19,6 +19,10 @@ Menu menuValeur;
 Menu menuEpaisseur;
 Menu menuTailleForme;
 Menu menuZone;
+Menu menuMosaique;
+Menu menuChoixForme;
+Menu menuTailleMosaique;
+Menu menuChoixImage;
 
 
 void setup() {

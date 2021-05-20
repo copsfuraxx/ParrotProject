@@ -2,8 +2,8 @@ void creeMenu() {
   Settings reglageLightThemeWithTitle = new Settings(Settings.LIGHTTHEMEWITHTITLE);
   Settings reglageLightTheme = new Settings(Settings.LIGHTTHEME);
 
-  reglageLightThemeWithTitle.setSizeText(16);
-  reglageLightThemeWithTitle.setxTitle(50);
+  reglageLightThemeWithTitle.setSizeText(32);
+  reglageLightThemeWithTitle.setxTitle(15);
   menuDemarrage = new Menu(reglageLightTheme);
   menuCouleurUnInte = new Menu(reglageLightThemeWithTitle);
   menuCouleurDeuxInte = new Menu(reglageLightThemeWithTitle);
@@ -21,8 +21,60 @@ void creeMenu() {
   menuTailleForme = new  Menu(reglageLightTheme);
   menuZone = new  Menu(reglageLightTheme);
   menuValeur = new  Menu(reglageLightTheme);
+  menuMosaique = new  Menu(reglageLightTheme);
+  menuChoixForme = new  Menu(reglageLightTheme);
+  menuTailleMosaique = new  Menu(reglageLightTheme);
+  menuChoixImage = new  Menu(reglageLightTheme);
 }
 
+void creeMenuTailleMosaique() {
+  menuTailleMosaique.addButton("Petit", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuMosaique);
+    }
+  }
+  );
+
+  menuTailleMosaique.addButton("Moyen", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuMosaique);
+    }
+  }
+  );
+  menuTailleMosaique.addButton("Grand", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuMosaique);
+    }
+  }
+  );
+}
+
+
+void creeMenuMosaique(){
+   menuMosaique.addButton("choix des formes", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuChoixForme);
+    }
+  }
+  );
+  menuMosaique.addButton("choix de la taille", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuTailleMosaique);
+    }
+  }
+  );
+  menuMosaique.addButton("choix de l'image", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuChoixImage);
+    }
+  }
+  );
+  menuMosaique.addButton("lancer", new ButtonListener() {
+    public void buttonListener() {
+    }
+  }
+  );
+}
 
 
 void creeMenuZone() {
@@ -182,7 +234,7 @@ void creeMenuDemarrage() {
 void creeMenuCouleurUnInte() {
   //menuCouleurUn
   menuCouleurUnInte.addTitle("R : " + donnee.getRougeInte());
-  for (int i = 0; i<256; i=i+5) {
+  for (int i = 0; i<256; i=i+10) {
     final int j = i;
     menuCouleurUnInte.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
@@ -199,7 +251,7 @@ void creeMenuCouleurUnInte() {
 void creeMenuCouleurDeuxInte() {
   //menuCouleurDeux
   menuCouleurDeuxInte.addTitle( "V : " + donnee.getVertInte());
-  for (int i = 0; i<256; i=i+5) {
+  for (int i = 0; i<256; i=i+10) {
     final int j = i;
     menuCouleurDeuxInte.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
@@ -215,7 +267,7 @@ void creeMenuCouleurDeuxInte() {
 void creeMenuCouleurTroisInte() {
   //menuCouleurTrois
   menuCouleurTroisInte.addTitle("B : " + donnee.getBleuInte());
-  for (int i = 0; i<256; i=i+5) {
+  for (int i = 0; i<256; i=i+10) {
     final int j = i;
     menuCouleurTroisInte.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
@@ -264,7 +316,7 @@ void creeMenuCouleurUnExt() {
   //menuCouleurUn
   menuCouleurUnExt.addTitle("R : " + donnee.getRougeExt());
 
-  for (int i = 0; i<256; i=i+5) {
+  for (int i = 0; i<256; i=i+10) {
     final int j = i;
     menuCouleurUnExt.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
@@ -282,7 +334,7 @@ void creeMenuCouleurDeuxExt() {
   //menuCouleurDeux
   menuCouleurDeuxExt.addTitle("V : " + donnee.getVertExt());
 
-  for (int i = 0; i<256; i=i+5) {
+  for (int i = 0; i<256; i=i+10) {
     final int j = i;
     menuCouleurDeuxExt.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
@@ -299,11 +351,11 @@ void creeMenuCouleurTroisExt() {
   //menuCouleurTrois
   menuCouleurTroisExt.addTitle( "B : " + donnee.getBleuExt());
 
-  for (int i = 0; i<256; i=i+5) {
+  for (int i = 0; i<256; i=i+10) {
     final int j = i;
     menuCouleurTroisExt.addButton(i+"", new ButtonListener() {
       public void buttonListener() {
-        donnee.setBleuInte(j);
+        donnee.setBleuExt(j);
         mtp.setMenuCurrent(menuCouleurChoixExt);
       }
     }
@@ -417,6 +469,7 @@ void creeMenuPinceau() {
   );
   menuPinceau.addButton("Zone", new ButtonListener() {
     public void buttonListener() {
+      mtp.setMenuCurrent(menuZone);
     }
   }
   );
