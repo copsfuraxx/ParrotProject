@@ -20,6 +20,7 @@ void creeMenu() {
   menuEpaisseur = new  Menu(reglageLightTheme);
   menuTailleForme = new  Menu(reglageLightTheme);
   menuZone = new  Menu(reglageLightTheme);
+  menuValeur = new  Menu(reglageLightTheme);
 }
 
 
@@ -118,7 +119,7 @@ void creeMenuZone() {
   );
 }
 void creeMenuTailleForme() {
-  menuDemarrage.addButton("Petit", new ButtonListener() {
+  menuTailleForme.addButton("Petit", new ButtonListener() {
     public void buttonListener() {
       donnee.setTailleForme(donnee.PETIT);
       mtp.setMenuCurrent(menuPinceau);
@@ -126,14 +127,14 @@ void creeMenuTailleForme() {
   }
   );
 
-  menuDemarrage.addButton("Moyen", new ButtonListener() {
+  menuTailleForme.addButton("Moyen", new ButtonListener() {
     public void buttonListener() {
       donnee.setTailleForme(donnee.MOYEN);
       mtp.setMenuCurrent(menuPinceau);
     }
   }
   );
-  menuDemarrage.addButton("Grand", new ButtonListener() {
+  menuTailleForme.addButton("Grand", new ButtonListener() {
     public void buttonListener() {
       donnee.setTailleForme(donnee.GRAND);
       mtp.setMenuCurrent(menuPinceau);
@@ -433,9 +434,9 @@ void creeMenuPinceau() {
   );
 }
 void creeMenuEpaisseur() {
-  for (int i = 0; i < 36; i++) {
+  for (int i = 1; i < 36; i++) {
     final int j = i;
-    menuForme.addButton(j+"", new ButtonListener() {
+    menuEpaisseur.addButton(j+"", new ButtonListener() {
       public void buttonListener() {
         donnee.setEpaisseur(j);
         mtp.setMenuCurrent(menuPinceau);
