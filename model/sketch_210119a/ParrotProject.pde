@@ -25,7 +25,7 @@ Menu menuTailleMosaique;
 Menu menuChoixImage;
 
 private ManipulationImage manipImage;
-private int w = 1300, h = 600;
+private int w = 800, h = 450;
 public void settings() {
   size(w, h);
   hmin=lmax=0;
@@ -41,7 +41,7 @@ void setup() {
   }
   save=new Save();
   pinceau = new Pinceau();
-
+  save("image/config");
   creeMenu();
 
   int[] size = new int[2];
