@@ -42,7 +42,8 @@ void setup() {
   }
   save=new Save();
   pinceau = new Pinceau();
-  save("image/config");
+  PImage photoTest = loadImage("test.JPG");
+  photoTest.save("image/test.JPG");
   creeMenu();
 
   int[] size = new int[2];
@@ -187,11 +188,17 @@ private void effaceDessin() {
     appuyeBoutonVert = false;
   }
   if (boutonVertAppuye() && appuyeBoutonVert == false) { //quand on appuie sur le bouton jaune
-    save.supprimeHistorique();
-    background(c);
+    cleanFrame();
     appuyeBoutonVert = true;
   }
 }
+
+public void cleanFrame(){
+    save.supprimeHistorique();
+    background(c);  
+}
+
+
 
 /* JOYSTICK VERSION */
 
@@ -235,7 +242,7 @@ private void gestionControleur() {
   }
   dessineFormeParIdDeListe(donnee.getForme(),taille);
   }
-  if (boutonBleuAppuye() && (appuyeBoutonBleu == false )) { //quand on appuie sur le bouton bleu
+  if (boutonBleuAppuye() && (appuyeBoutonBleu == false || mtp.getMenuCurrent() == menuMosaique)) { //quand on appuie sur le bouton bleu
     mtp.getMenuCurrent().click();
     appuyeBoutonBleu = true;
   }
@@ -243,58 +250,27 @@ private void gestionControleur() {
 }
 
 
-
-private int indexY = 0;
 private void gestionJoystick() {
   int jy = getJoystickY();
   int jx = getJoystickX();
-
-  /*if (jy < 5 && jy > -5){
-   indexY = 0;
-   }
-   
-   if (jy <= 25 && jy > 0){
-   indexY ++;
-   }
-   if (jy < 45 && jy > 26){
-   indexY += 2;
-   }
-   if(jy >= 45){
-   indexY += 6;
-   }
-   
-   if (jy <= -25 && jy < 0){
-   indexY --;
-   }
-   if (jy < -45 && jy < -26){
-   indexY -= 2;
-   }
-   if(jy <= -45){
-   indexY -= 6;
-   }*/
 
 
   int time = 250;
   if (jy >= 40) {
     mtp.getMenuCurrent().downCursor();
     delay(time);
-    //indexY = 25;
   }
   if (jy <= -40) {
     mtp.getMenuCurrent().upCursor();
     delay(time);
-    //indexY = -25;
   }
   if (jx >= 40) {
-    //donnee.gaucheCurseur();
-    println("gauche");
+    donnee.gaucheCurseur();
     delay(time);
-    //indexY = 25;
   }
   if (jx <= -40) {
-    //donnee.droiteCurseur();
+    donnee.droiteCurseur();
     delay(time);
-    //indexY = -25;
   }
 }
 void keyPressed(){
@@ -305,7 +281,7 @@ if (int(keyCode)==40){
   mtp.getMenuCurrent().downCursor();
 }
 if (int(keyCode)==39){
-  println("gauche");
+  //println("gauche");
  donnee.gaucheCurseur();
 }
 if (int(keyCode)==37){

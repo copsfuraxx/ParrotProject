@@ -166,6 +166,12 @@ void creeMenuMosaique() {
     }
   }
   );
+  menuMosaique.addButton("RETOUR", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuDemarrage);
+    }
+  }
+  );
 }
 
 
@@ -630,7 +636,7 @@ void creeMenuSauv() {
     }
     );
   }
-  menuSauv.addButton("retour", new ButtonListener() {
+  menuSauv.addButton("RETOUR", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuDemarrage);
     }
@@ -639,6 +645,9 @@ void creeMenuSauv() {
   menuSauv.addButton("SAUVER", new ButtonListener() {
     public void buttonListener() {
       save.save(donnee.nomJoueur);
+      mtp.setMenuCurrent(menuDemarrage);
+      menuChargement = new Menu(new Settings(Settings.LIGHTTHEME));
+      creeMenuChargement();
     }
   }
   );
@@ -661,7 +670,9 @@ void creeMenuChargement() {
       final String cour = listeNomFichier[i];
       menuChargement.addButton(listeNomFichier[i], new ButtonListener() {
         public void buttonListener() {
+          cleanFrame();
           save.load(cour);
+          mtp.setMenuCurrent(menuDemarrage);
         }
       }
       );
@@ -799,8 +810,8 @@ public class Donnee {
     this.tailleForme = cour;
     menuValeur.renameButton(3, "taille forme : "+ donnee.getTailleForme());
   }
-  public String getNomTaille(){
-    switch (this.tailleForme){
+  public String getNomTaille() {
+    switch (this.tailleForme) {
       case(0):
       return "petit";
       case(1):
@@ -918,7 +929,6 @@ public class Donnee {
     if (menu > this.MAXINT) {
       menu = 0;
     }
-    println("menu numero : " + this.menu);
     changeMenu(this.menu);
   }
 }
