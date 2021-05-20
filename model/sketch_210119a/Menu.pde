@@ -32,14 +32,14 @@ void creeMenuChoixImage() {
 void creeMenuChoixForme() {
   menuChoixForme.addButton("Aléatoire", new ButtonListener() {
     public void buttonListener() {
-      donnee.setChoixFormeMosaique(5);
+      donnee.setChoixFormeMosaique(-1);
       mtp.setMenuCurrent(menuMosaique);
     }
   }
   );
   ArrayList<String> listeForme = creeListeDeForme();
 
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 6; i++) {
     final int j = i;
     menuChoixForme.addButton(listeForme.get(i), new ButtonListener() {
       public void buttonListener() {
@@ -671,7 +671,7 @@ public class Donnee {
     this.tailleForme = 1;
     this.zone = 0;
     this.tailleMosaique = 1;
-    this.choixFormeMosaique = 5;//aléatoire
+    this.choixFormeMosaique = 6;//aléatoire
   }
   public void setChoixFormeMosaique(int cour) {
     this.choixFormeMosaique = cour;
