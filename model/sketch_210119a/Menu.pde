@@ -28,6 +28,7 @@ void creeMenu() {
   menuNbMosaique = new  Menu(reglageLightTheme);
 }
 
+
 void creeMenuNbMosaique() {
   menuChoixForme.addButton("peu", new ButtonListener() {
     public void buttonListener() {
@@ -67,14 +68,8 @@ void creeMenuChoixImage() {
       final String cour = listeNomFichier[i];
       menuChoixImage.addButton(listeNomFichier[i], new ButtonListener() {
         public void buttonListener() {
-<<<<<<< Updated upstream
           setImage("image/"+cour);
           mtp.setMenuCurrent(menuMosaique);
-
-=======
-          setImage("image/" + cour);
-          mtp.setMenuCurrent(menuMosaique);
->>>>>>> Stashed changes
         }
       }
       );
