@@ -9,7 +9,7 @@ class ManipulationImage{
   // stocke le format de la fenetre
   public ManipulationImage(int initFenetreWidth, int initFenetreHeight){
     fenetreWidth = initFenetreWidth;
-    fenetreHeight = initFenetreWidth;
+    fenetreHeight = initFenetreHeight;
     gros = (50*fenetreHeight)/350;
     petit = (7*fenetreHeight)/350; 
     moyen = (gros+petit)/2;
@@ -18,8 +18,8 @@ class ManipulationImage{
 
   //======= Methode
   
-  private void resizeImage(int w, int h){
-    img.resize(w, h);
+  private void resizeImage(){
+    img.resize(fenetreWidth, fenetreHeight);
   }
   
   public void nouvelleForme(int forme, int taille){
@@ -59,6 +59,6 @@ class ManipulationImage{
   
   public void setImage(String cheminImage){
     img = loadImage(cheminImage);
-    resizeImage(fenetreWidth, fenetreHeight);
+    resizeImage();
   }
 }

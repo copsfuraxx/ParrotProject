@@ -1,4 +1,4 @@
-import menuThreePoint.*;
+ import menuThreePoint.*;
 Animation anim;
 MenuThreePoint mtp;
 Donnee donnee = new Donnee();
@@ -25,8 +25,13 @@ Menu menuTailleMosaique;
 Menu menuChoixImage;
 
 private ManipulationImage manipImage;
-private int h,w;
-
+private int w = 1300, h = 600;
+public void settings() {
+  size(w, h);
+  hmin=lmax=0;
+  hmax=600;
+  lmax=1300;
+}
 void setup() {
   background(255, 255, 255);
   StringList instructions = getInstructionPourConnectionAuto();
@@ -36,9 +41,7 @@ void setup() {
   }
   save=new Save();
   pinceau = new Pinceau();
-  w = 1300;
-  h = 600;
-  manipImage = new ManipulationImage(w,h);
+
   creeMenu();
 
   int[] size = new int[2];
@@ -76,14 +79,11 @@ void setup() {
   strokeWeight(2);
   anim=new Animation1();
   frameRate(30);
+    manipImage = new ManipulationImage(w,h);
+
 }
 
-public void settings() {
-  size(w, h);
-  hmin=lmax=0;
-  hmax=600;
-  lmax=1300;
-}
+
 
 
 
@@ -120,6 +120,15 @@ void draw() {
   }
   // dessineTest(getValModifPot());
   gestionControleur();
+}
+
+public void setImage(String cheminImage){
+  manipImage.setImage(cheminImage);
+  print(manipImage.getImage().width);
+}
+
+public void dessineMosaique(int forme, int taille){
+  manipImage.nouvelleForme(forme, taille);
 }
 
 private boolean imageAffiche = false;
@@ -256,7 +265,6 @@ private void gestionJoystick() {
     delay(time);
     //indexY = -25;
   }
-  println(jx);
 }
 void keyPressed(){
 if (int(keyCode)==38){

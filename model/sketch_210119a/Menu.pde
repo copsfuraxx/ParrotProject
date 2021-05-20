@@ -27,6 +27,29 @@ void creeMenu() {
   menuChoixImage = new  Menu(reglageLightTheme);
 }
 void creeMenuChoixImage() {
+  String cheminFichier = getCheminDossier("image");
+  java.io.File dossierImage = new java.io.File(dataPath(cheminFichier));
+  String[] listeNomFichier= dossierImage.list();
+  menuChoixImage.addButton("menu", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuDemarrage);
+    }
+  }
+  );
+
+  if ( listeNomFichier.length > 0) {
+    for (int i = 0; i < listeNomFichier.length; i++) {
+      final String cour = listeNomFichier[i];
+      menuChoixImage.addButton(listeNomFichier[i], new ButtonListener() {
+        public void buttonListener() {
+          setImage("image/" + cour);
+                mtp.setMenuCurrent(menuMosaique);
+
+        }
+      }
+      );
+    }
+  }
 }
 
 void creeMenuChoixForme() {
@@ -102,11 +125,24 @@ void creeMenuMosaique() {
     }
   }
   );
-  menuMosaique.addButton("lancer", new ButtonListener() {
+    menuMosaique.addButton("affiche : " + donnee.getAfficheImage(), new ButtonListener() {
     public void buttonListener() {
+      donnee.setAfficheImage(!donnee.getAfficheImage());
+      menuMosaique.renameButton(3,"affiche : " + donnee.getAfficheImage());
+      afficheImage();
+      
     }
   }
   );
+  menuMosaique.addButton("lancer", new ButtonListener() {
+    public void buttonListener() {
+      for(int i = 0; i< 204;i++){
+      dessineMosaique(donnee.getChoixFormeMosaique(), donnee.getTailleMosaique());
+      }  
+  }
+  }
+  );
+
 }
 
 
@@ -589,18 +625,13 @@ void creeMenuChargement() {
   String cheminFichier = getCheminDossier("saves");
   java.io.File dossierSaves = new java.io.File(dataPath(cheminFichier));
   String[] listeNomFichier= dossierSaves.list();
-  menuChargement.addButton("menu->", new ButtonListener() {
+  menuChargement.addButton("menu", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuDemarrage);
     }
   }
   );
-  menuChargement.addButton("<-sauver", new ButtonListener() {
-    public void buttonListener() {
-      mtp.setMenuCurrent(menuSauv);
-    }
-  }
-  );
+
   if ( listeNomFichier.length > 0) {
     for (int i = 0; i < listeNomFichier.length; i++) {
       final String cour = listeNomFichier[i];
@@ -661,6 +692,7 @@ public class Donnee {
   private int[] inte, ext; 
   private int menu, forme, epaisseur, tailleForme, zone, tailleMosaique, choixFormeMosaique;
   private String nomJoueur;
+  private Boolean afficheImage;
   public Donnee() {
     inte = new int[]{0, 0, 0};
     ext = new int[]{0, 0, 0};
@@ -672,7 +704,15 @@ public class Donnee {
     this.zone = 0;
     this.tailleMosaique = 1;
     this.choixFormeMosaique = 6;//aléatoire
+    this.afficheImage = false;
   }
+  public void setAfficheImage(Boolean cour){
+    this.afficheImage = cour;
+  }
+  public Boolean getAfficheImage(){
+    return this.afficheImage;
+  }
+  
   public void setChoixFormeMosaique(int cour) {
     this.choixFormeMosaique = cour;
   }
