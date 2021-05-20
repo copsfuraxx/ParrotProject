@@ -498,12 +498,12 @@ void creeMenuValeur() {
   }
   );
 
-  menuValeur.addButton("eppai", new ButtonListener() {
+  menuValeur.addButton("Epaisseur : " + donnee.getEpaisseur(), new ButtonListener() {
     public void buttonListener() {
     }
   }
   );
-  menuValeur.addButton("tail", new ButtonListener() {
+  menuValeur.addButton("taille : " + getNomTaille(), new ButtonListener() {
     public void buttonListener() {
     }
   }
@@ -760,7 +760,7 @@ public class Donnee {
 
   public void setZone(int cour) {
     this.zone = cour;
-    String texte;
+    String texte = "";
     switch(cour) {
       case(0):
       texte = "ensemble de l'écran";
@@ -790,7 +790,7 @@ public class Donnee {
       case(12):
       texte = "bas droite";
     }
-    menuValeur.renameButton(4, "zone: "+ donnee.getZone());
+    menuValeur.renameButton(4, "zone: "+ texte);
   }
   public int getZone() {
     return this.zone;
@@ -798,6 +798,17 @@ public class Donnee {
   public void setTailleForme(int cour) {
     this.tailleForme = cour;
     menuValeur.renameButton(3, "taille forme : "+ donnee.getTailleForme());
+  }
+  public String getNomTaille(){
+    switch (this.tailleForme){
+      case(0):
+      return "petit";
+      case(1):
+      return "moyen";
+      case(2):
+      return "grand";
+    }
+    return "";
   }
   public int getTailleForme() {
     return this.tailleForme;
