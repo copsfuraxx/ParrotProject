@@ -42,7 +42,7 @@ void creeMenuChoixImage() {
       final String cour = listeNomFichier[i];
       menuChoixImage.addButton(listeNomFichier[i], new ButtonListener() {
         public void buttonListener() {
-          setImage(cour);
+          setImage("image/"+cour);
           mtp.setMenuCurrent(menuMosaique);
 
         }
