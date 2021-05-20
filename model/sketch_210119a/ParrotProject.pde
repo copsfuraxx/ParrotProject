@@ -126,7 +126,6 @@ void draw() {
 
 public void setImage(String cheminImage){
   manipImage.setImage(cheminImage);
-  print(manipImage.getImage().width);
 }
 
 public void dessineMosaique(int forme, int taille){
