@@ -50,7 +50,9 @@ class Pinceau {
     couleurRemplissage=c;
     use();
   }
-  
+
+
+
   public void setCouleur(Couleur c1, Couleur c2){
     couleurCrayon=c1;
     couleurRemplissage=c2;
