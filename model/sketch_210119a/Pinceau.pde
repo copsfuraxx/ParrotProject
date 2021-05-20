@@ -74,7 +74,7 @@ class Pinceau {
     return epaisseur;
   }
   
-  private void use(){
+  public void use(){
     strokeWeight(epaisseur);
     stroke(couleurCrayon.getCouleur());
     fill(couleurRemplissage.getCouleur());

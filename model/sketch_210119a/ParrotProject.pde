@@ -259,6 +259,28 @@ if (int(keyCode)==98){
 }
 if (int(keyCode)==100){
   //rouge
+  pinceau=new Pinceau(new Couleur(donnee.getCouleurExt()),new Couleur(donnee.getCouleurInte()),donnee.getEpaisseur());
+  dessineFormeParIdDeListe(donnee.getForme());
+  switch(donnee.getZone()){
+    case(1):lmin=0;lmax=0+(donnee.getTailleForme()+1)*width/3;break;
+    case(2):lmin=width/3;lmax=lmin+(donnee.getTailleForme()+1)*width/3;break;
+    case(3):lmin=width/3*2;lmax=lmin+(donnee.getTailleForme()+1)*width/3;break;
+    case(4):lmin=0;lmax=0+(donnee.getTailleForme()+1)*width/3;
+      hmin=0;hmax=0+(donnee.getTailleForme()+1)*height/3;
+      break;
+    case(5):lmin=width/3;lmax=lmin+(donnee.getTailleForme()+1)*width/3;
+      hmin=height/3;hmax=hmin+(donnee.getTailleForme()+1)*height/3;
+      break;
+    case(6):lmin=width/3*2;lmax=lmin+(donnee.getTailleForme()+1)*width/3;
+      hmin=height/3*2;hmax=hmin+(donnee.getTailleForme()+1)*height/3;
+      break;
+    case(7):break;
+    case(8):break;
+    case(9):break;
+    case(10):break;
+    case(11):break;
+    case(12):break;
+  }
 }
 if (int(keyCode)==102){
   //vert

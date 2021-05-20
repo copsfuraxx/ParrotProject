@@ -773,6 +773,10 @@ public class Donnee {
     this.forme = forme;
     //renameforme
   }
+  public int getForme() {
+    return forme;
+    //renameforme
+  }
   public String getNomForme() {
     return creeListeDeForme().get(this.forme);
   }
