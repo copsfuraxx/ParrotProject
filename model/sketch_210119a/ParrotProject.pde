@@ -243,6 +243,7 @@ private void gestionControleur() {
   dessineFormeParIdDeListe(donnee.getForme(),taille);
   }
   if (boutonBleuAppuye() && (appuyeBoutonBleu == false || mtp.getMenuCurrent() == menuMosaique)) { //quand on appuie sur le bouton bleu
+      delay(85);
     mtp.getMenuCurrent().click();
     appuyeBoutonBleu = true;
   }
@@ -265,29 +266,33 @@ private void gestionJoystick() {
     delay(time);
   }
   if (jx >= 40) {
-    donnee.gaucheCurseur();
-    delay(time);
+    //donnee.gaucheCurseur();
+    //delay(time);
   }
   if (jx <= -40) {
-    donnee.droiteCurseur();
-    delay(time);
+    //donnee.droiteCurseur();
+    //delay(time);
   }
 }
 void keyPressed(){
 if (int(keyCode)==38){
   mtp.getMenuCurrent().upCursor();
+  delay(85);
 }
 if (int(keyCode)==40){
   mtp.getMenuCurrent().downCursor();
+    delay(85);
+
 }
 if (int(keyCode)==39){
   //println("gauche");
- donnee.gaucheCurseur();
+ //donnee.gaucheCurseur();
 }
 if (int(keyCode)==37){
-  donnee.droiteCurseur();
+  //donnee.droiteCurseur();
 }
 if (int(keyCode)==98){
+    delay(85);
     mtp.getMenuCurrent().click();
 }
 if (int(keyCode)==100){
