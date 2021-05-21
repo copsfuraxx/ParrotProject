@@ -495,32 +495,44 @@ void creeMenuCouleurChoixExt() {
 void creeMenuValeur() {
   menuValeur.addButton("Int : "+ "R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte(), new ButtonListener() {
     public void buttonListener() {
+            mtp.setMenuCurrent(menuCouleurChoixInte);
+
     }
   }
   );
   menuValeur.addButton("Ext : "+ "R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt(), new ButtonListener() {
     public void buttonListener() {
+                  mtp.setMenuCurrent(menuCouleurChoixExt);
+
     }
   }
   );
 
   menuValeur.addButton("Epaisseur : " + donnee.getEpaisseur(), new ButtonListener() {
     public void buttonListener() {
+                  mtp.setMenuCurrent(menuEpaisseur);
+
     }
   }
   );
   menuValeur.addButton("taille : " + donnee.getNomTaille(), new ButtonListener() {
     public void buttonListener() {
+                  mtp.setMenuCurrent(menuTailleForme);
+
     }
   }
   );
   menuValeur.addButton("zone: "+ donnee.getZone(), new ButtonListener() {
     public void buttonListener() {
+                  mtp.setMenuCurrent(menuZone);
+
     }
   }
   );
   menuValeur.addButton(donnee.getNomForme(), new ButtonListener() {
     public void buttonListener() {
+                  mtp.setMenuCurrent(menuForme);
+
     }
   }
   );
