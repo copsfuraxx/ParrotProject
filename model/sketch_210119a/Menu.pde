@@ -26,25 +26,49 @@ void creeMenu() {
   menuTailleMosaique = new  Menu(reglageLightTheme);
   menuChoixImage = new  Menu(reglageLightTheme);
   menuNbMosaique = new  Menu(reglageLightTheme);
+  menuNbForme = new  Menu(reglageLightTheme);
 }
 
+void creeMenuNbForme(){
+  menuNbForme.addButton("seule", new ButtonListener() {
+    public void buttonListener() {
+      donnee.setNbForme(1);
+      mtp.setMenuCurrent(menuPinceau);
+    }
+  }
+  );
+  menuNbForme.addButton("peu", new ButtonListener() {
+    public void buttonListener() {
+      donnee.setNbForme(3);
+      mtp.setMenuCurrent(menuPinceau);
+    }
+  }
+  );
+  menuNbForme.addButton("beaucoup", new ButtonListener() {
+    public void buttonListener() {
+      donnee.setNbForme(10);
+      mtp.setMenuCurrent(menuPinceau);
+    }
+  }
+  );
+}
 
 void creeMenuNbMosaique() {
-  menuChoixForme.addButton("peu", new ButtonListener() {
+  menuNbMosaique.addButton("peu", new ButtonListener() {
     public void buttonListener() {
       donnee.setNbFormeMosaique(50);
       mtp.setMenuCurrent(menuMosaique);
     }
   }
   );
-  menuChoixForme.addButton("moyen", new ButtonListener() {
+  menuNbMosaique.addButton("moyen", new ButtonListener() {
     public void buttonListener() {
       donnee.setNbFormeMosaique(100);
       mtp.setMenuCurrent(menuMosaique);
     }
   }
   );
-  menuChoixForme.addButton("beaucoup", new ButtonListener() {
+  menuNbMosaique.addButton("beaucoup", new ButtonListener() {
     public void buttonListener() {
       donnee.setNbFormeMosaique(150);
       mtp.setMenuCurrent(menuMosaique);
@@ -155,6 +179,13 @@ void creeMenuMosaique() {
       donnee.setAfficheImage(!donnee.getAfficheImage());
       menuMosaique.renameButton(3, "affiche : " + donnee.getAfficheImage());
       afficheImage();
+    }
+  }
+  );
+  menuMosaique.addButton("nombre de formes", new ButtonListener() {
+    public void buttonListener() {
+      donnee.setAfficheImage(!donnee.getAfficheImage());
+      mtp.setMenuCurrent(menuNbMosaique);
     }
   }
   );
@@ -495,48 +526,48 @@ void creeMenuCouleurChoixExt() {
 void creeMenuValeur() {
   menuValeur.addButton("Int : "+ "R : " + donnee.getRougeInte() + " V : " + donnee.getVertInte() + " B : " + donnee.getBleuInte(), new ButtonListener() {
     public void buttonListener() {
-            mtp.setMenuCurrent(menuCouleurChoixInte);
-
+      mtp.setMenuCurrent(menuCouleurChoixInte);
     }
   }
   );
   menuValeur.addButton("Ext : "+ "R : " + donnee.getRougeExt() + " V : " + donnee.getVertExt() + " B : " + donnee.getBleuExt(), new ButtonListener() {
     public void buttonListener() {
-                  mtp.setMenuCurrent(menuCouleurChoixExt);
-
+      mtp.setMenuCurrent(menuCouleurChoixExt);
     }
   }
   );
 
   menuValeur.addButton("Epaisseur : " + donnee.getEpaisseur(), new ButtonListener() {
     public void buttonListener() {
-                  mtp.setMenuCurrent(menuEpaisseur);
-
+      mtp.setMenuCurrent(menuEpaisseur);
     }
   }
   );
   menuValeur.addButton("taille : " + donnee.getNomTaille(), new ButtonListener() {
     public void buttonListener() {
-                  mtp.setMenuCurrent(menuTailleForme);
-
+      mtp.setMenuCurrent(menuTailleForme);
     }
   }
   );
   menuValeur.addButton("zone: "+ donnee.getZone(), new ButtonListener() {
     public void buttonListener() {
-                  mtp.setMenuCurrent(menuZone);
-
+      mtp.setMenuCurrent(menuZone);
     }
   }
   );
   menuValeur.addButton(donnee.getNomForme(), new ButtonListener() {
     public void buttonListener() {
-                  mtp.setMenuCurrent(menuForme);
-
+      mtp.setMenuCurrent(menuForme);
     }
   }
   );
-
+  
+ menuValeur.addButton("nombre : " + donnee.getNomNbForme(), new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuNbForme);
+    }
+  }
+  );
   menuValeur.addButton("Retour", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuPinceau);
@@ -584,6 +615,12 @@ void creeMenuPinceau() {
     }
   }
   );
+  menuPinceau.addButton("Nombre de formes", new ButtonListener() {
+    public void buttonListener() {
+      mtp.setMenuCurrent(menuNbForme);
+    }
+  }
+  );
   menuPinceau.addButton("Valeurs", new ButtonListener() {
     public void buttonListener() {
       mtp.setMenuCurrent(menuValeur);
@@ -598,7 +635,7 @@ void creeMenuPinceau() {
   );
 }
 void creeMenuEpaisseur() {
-  for (int i = 1; i < 36; i++) {
+  for (int i = 0; i < 6; i++) {
     final int j = i;
     menuEpaisseur.addButton(j+"", new ButtonListener() {
       public void buttonListener() {
@@ -737,7 +774,7 @@ void changeMenu(int menuCour) {
 public class Donnee {
   public int MAXINT = 10, PETIT = 0, MOYEN = 1, GRAND = 2;
   private int[] inte, ext; 
-  private int menu, forme, epaisseur, tailleForme, zone, tailleMosaique, choixFormeMosaique, nbFormeMosaique;
+  private int menu, forme, epaisseur, tailleForme,nbForme, zone, tailleMosaique, choixFormeMosaique, nbFormeMosaique;
   private String nomJoueur;
   private Boolean afficheImage;
   public Donnee() {
@@ -753,6 +790,24 @@ public class Donnee {
     this.choixFormeMosaique = 6;//aléatoire
     this.afficheImage = false;
     this.nbFormeMosaique = 50;
+    this.nbForme = 1;
+  }
+  public void setNbForme(int cour) {
+    this.nbForme = cour;
+  }
+  public int getNbForme() {
+    return this.nbForme;
+  }
+  public String getNomNbForme() {
+    switch (this.nbForme) {
+      case(0):
+      return "seule";
+      case(1):
+      return "peu";      
+      case(2):
+      return "beaucoup";
+    }
+    return "";
   }
   public void setNbFormeMosaique(int cour) {
     this.nbFormeMosaique = cour;
@@ -787,31 +842,43 @@ public class Donnee {
     switch(cour) {
       case(0):
       texte = "ensemble de l'écran";
+      break;
       case(1):
       texte = "gauche";
-
+break;
       case(2):
       texte = "centre";
+      break;
       case(3):
       texte = "droite";
+      break;
       case(4):
       texte = "haut gauche";
+      break;
       case(5):
       texte = "haut centre";
+      break;
       case(6):
       texte = "haut droite";
+      break;
       case(7):
       texte = "centre gauche";
+      break;
       case(8):
       texte = "centre";
+      break;
       case(9):
       texte = "centre droite";
+      break;
       case(10):
       texte = "bas gauche";
+      break;
       case(11):
       texte = "bas centre";
+      break;
       case(12):
       texte = "bas droite";
+      break;
     }
     menuValeur.renameButton(4, "zone: "+ texte);
   }
@@ -820,14 +887,14 @@ public class Donnee {
   }
   public void setTailleForme(int cour) {
     this.tailleForme = cour;
-    menuValeur.renameButton(3, "taille forme : "+ donnee.getTailleForme());
+    menuValeur.renameButton(3, "taille forme : "+ donnee.getNomTaille());
   }
   public String getNomTaille() {
     switch (this.tailleForme) {
       case(0):
       return "petit";
       case(1):
-      return "moyen";
+      return "moyen";      
       case(2):
       return "grand";
     }

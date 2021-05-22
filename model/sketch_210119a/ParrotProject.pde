@@ -24,6 +24,7 @@ Menu menuChoixForme;
 Menu menuTailleMosaique;
 Menu menuChoixImage;
 Menu menuNbMosaique;
+Menu menuNbForme;
 
 private ManipulationImage manipImage;
 private int w = 800, h = 450;
@@ -74,7 +75,7 @@ void setup() {
   creeMenuTailleMosaique();
   creeMenuChoixImage();
   creeMenuNbMosaique();
-  
+  creeMenuNbForme();
 
 
   mtp.setMenuCurrent(menuDemarrage);
@@ -214,6 +215,7 @@ private void gestionControleur() {
   }
   if (boutonRougeAppuye() && appuyeBoutonRouge == false) { //quand on appuie sur le bouton bleu
     appuyeBoutonRouge = true;
+    for (int i = 0; i < donnee.getNbForme();i++){
     //rouge
   /*gros = (50*fenetreHeight)/350;
     petit = (7*fenetreHeight)/350; 
@@ -241,10 +243,14 @@ private void gestionControleur() {
     case(12):lmin=width*2/3;lmax=width;hmin=height*2/3;hmax=height;break;
   }
   dessineFormeParIdDeListe(donnee.getForme(),taille);
+    }
   }
-  if (boutonBleuAppuye() && (appuyeBoutonBleu == false || mtp.getMenuCurrent() == menuMosaique)) { //quand on appuie sur le bouton bleu
-      delay(85);
+  if (boutonBleuAppuye() && (appuyeBoutonBleu == false || (mtp.getMenuCurrent() == menuMosaique && mtp.getMenuCurrent().getCursor() == 5)) && (getJoystickY() < 30) && (getJoystickY() > -30)) { //quand on appuie sur le bouton bleu
+  try{
     mtp.getMenuCurrent().click();
+  }catch(IndexOutOfBoundsException  e){
+    mtp.getMenuCurrent().setCursor(0);
+  }
     appuyeBoutonBleu = true;
   }
   gestionJoystick();
